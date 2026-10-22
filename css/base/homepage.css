@@ -35,6 +35,7 @@
     position: absolute;
     inset: 0;
     z-index: 2;
+    width: 100%;
     background: rgba(97, 61, 14, 0.7);
     pointer-events: none;
 }
@@ -53,11 +54,13 @@
     color: var(--bg-color);
 }
 
-.homepage section.hero div.hero-container div.hero-content {}
+.homepage section.hero div.hero-container div.hero-content {
+    width: 40%;
+}
 
 .homepage section.hero div.hero-container h1 {
     /*font-size: clamp(2rem, 7vw, 3.5rem);*/
-    font-size: clamp(2.25rem, 7vw, 3rem);
+    font-size: clamp(2.25rem, 5vw, 4rem);
     font-weight: 500;
     /*line-height: 1.08;*/
     line-height: 0.8;
@@ -70,8 +73,8 @@
 
 .homepage section.hero div.hero-container h1 span {
     font-family: var(--typography-main);
-    font-size: 1.125rem;
-    /*font-size: clamp(2.25rem, 7vw, 3rem);*/
+    /*font-size: 1.125rem;*/
+    font-size: clamp(1.125rem, 2.5vw, 2rem);
     font-style: italic;
     font-weight: 400;
     /*line-height: 1.2;*/
@@ -120,7 +123,7 @@
     }
 
     .homepage section.hero div.hero-container h1 span {
-        font-size: 1.375rem;
+        /*font-size: 22px;*/
     }
 }
 
@@ -133,56 +136,113 @@
     .homepage .hero h1 {
         margin-bottom: 32px;
     }
+
+    .homepage section.hero div.hero-container div.hero-content p {
+        display: block;
+        font-weight: 400;
+        font-size: clamp(0.625rem, 1.5vw, 1.125rem);
+    }
 }
 
 @media screen and (min-width: 1024px) {
-    .homepage .hero {
+    .homepage section.hero {
         /*height: 546px;*/
         /*background-image: url('/img/back.png');*/
     }
 
-    .homepage .hero .container-full {
-        padding: 0;
-        justify-content: flex-start;
-    }
-
-    .homepage .hero .container-full p {
-        display: block;
+    .homepage section.hero div.container-full {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .homepage section.hero div.hero-overlay {
-        background: linear-gradient(to right, rgba(97, 61, 14, 1) 0%, rgba(97, 61, 14, 0.5) 40%, rgba(97, 61, 14, 0) 100%);
+        /*background: linear-gradient(to right, rgba(97, 61, 14, 1) 0%, rgba(97, 61, 14, 0.5) 40%, rgba(97, 61, 14, 0) 100%);*/
+        background: RGBA(97, 61, 14, 1);
+        background: -webkit-linear-gradient(90deg, rgba(97, 61, 14, 1) 0%, rgba(97, 61, 14, 0.8) 40%, rgba(0, 0, 0, 0.14) 80%);
+        background: -moz-linear-gradient(90deg, rgba(97, 61, 14, 1) 0%, rgba(97, 61, 14, 0.8) 40%, rgba(0, 0, 0, 0.14) 80%);
+        background: linear-gradient(90deg, rgba(97, 61, 14, 1) 0%, rgba(97, 61, 14, 0.8) 40%, rgba(0, 0, 0, 0.14) 80%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#613D0E", endColorstr="#00000000", GradientType=1);
     }
 
     .homepage section.hero div.hero-container {
-        width: 50%;
-        text-align: left;
+        width: 45%;
+        justify-content: flex-end;
     }
 
     .homepage section.hero div.hero-container div.hero-content {
-        width: 80%;
+        width: 79%;
+        text-align: left;
     }
 
-    .homepage section.hero div.hero-container p {
-        display: block;
+    .homepage section.hero div.hero-container div.hero-content h1 {
+        margin-bottom: 48px;
+    }
+
+    .homepage section.hero div.hero-container div.hero-content h1 span {
+        /*font-size: 25px;*/
+    }
+
+    .homepage section.hero div.hero-container div.hero-content p {
+        /*display: block;
+        font-weight: 400;
+        font-size: clamp(1rem, 2vw, 1.125rem);*/
+    }
+
+    .homepage section.hero div.hero-container div.hero-content a.btn.booking {
+        background-color: var(--main-color);
     }
 }
 
 @media screen and  (min-width: 1200px) {
-    .homepage .hero {
+    .homepage section.hero {
         /*height: 640px;*//
+    }
+
+    .homepage section.hero div.hero-overlay {
+        background: linear-gradient(90deg, rgba(97, 61, 14, 1) 0%, rgba(97, 61, 14, 0.85) 40%, rgba(0, 0, 0, 0.14) 80%);
+    }
+
+    .homepage section.hero div.container-full p.tagline {
+        display: inline-block;
+        color: var(--bg-color);
+        font-size: 10px;
+        font-weight: 600;
+        text-transform: uppercase;
+        position: absolute;
+        bottom: 32px;
+        z-index: 3;
+        letter-spacing: 2px;
+    }
+
+    .homepage section.hero div.container-full p.tagline span {
+        margin-left: 16px;
+        margin-right: 16px;
+        font-size: 16px;
     }
 }
 
 @media screen and (min-width: 1440px) {
-    .homepage .hero {
+    .homepage section.hero {
         /*height: 768px;*/
+    }
+
+    .homepage section.hero div.hero-overlay {
+        background: linear-gradient(90deg, rgba(97, 61, 14, 1) 0%, rgba(97, 61, 14, 0.9) 40%, rgba(0, 0, 0, 0.14) 80%);
     }
 }
 
 @media screen and (min-width: 1920px) {
-    .homepage .hero {
+    .homepage section.hero {
         /*height: 1024px;*/
+    }
+
+    .homepage section.hero div.hero-container {
+        width: 45%;
+    }
+
+    .homepage section.hero div.hero-container div.hero-content {
+        width: 79%;
     }
 }
 
