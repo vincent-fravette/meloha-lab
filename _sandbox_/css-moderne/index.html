@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>CSS Moderne - Unité REM, clamp(), Slider (sans JS), Grid & Dark Mode - v1</title>
+</head>
+
+<body>
+    <header class="header">
+        <h1>Mon Catalogue Fluide</h1>
+        <p>Changez le thème de votre système (clair/sombre) pour voir le mode sombre s'activer.</p>
+    </header>
+    <main>
+        <section>
+            <h2>Unité REM, clamp() & Dark Mode - v1</h2>
+            <!-- Nouveau conteneur parent pour l'indicateur visuel de défilement -->
+            <div class="slider-wrapper">
+                <div class="grid-container">
+                    <!-- Carte 1 -->
+                    <div class="card">
+                        <div class="card-image-placeholder">
+                            <img class="card-img" src="https://images.unsplash.com/photo-1665422276005-18116a1e6225?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Voyage">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-badge">Nouveau</span>
+                            <h3 class="card-title">Découvrir la Réunion</h3>
+                            <p class="card-text">Explorez des paysages à couper le souffle entre mer et montagnes.</p>
+                            <a class="card-btn" href="#">En savoir plus <span class="arrow">&rarr;</span></a>
+                        </div>
+                    </div>
+                    <!-- Carte 2 -->
+                    <div class="card">
+                        <div class="card-image-placeholder">
+                            <img class="card-img" src="https://images.unsplash.com/photo-1521292270410-a8c4d716d518?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Voyage">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-badge">Populaire</span>
+                            <h3 class="card-title">Les Alpes en Hiver</h3>
+                            <p class="card-text">Profitez des pistes enneigées et des villages chaleureux au cœur des massifs.</p>
+                            <a class="card-btn" href="#">En savoir plus <span class="arrow">&rarr;</span></a>
+                        </div>
+                    </div>
+                    <!-- Carte 3 -->
+                    <div class="card">
+                        <div class="card-image-placeholder">
+                            <img class="card-img" src="https://images.unsplash.com/photo-1616350428103-cc6bf12d46f0?q=80&w=1367&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Voyage">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-badge">Aventure</span>
+                            <h3 class="card-title">Échappée Bretonne</h3>
+                            <p class="card-text">Laissez-vous envoûter par la côte sauvage et les légendes de l'océan Atlantique.</p>
+                            <a class="card-btn" href="#">En savoir plus <span class="arrow">&rarr;</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

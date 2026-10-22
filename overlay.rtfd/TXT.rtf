@@ -1,0 +1,953 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf610
+{\fonttbl\f0\fswiss\fcharset0 ArialMT;\f1\fmodern\fcharset0 Courier;\f2\fmodern\fcharset0 Courier-Bold;
+\f3\fnil\fcharset0 AppleColorEmoji;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue11;\red0\green0\blue233;
+}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c100000\c100000\c0;\cssrgb\c0\c0\c93333;
+}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid201\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid301\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid4}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww20400\viewh20000\viewkind0
+\deftab720
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f0\fs32 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Un overlay sur une section hero (la grande banni\'e8re en haut d'une page web) est \cb3 une couche visuelle semi-transparente plac\'e9e entre l'image de fond et le texte pour am\'e9liorer la lisibilit\'e9\cb1 .\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\pard\pardeftab720\sl460\partightenfactor0
+
+\b\fs40 \cf2 Comment cr\'e9er un overlay sur un hero en CSS\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl360\sa240\partightenfactor0
+\ls1\ilvl0
+\fs32 \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Structure HTML
+\b0  : Cr\'e9ez un conteneur principal (
+\f1\fs28 \uc0\u8234 .hero
+\f0\fs32 \uc0\u8236 ) avec une image en arri\'e8re-plan, et un bloc interne (
+\f1\fs28 \uc0\u8234 .hero-overlay
+\f0\fs32 \uc0\u8236 ) pour la couche color\'e9e, puis votre texte.\
+\ls1\ilvl0
+\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Positionnement
+\b0  : Mettez le conteneur parent en 
+\f1\fs28 \uc0\u8234 position: relative
+\f0\fs32 \uc0\u8236  et l'overlay en 
+\f1\fs28 \uc0\u8234 position: absolute
+\f0\fs32 \uc0\u8236  avec 
+\f1\fs28 \uc0\u8234 inset: 0
+\f0\fs32 \uc0\u8236  (ou 
+\f1\fs28 \uc0\u8234 top: 0
+\f0\fs32 \uc0\u8236 , 
+\f1\fs28 \uc0\u8234 left: 0
+\f0\fs32 \uc0\u8236 , 
+\f1\fs28 \uc0\u8234 width: 100%
+\f0\fs32 \uc0\u8236 , 
+\f1\fs28 \uc0\u8234 height: 100%
+\f0\fs32 \uc0\u8236 ). [{\field{\*\fldinst{HYPERLINK "https://discourse.webflow.com/t/overlay-over-background-image-in-hero-section/166822"}}{\fldrslt \cf4 \ul \ulc4 \strokec4 1}}]\
+\ls1\ilvl0
+\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Couleur et opacit\'e9
+\b0  : Attribuez une couleur de fond sombre (comme le noir 
+\f1\fs28 \uc0\u8234 rgba(0, 0, 0, 0.5)
+\f0\fs32 \uc0\u8236 ) ou une couleur de votre charte graphique avec une opacit\'e9 r\'e9gl\'e9e entre 30 % et 60 %. [{\field{\*\fldinst{HYPERLINK "https://www.youtube.com/watch?v=g2GrAoI_qkU"}}{\fldrslt \cf4 \ul \ulc4 \strokec4 1}}]\
+\ls1\ilvl0
+\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Ordre des couches
+\b0  : Placez l'overlay au-dessus de l'image de fond mais en dessous du texte (via l'ordre du DOM ou un 
+\f1\fs28 \uc0\u8234 z-index
+\f0\fs32 \uc0\u8236  adapt\'e9). [{\field{\*\fldinst{HYPERLINK "https://discourse.webflow.com/t/overlay-over-background-image-in-hero-section/166822"}}{\fldrslt \cf4 \ul \ulc4 \strokec4 1}}]\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\fs32 \cf2 Ce tutoriel rapide montre comment cr\'e9er facilement une section hero avec un overlay et du texte sous Elementor :\
+\
+{{\NeXTGraphic inconnu.png \width3420 \height1920 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\
+\pard\pardeftab720\sl280\partightenfactor0
+
+\fs24 \cf2 14:32\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\fs32 \cf2 \
+\
+How to create Hero section with Overlay - Fast & Easy\
+\pard\pardeftab720\sl280\partightenfactor0
+
+\fs24 \cf2 il y a 6 ans\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\fs32 \cf2 {{\NeXTGraphic 1__#$!@%!#__inconnu.png \width320 \height320 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\pard\pardeftab720\sl280\partightenfactor0
+
+\fs24 \cf2 YouTube\'a0\'b7\'a0NN Web\
+\pard\pardeftab720\sl300\qc\partightenfactor0
+
+\fs26\fsmilli13333 \cf2 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\fs32 \cf2 Si vous utilisez un outil particulier (comme 
+\b WordPress
+\b0 , 
+\b Webflow
+\b0 , 
+\b Tailwind CSS
+\b0  ou du 
+\b code pur
+\b0 ), dites-le-moi pour que je vous donne les \'e9tapes ou le code exacts.\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+Les r\'e9ponses de l'IA peuvent contenir des erreurs. {\field{\*\fldinst{HYPERLINK "https://support.google.com/websearch?p=aimode"}}{\fldrslt \cf4 \ul \ulc4 \strokec4 En savoir plus}}\
+\
+\pard\pardeftab720\sl300\qc\partightenfactor0
+
+\fs26\fsmilli13333 \cf2 \
+\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\fs32 \cf2 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl360\partightenfactor0
+\ls2\ilvl0\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 {{\NeXTGraphic 2__#$!@%!#__inconnu.png \width320 \height320 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\uc0\u8232 \u8232 
+\fs24 daisyUI
+\fs32 \uc0\u8232 
+\fs26\fsmilli13333 \uc0\u8232 
+\fs32 \uc0\u8232 \u8232 \u8232 \u8232 
+\fs28 Tailwind Hero Component - daisyUI\uc0\u8232 
+\fs24 Tailwind Hero examples: Hero is a component for displaying a large box or image with a title and description. component.\uc0\u8232 
+\fs32 \uc0\u8232 {{\NeXTGraphic 3__#$!@%!#__inconnu.png \width1360 \height1360 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\uc0\u8232 \u8232 \u8232 \u8232 \u8232 \
+\ls2\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 {{\NeXTGraphic 4__#$!@%!#__inconnu.png \width320 \height320 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\uc0\u8232 \u8232 
+\fs24 YouTube\'b7
+\fs22 NN Web
+\fs32 \uc0\u8232 
+\fs26\fsmilli13333 \uc0\u8232 
+\fs32 \uc0\u8232 \u8232 \u8232 \u8232 
+\fs28 How to create Hero section with Overlay - Fast & Easy\uc0\u8232 
+\fs24 How to create Hero section with Overlay - Fast & Easy greetings my precious viewers. here is nicola from nnweb.net welcome to my n...\uc0\u8232 
+\fs32 \uc0\u8232 {{\NeXTGraphic 5__#$!@%!#__inconnu.png \width2820 \height1560 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}
+\fs24 \uc0\u8232 \u8232 14:32\u8232 
+\fs32 \uc0\u8232 \u8232 \u8232 \u8232 \u8232 \u8232 \u8232 \u8232 \u8232 \u8232 \u8232 \u8232 \u8232 \u8232 \
+\ls2\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 {{\NeXTGraphic 6__#$!@%!#__inconnu.png \width320 \height320 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\uc0\u8232 \u8232 
+\fs24 Webflow
+\fs32 \uc0\u8232 
+\fs26\fsmilli13333 \uc0\u8232 
+\fs32 \uc0\u8232 \u8232 \u8232 \u8232 
+\fs28 Overlay over background image in hero section - General\uc0\u8232 
+\fs24 https://preview.webflow.com/preview/marketing-lists?utm_medium=preview_link&utm_source=designer&utm_content=marketing-lists&previe...\uc0\u8232 
+\fs32 \uc0\u8232 {{\NeXTGraphic 7__#$!@%!#__inconnu.png \width1360 \height1360 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\uc0\u8232 \u8232 \u8232 \u8232 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\fs32 \cf2 code pur
+\fs28 \
+\pard\pardeftab720\sl280\partightenfactor0
+
+\fs24 \cf2 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\
+\
+\
+\
+\
+\
+\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\fs32 \cf2 Voici le code complet (HTML et CSS pur) pour cr\'e9er une section hero moderne avec un overlay semi-transparent et un texte parfaitement lisible.\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\pard\pardeftab720\sl460\partightenfactor0
+
+\b\fs40 \cf2 Code HTML (
+\f2\fs28 \uc0\u8234 index.html
+\f0\fs40 \uc0\u8236 )\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\b0\fs28 \cf2 \
+\pard\pardeftab720\sl460\partightenfactor0
+
+\fs40 \cf2 html\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f1\fs28 \cf2 <section class="hero">\
+  <!-- L'overlay est plac\'e9 \'e0 l'int\'e9rieur du hero -->\
+  <div class="hero-overlay"></div>\
+  \
+  <!-- Le contenu textuel reste au-dessus de l'overlay -->\
+  <div class="hero-content">\
+    <h1>Sublimez votre pr\'e9sence en ligne</h1>\
+    <p>Cr\'e9ez des interfaces modernes, \'e9pur\'e9es et parfaitement accessibles.</p>\
+    <a href="#" class="hero-btn">D\'e9couvrir</a>\
+  </div>\
+</section>\
+\pard\pardeftab720\sl280\partightenfactor0
+
+\f0\fs24 \cf2 Utilisez le code avec pr\'e9caution.\
+\pard\pardeftab720\sl300\qc\partightenfactor0
+
+\fs26\fsmilli13333 \cf2 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\pard\pardeftab720\sl460\partightenfactor0
+
+\b\fs40 \cf2 Code CSS (
+\f2\fs28 \uc0\u8234 style.css
+\f0\fs40 \uc0\u8236 )\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\b0\fs28 \cf2 \
+\pard\pardeftab720\sl460\partightenfactor0
+
+\fs40 \cf2 css\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f1\fs28 \cf2 /* R\'e9initialisation de base */\
+* \{\
+  margin: 0;\
+  padding: 0;\
+  box-sizing: border-box;\
+\}\
+\
+body \{\
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\
+\}\
+\
+/* Le conteneur principal */\
+.hero \{\
+  position: relative; /* Indispensable pour positionner l'overlay */\
+  width: 100%;\
+  height: 100vh; /* Prend toute la hauteur de l'\'e9cran */\
+  background-image: url('https://unsplash.com');\
+  background-size: cover;\
+  background-position: center;\
+  background-repeat: no-repeat;\
+  display: flex;\
+  align-items: center;\
+  justify-content: center;\
+\}\
+\
+/* L'overlay (la couche sombre) */\
+.hero-overlay \{\
+  position: absolute;\
+  top: 0;\
+  left: 0;\
+  width: 100%;\
+  height: 100%;\
+  /* Noir \'e0 50% d'opacit\'e9. Ajustez le 0.5 selon vos besoins */\
+  background-color: rgba(0, 0, 0, 0.5); \
+  z-index: 1; /* Se place au-dessus de l'image */\
+\}\
+\
+/* Le contenu textuel */\
+.hero-content \{\
+  position: relative;\
+  z-index: 2; /* Se place imp\'e9rativement au-dessus de l'overlay */\
+  color: #ffffff;\
+  text-align: center;\
+  max-width: 800px;\
+  padding: 0 20px;\
+\}\
+\
+.hero-content h1 \{\
+  font-size: 3rem;\
+  margin-bottom: 20px;\
+  font-weight: 700;\
+\}\
+\
+.hero-content p \{\
+  font-size: 1.25rem;\
+  margin-bottom: 30px;\
+  line-height: 1.6;\
+\}\
+\
+/* Bouton d'appel \'e0 l'action */\
+.hero-btn \{\
+  display: inline-block;\
+  padding: 12px 30px;\
+  background-color: #007bff;\
+  color: #ffffff;\
+  text-decoration: none;\
+  border-radius: 5px;\
+  font-weight: 600;\
+  transition: background 0.3s ease;\
+\}\
+\
+.hero-btn:hover \{\
+  background-color: #0056b3;\
+\}\
+\pard\pardeftab720\sl280\partightenfactor0
+
+\f0\fs24 \cf2 Utilisez le code avec pr\'e9caution.\
+\pard\pardeftab720\sl300\qc\partightenfactor0
+
+\fs26\fsmilli13333 \cf2 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\pard\pardeftab720\sl460\partightenfactor0
+
+\b\fs40 \cf2 Variante moderne (sans div d'overlay)\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\b0\fs32 \cf2 Si vous pr\'e9f\'e9rez un HTML encore plus propre, vous pouvez vous passer de la balise 
+\f1\fs28 \uc0\u8234 <div class="hero-overlay"></div>
+\f0\fs32 \uc0\u8236  en appliquant directement un 
+\b d\'e9grad\'e9 lin\'e9aire
+\b0  (
+\f1\fs28 \uc0\u8234 linear-gradient
+\f0\fs32 \uc0\u8236 ) par-dessus votre image dans la propri\'e9t\'e9 CSS 
+\f1\fs28 \uc0\u8234 background-image
+\f0\fs32 \uc0\u8236  :\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\pard\pardeftab720\sl460\partightenfactor0
+
+\fs40 \cf2 css\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f1\fs28 \cf2 .hero \{\
+  position: relative;\
+  width: 100%;\
+  height: 100vh;\
+  /* L'overlay est directement fusionn\'e9 dans le background */\
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), \
+                    url('votre-image.jpg');\
+  background-size: cover;\
+  background-position: center;\
+  display: flex;\
+  align-items: center;\
+  justify-content: center;\
+\}\
+\pard\pardeftab720\sl280\partightenfactor0
+
+\f0\fs24 \cf2 Utilisez le code avec pr\'e9caution.\
+\pard\pardeftab720\sl300\qc\partightenfactor0
+
+\fs26\fsmilli13333 \cf2 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\fs32 \cf2 Souhaitez-vous plut\'f4t utiliser un 
+\b d\'e9grad\'e9 color\'e9 (gradient)
+\b0  \'e0 la place du noir transparent, ou pr\'e9f\'e9rez-vous ajouter un 
+\b effet de flou (backdrop-filter)
+\b0  sur l'overlay ?\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\
+Les r\'e9ponses de l'IA peuvent contenir des erreurs. {\field{\*\fldinst{HYPERLINK "https://support.google.com/websearch?p=aimode"}}{\fldrslt \cf4 \ul \ulc4 \strokec4 En savoir plus}}\
+\
+\pard\pardeftab720\sl300\qc\partightenfactor0
+
+\fs26\fsmilli13333 \cf2 \
+\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\fs32 \cf2 L'image est int\'e9gr\'e9 en HTML et non en CSS
+\fs28 \
+\pard\pardeftab720\sl280\partightenfactor0
+
+\fs24 \cf2 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\
+\
+\
+\
+\
+\
+\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\fs32 \cf2 Si votre image est int\'e9gr\'e9e directement dans le HTML via une balise 
+\f1\fs28 \uc0\u8234 <img>
+\f0\fs32 \uc0\u8236 , la logique reste la m\'eame : \cb3 il faut superposer l'overlay et le texte \'e0 l'aide des propri\'e9t\'e9s CSS\cb1  
+\f1\fs28 \uc0\u8234 position: relative
+\f0\fs32 \uc0\u8236  et 
+\f1\fs28 \uc0\u8234 position: absolute
+\f0\fs32 \uc0\u8236 .\
+Voici le code propre et adapt\'e9 \'e0 cette structure :\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\pard\pardeftab720\sl460\partightenfactor0
+
+\b\fs40 \cf2 Code HTML (
+\f2\fs28 \uc0\u8234 index.html
+\f0\fs40 \uc0\u8236 )\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\b0\fs28 \cf2 \
+\pard\pardeftab720\sl460\partightenfactor0
+
+\fs40 \cf2 html\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f1\fs28 \cf2 <section class="hero">\
+  <!-- L'image est int\'e9gr\'e9e en HTML -->\
+  <img src="https://unsplash.com" alt="Bureau de travail informatique" class="hero-img">\
+  \
+  <!-- L'overlay semi-transparent -->\
+  <div class="hero-overlay"></div>\
+  \
+  <!-- Le contenu textuel -->\
+  <div class="hero-content">\
+    <h1>Sublimez votre pr\'e9sence en ligne</h1>\
+    <p>Cr\'e9ez des interfaces modernes, \'e9pur\'e9es et parfaitement accessibles.</p>\
+    <a href="#" class="hero-btn">D\'e9couvrir</a>\
+  </div>\
+</section>\
+\pard\pardeftab720\sl280\partightenfactor0
+
+\f0\fs24 \cf2 Utilisez le code avec pr\'e9caution.\
+\pard\pardeftab720\sl300\qc\partightenfactor0
+
+\fs26\fsmilli13333 \cf2 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\pard\pardeftab720\sl460\partightenfactor0
+
+\b\fs40 \cf2 Code CSS (
+\f2\fs28 \uc0\u8234 style.css
+\f0\fs40 \uc0\u8236 )\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\b0\fs28 \cf2 \
+\pard\pardeftab720\sl460\partightenfactor0
+
+\fs40 \cf2 css\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f1\fs28 \cf2 /* R\'e9initialisation de base */\
+* \{\
+  margin: 0;\
+  padding: 0;\
+  box-sizing: border-box;\
+\}\
+\
+body \{\
+  font-family: 'Segoe UI', sans-serif;\
+\}\
+\
+/* Le conteneur principal */\
+.hero \{\
+  position: relative; /* Indispensable pour contenir les \'e9l\'e9ments absolus */\
+  width: 100%;\
+  height: 100vh;      /* Prend toute la hauteur de l'\'e9cran */\
+  overflow: hidden;   /* Emp\'eache l'image de d\'e9passer si elle est trop grande */\
+  display: flex;\
+  align-items: center;\
+  justify-content: center;\
+\}\
+\
+/* L'image HTML */\
+.hero-img \{\
+  position: absolute;\
+  top: 0;\
+  left: 0;\
+  width: 100%;\
+  height: 100%;\
+  object-fit: cover; /* Agit comme un background-size: cover */\
+  z-index: 1;        /* Reste tout en bas */\
+\}\
+\
+/* L'overlay sombre */\
+.hero-overlay \{\
+  position: absolute;\
+  top: 0;\
+  left: 0;\
+  width: 100%;\
+  height: 100%;\
+  background-color: rgba(0, 0, 0, 0.5); /* Noir \'e0 50% d'opacit\'e9 */\
+  z-index: 2; /* Se place au-dessus de l'image */\
+\}\
+\
+/* Le contenu textuel */\
+.hero-content \{\
+  position: relative;\
+  z-index: 3; /* Imp\'e9rativement au-dessus de l'overlay */\
+  color: #ffffff;\
+  text-align: center;\
+  max-width: 800px;\
+  padding: 0 20px;\
+\}\
+\
+/* Styles du texte et du bouton */\
+.hero-content h1 \{\
+  font-size: 3rem;\
+  margin-bottom: 20px;\
+  font-weight: 700;\
+\}\
+\
+.hero-content p \{\
+  font-size: 1.25rem;\
+  margin-bottom: 30px;\
+\}\
+\
+.hero-btn \{\
+  display: inline-block;\
+  padding: 12px 30px;\
+  background-color: #007bff;\
+  color: #ffffff;\
+  text-decoration: none;\
+  border-radius: 5px;\
+  font-weight: 600;\
+\}\
+\pard\pardeftab720\sl280\partightenfactor0
+
+\f0\fs24 \cf2 Utilisez le code avec pr\'e9caution.\
+\pard\pardeftab720\sl300\qc\partightenfactor0
+
+\fs26\fsmilli13333 \cf2 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\pard\pardeftab720\sl460\partightenfactor0
+
+\f3\fs40 \cf2 \uc0\u55357 \u56481 
+\f0\b  Points cl\'e9s \'e0 retenir :\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl320\sa240\partightenfactor0
+\ls3\ilvl0
+\f2\fs28 \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u8234 object-fit: cover
+\f0\b0\fs32  sur la balise 
+\f1\fs28 .hero-img
+\f0\fs32  permet \'e0 l'image HTML de se comporter exactement comme une image de fond CSS : elle remplit tout l'\'e9cran sans se d\'e9former.\uc0\u8236 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl360\sa240\partightenfactor0
+\ls3\ilvl0
+\b \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Les 
+\f2\fs28 \uc0\u8234 z-index
+\f0\fs32 \uc0\u8236  croissants
+\b0  (
+\f1\fs28 \uc0\u8234 1
+\f0\fs32 \uc0\u8236  pour l'image, 
+\f1\fs28 \uc0\u8234 2
+\f0\fs32 \uc0\u8236  pour l'overlay, 
+\f1\fs28 \uc0\u8234 3
+\f0\fs32 \uc0\u8236  pour le texte) garantissent que les \'e9l\'e9ments s'empilent parfaitement les uns sur les autres.\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\fs32 \cf2 Voulez-vous adapter ce code pour qu'il soit parfaitement 
+\b responsive (adapt\'e9 aux mobiles)
+\b0  ou pr\'e9f\'e9rez-vous y ajouter une 
+\b animation
+\b0  au chargement de la page ?\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\
+Les r\'e9ponses de l'IA peuvent contenir des erreurs. {\field{\*\fldinst{HYPERLINK "https://support.google.com/websearch?p=aimode"}}{\fldrslt \cf4 \ul \ulc4 \strokec4 En savoir plus}}\
+\
+\pard\pardeftab720\sl300\qc\partightenfactor0
+
+\fs26\fsmilli13333 \cf2 \
+\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\fs32 \cf2 Adapte ce code pour qu'il soit parfaitement responsive (adapt\'e9 aux mobiles) et ajoute une animation au chargement de la page
+\fs28 \
+\pard\pardeftab720\sl280\partightenfactor0
+
+\fs24 \cf2 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\fs32 \cf2 \cb3 Voici le code mis \'e0 jour pour int\'e9grer un design responsive et des animations d'apparition fluides (fondu et mont\'e9e) au chargement de la page\cb1 .\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\pard\pardeftab720\sl460\partightenfactor0
+
+\b\fs40 \cf2 Code HTML (
+\f2\fs28 \uc0\u8234 index.html
+\f0\fs40 \uc0\u8236 )\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\i\b0\fs32 \cf2 La structure reste inchang\'e9e, seule l'int\'e9gration des classes d'animation peut \'eatre g\'e9r\'e9e directement en CSS.
+\i0 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\pard\pardeftab720\sl460\partightenfactor0
+
+\fs40 \cf2 html\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f1\fs28 \cf2 <section class="hero">\
+  <img src="https://unsplash.com" alt="Bureau de travail informatique" class="hero-img">\
+  <div class="hero-overlay"></div>\
+  \
+  <div class="hero-content">\
+    <h1 class="animate-fade-up">Sublimez votre pr\'e9sence en ligne</h1>\
+    <p class="animate-fade-up delay-1">Cr\'e9ez des interfaces modernes, \'e9pur\'e9es et parfaitement accessibles.</p>\
+    <div class="animate-fade-up delay-2">\
+      <a href="#" class="hero-btn">D\'e9couvrir</a>\
+    </div>\
+  </div>\
+</section>\
+\pard\pardeftab720\sl280\partightenfactor0
+
+\f0\fs24 \cf2 Utilisez le code avec pr\'e9caution.\
+\pard\pardeftab720\sl300\qc\partightenfactor0
+
+\fs26\fsmilli13333 \cf2 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\pard\pardeftab720\sl460\partightenfactor0
+
+\b\fs40 \cf2 Code CSS (
+\f2\fs28 \uc0\u8234 style.css
+\f0\fs40 \uc0\u8236 )\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\b0\fs28 \cf2 \
+\pard\pardeftab720\sl460\partightenfactor0
+
+\fs40 \cf2 css\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f1\fs28 \cf2 /* ==========================================\
+   1. STYLES DE BASE & STRUCTURE (RESPONSIVE)\
+   ========================================== */\
+* \{\
+  margin: 0;\
+  padding: 0;\
+  box-sizing: border-box;\
+\}\
+\
+body \{\
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;\
+  overflow-x: hidden; /* \'c9vite les d\'e9filements horizontaux ind\'e9sirables */\
+\}\
+\
+.hero \{\
+  position: relative;\
+  width: 100%;\
+  height: 100vh; /* Utilise 100dvh si vous voulez \'e9viter les bugs de hauteur sur les navigateurs mobiles */\
+  height: 100dvh; \
+  overflow: hidden;\
+  display: flex;\
+  align-items: center;\
+  justify-content: center;\
+\}\
+\
+.hero-img \{\
+  position: absolute;\
+  top: 0;\
+  left: 0;\
+  width: 100%;\
+  height: 100%;\
+  object-fit: cover;\
+  z-index: 1;\
+\}\
+\
+.hero-overlay \{\
+  position: absolute;\
+  top: 0;\
+  left: 0;\
+  width: 100%;\
+  height: 100%;\
+  background-color: rgba(0, 0, 0, 0.55); /* L\'e9g\'e8rement plus sombre pour le mobile */\
+  z-index: 2;\
+\}\
+\
+.hero-content \{\
+  position: relative;\
+  z-index: 3;\
+  color: #ffffff;\
+  text-align: center;\
+  width: 100%;\
+  max-width: 800px;\
+  padding: 0 24px; /* Marges de s\'e9curit\'e9 pour les petits \'e9crans */\
+\}\
+\
+/* Typographies responsives avec clamp() */\
+.hero-content h1 \{\
+  /* clamp(taille_min, taille_fluide, taille_max) */\
+  font-size: clamp(2rem, 5vw + 1rem, 3.5rem); \
+  margin-bottom: clamp(12px, 3vw, 24px);\
+  font-weight: 700;\
+  line-height: 1.2;\
+\}\
+\
+.hero-content p \{\
+  font-size: clamp(1rem, 1.5vw + 0.5rem, 1.35rem);\
+  margin-bottom: clamp(24px, 4vw, 36px);\
+  line-height: 1.6;\
+  font-weight: 400;\
+  color: rgba(255, 255, 255, 0.9);\
+\}\
+\
+.hero-btn \{\
+  display: inline-block;\
+  padding: clamp(10px, 2vw, 14px) clamp(24px, 4vw, 36px);\
+  background-color: #007bff;\
+  color: #ffffff;\
+  text-decoration: none;\
+  border-radius: 6px;\
+  font-weight: 600;\
+  font-size: clamp(0.95rem, 1vw + 0.5rem, 1.1rem);\
+  transition: transform 0.2s ease, background-color 0.2s ease;\
+\}\
+\
+/* Effets au survol (uniquement pour les appareils avec souris) */\
+@media (hover: hover) \{\
+  .hero-btn:hover \{\
+    background-color: #0056b3;\
+    transform: translateY(-2px);\
+  \}\
+\}\
+\
+/* ==========================================\
+   2. ANIMATIONS AU CHARGEMENT (CSS PUR)\
+   ========================================== */\
+\
+/* D\'e9finition de l'animation de mont\'e9e et fondu */\
+@keyframes fadeUp \{\
+  from \{\
+    opacity: 0;\
+    transform: translateY(30px);\
+  \}\
+  to \{\
+    opacity: 1;\
+    transform: translateY(0);\
+  \}\
+\}\
+\
+/* Classe d'animation principale */\
+.animate-fade-up \{\
+  opacity: 0; /* Masqu\'e9 par d\'e9faut avant le d\'e9marrage */\
+  animation: fadeUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;\
+\}\
+\
+/* D\'e9calages temporels (Delays) pour un effet de cascade */\
+.delay-1 \{\
+  animation-delay: 0.2s;\
+\}\
+\
+.delay-2 \{\
+  animation-delay: 0.4s;\
+\}\
+\
+/* Optionnel : L\'e9g\'e8re animation d'\'e9chelle sur l'image de fond */\
+@keyframes zoomIn \{\
+  from \{\
+    transform: scale(1.1);\
+  \}\
+  to \{\
+    transform: scale(1);\
+  \}\
+\}\
+\
+.hero-img \{\
+  animation: zoomIn 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;\
+\}\
+\pard\pardeftab720\sl280\partightenfactor0
+
+\f0\fs24 \cf2 Utilisez le code avec pr\'e9caution.\
+\pard\pardeftab720\sl300\qc\partightenfactor0
+
+\fs26\fsmilli13333 \cf2 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\pard\pardeftab720\sl460\partightenfactor0
+
+\f3\fs40 \cf2 \uc0\u55357 \u56561 
+\f0\b  Am\'e9liorations responsives et ergonomiques apport\'e9es :\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl360\sa240\partightenfactor0
+\ls4\ilvl0
+\fs32 \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Utilisation de 
+\f2\fs28 \uc0\u8234 clamp()
+\f0\b0\fs32 \uc0\u8236  : Les tailles de police (pour le titre et le paragraphe) ainsi que les marges s'adaptent de mani\'e8re fluide \'e0 la taille de l'\'e9cran, sans n\'e9cessiter des dizaines de requ\'eates m\'e9dia (
+\f1\fs28 \uc0\u8234 @media
+\f0\fs32 \uc0\u8236 ).\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl320\sa240\partightenfactor0
+\ls4\ilvl0
+\f2\b\fs28 \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u8234 height: 100dvh
+\f0\b0\fs32  : Utilise la "hauteur dynamique de la fen\'eatre" pour \'e9viter que la barre de navigation masquable de Safari ou Chrome sur mobile ne coupe le bas de votre section hero.\uc0\u8236 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl360\sa240\partightenfactor0
+\ls4\ilvl0
+\b \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 M\'e9dia Query 
+\f2\fs28 \uc0\u8234 @media (hover: hover)
+\f0\b0\fs32 \uc0\u8236  : Emp\'eache le comportement collant du bouton sur mobile (o\'f9 le style de survol reste actif apr\'e8s avoir cliqu\'e9 avec le doigt).\
+\ls4\ilvl0
+\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	4.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Effet Cascade
+\b0  : Les \'e9l\'e9ments textuels apparaissent l'un apr\'e8s l'autre gr\'e2ce aux classes 
+\f1\fs28 \uc0\u8234 delay-1
+\f0\fs32 \uc0\u8236  et 
+\f1\fs28 \uc0\u8234 delay-2
+\f0\fs32 \uc0\u8236 , tandis que l'image de fond effectue un l\'e9ger zoom arri\'e8re tr\'e8s immersif.\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\fs32 \cf2 \
+}

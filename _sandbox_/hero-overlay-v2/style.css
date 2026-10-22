@@ -1,0 +1,244 @@
+@charset "UTF-8";
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Le conteneur principal */
+.hero .container-full {
+    position: relative;
+    min-height: 550px;
+    width: 100%;
+}
+
+/* =========================================
+   IMAGE
+========================================= */
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hero-bg img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+/* =========================================
+   OVERLAY
+========================================= */
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+
+/* =========================================
+   CONTENU
+========================================= */
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+
+    width: min(100% - 40px, 650px);
+    margin: 0 auto;
+
+    color: #fff;
+    text-align: center;
+}
+
+/* Titre */
+
+.hero-content h1 {
+    margin: 0 0 25px;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.05;
+    font-weight: 700;
+}
+
+.hero-content h1 span {
+    display: inline-block;
+    font-size: 0.55em;
+    line-height: 1.2;
+}
+
+/* Paragraphe */
+
+.hero-content p {
+    max-width: 550px;
+    margin: 0 auto 30px;
+
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   CTA
+========================================= */
+
+.hero-content .btn {
+    display: inline-block;
+}
+
+
+/* =========================================
+   ÉTAPES
+========================================= */
+
+.hero-steps {
+    position: relative;
+    z-index: 3;
+
+    margin: 30px auto 0;
+    padding: 0 20px;
+
+    color: #fff;
+    text-align: center;
+    text-transform: lowercase;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+}
+
+.hero-steps span {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+
+/* =========================================
+   TABLETTE
+   768px → 1023px
+========================================= */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+    .hero,
+    .hero .container-full {
+        min-height: 600px;
+    }
+
+    .hero-content {
+        width: min(100% - 80px, 700px);
+    }
+
+}
+
+
+/* =========================================
+   BUREAU
+   ≥ 1024px
+========================================= */
+
+@media (min-width: 1024px) {
+
+    .hero {
+        min-height: 650px;
+    }
+
+    .hero .container-full {
+        min-height: 650px;
+    }
+
+    /* Overlay avec dégradé vers la droite */
+    .hero-overlay {
+        background: linear-gradient(to right,
+                rgba(0, 0, 0, 0.75) 0%,
+                rgba(0, 0, 0, 0.60) 30%,
+                rgba(0, 0, 0, 0.30) 55%,
+                rgba(0, 0, 0, 0) 80%);
+    }
+
+    /* Contenu à gauche */
+    .hero-content {
+        width: min(100% - 80px, 650px);
+        margin: 0;
+        padding-left: 8%;
+        text-align: left;
+    }
+
+    .hero-content p {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .hero-content h1 span {
+        display: inline;
+    }
+
+    /* Étapes */
+    .hero-steps {
+        position: absolute;
+        bottom: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        width: 100%;
+        margin: 0;
+    }
+}
+
+
+/* =========================================
+   PETIT MOBILE
+========================================= */
+
+@media (max-width: 767px) {
+
+    .hero {
+        min-height: 550px;
+    }
+
+    .hero .container-full {
+        min-height: 550px;
+    }
+
+    .hero-content {
+        width: min(100% - 40px, 500px);
+    }
+
+    .hero-content h1 {
+        font-size: clamp(2.2rem, 10vw, 3.2rem);
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .hero-steps {
+        font-size: 0.8rem;
+        line-height: 1.8;
+    }
+
+    .hero-steps span {
+        margin: 0 5px;
+    }
+}

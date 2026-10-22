@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<link rel="stylesheet" href="../../css/base/reset.css">-->
+    <link rel="stylesheet" href="style-1.css">
+    <title>Slider CSS Moderne</title>
+</head>
+
+<body>
+    <main>
+        <div class="carousel-wrapper">
+            <!-- Le conteneur de défilement (Mobile) / Grille (Desktop) -->
+            <div class="scroll-container has-fade" id="scrollContainer">
+                <!-- Carte 1 -->
+                <div class="card" data-index="0">
+                    <h3>Titre de la carte 1</h3>
+                    <p>Voici un exemple de texte court pour illustrer le contenu de cette carte.</p>
+                </div>
+                <!-- Carte 2 -->
+                <div class="card" data-index="1">
+                    <h3>Titre de la carte 2</h3>
+                    <p>Un autre paragraphe de texte qui s'aligne parfaitement dans la liste.</p>
+                </div>
+                <!-- Carte 3 -->
+                <div class="card" data-index="2">
+                    <h3>Titre de la carte 3</h3>
+                    <p>Le contenu est parfaitement centré au défilement.</p>
+                </div>
+                <!-- Carte 4 -->
+                <div class="card" data-index="3">
+                    <h3>Titre de la carte 4</h3>
+                    <p>Le contenu dépasse légèrement sur la droite pour inviter au scroll.</p>
+                </div>
+                <!-- Carte 5 -->
+                <div class="card" data-index="4">
+                    <h3>Titre de la carte 5</h3>
+                    <p>Dernière carte de notre liste horizontale défilable.</p>
+                </div>
+            </div>
+            <!-- Les points de navigation (Cliquables, masqués sur Desktop) -->
+            <div class="dots-indicators" id="dotsIndicators">
+                <!-- Générés dynamiquement en JS ou écrits en dur si le nombre de cartes est fixe -->
+                <span class="dot active" data-target="0"></span>
+                <span class="dot" data-target="1"></span>
+                <span class="dot" data-target="2"></span>
+                <span class="dot" data-target="3"></span>
+                <span class="dot" data-target="4"></span>
+            </div>
+        </div>
+
+    </main>
+    <script src="script-1.js"></script>
+</body>
+
+</html>

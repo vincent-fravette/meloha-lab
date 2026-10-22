@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Hero Overlay v3</title>
+</head>
+<body>
+    <main>
+        <section class="hero">
+
+            <picture class="hero-bg">
+                <!-- Bureau : à partir de 1080px -->
+                <source
+                    media="(min-width: 1080px)"
+                    srcset="/img/back-tab.png"
+                >
+        
+                <!-- Tablette : 768px à 1079px -->
+                <source
+                    media="(min-width: 768px)"
+                    srcset="/img/back-tab.png"
+                >
+        
+                <!-- Mobile : moins de 768px -->
+                <img
+                    src="/img/back-mob.png"
+                    alt="Une personne se fait masser"
+                    loading="lazy"
+                >
+            </picture>
+        
+            <div class="hero-overlay"></div>
+        
+            <div class="hero-content">
+        
+                <h1>
+                    Comprendre<br>
+                    votre corps<br>
+                    <span>pour mieux en prendre soin</span>
+                </h1>
+        
+                <p>
+                    Des protocoles manuels sur-mesure pour relancer,
+                    apaiser et rééquilibrer les systèmes du corps.
+                </p>
+        
+                <a
+                    class="btn btn-md outline light shade"
+                    href="booking.html"
+                >
+                    Prendre rendez-vous
+                </a>
+        
+            </div>
+        
+            <p class="hero-steps">
+                comprendre
+                <span>&xrarr;</span>
+                accompagner
+                <span>&xrarr;</span>
+                transformer
+                <span>&xrarr;</span>
+                entretenir
+            </p>
+        
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,595 @@
+/* Applique un modèle de boîte cohérent à tous les éléments et pseudo-éléments. */
+*,
+*::before,
+*::after {
+    /* Inclut les bordures et espacements dans la largeur et la hauteur calculées. */
+    box-sizing: border-box;
+}
+
+/* Définit les valeurs globales faciles à personnaliser depuis un seul endroit. */
+:root {
+    /* Choisit une pile de polices système rapide et sans dépendance externe. */
+    --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    /* Définit la largeur maximale du contenu sur les grands écrans. */
+    --container-max: 1200px;
+    /* Définit la marge interne standard sur les petits écrans. */
+    --page-padding: 1rem;
+    /* Définit l'espace entre les cartes. */
+    --card-gap: 1rem;
+    /* Définit la largeur maximale raisonnable d'une carte desktop. */
+    --desktop-card-min: 16rem;
+    /* Définit l'arrondi commun des cartes. */
+    --radius-lg: 1rem;
+    /* Définit l'ombre discrète des cartes. */
+    --shadow-card: 0 0.5rem 1.5rem rgb(0 0 0 / 0.08);
+    /* Définit une durée de transition standard. */
+    --motion-fast: 180ms;
+    /* Définit une courbe d'animation douce et naturelle. */
+    --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+    /* Définit la couleur de fond principale. */
+    --color-bg: #f8f7f4;
+    /* Définit la couleur de surface des cartes. */
+    --color-surface: #ffffff;
+    /* Définit la couleur principale du texte. */
+    --color-text: #202020;
+    /* Définit la couleur secondaire du texte. */
+    --color-muted: #666666;
+    /* Définit la couleur d'accent utilisée dans la navigation. */
+    --color-accent: #202020;
+    /* Définit la couleur de séparation légère. */
+    --color-border: rgb(0 0 0 / 0.08);
+    /* Définit la longueur de l'indicateur actif. */
+    --dot-active-width: 2.25rem;
+}
+
+/* Configure le rendu global de la page. */
+html {
+    /* Permet un défilement vertical fluide lors des ancres. */
+    scroll-behavior: smooth;
+}
+
+/* Définit le style principal du document. */
+body {
+    /* Supprime la marge native du navigateur. */
+    margin: 0;
+    /* Utilise la police système définie dans les variables globales. */
+    font-family: var(--font-sans);
+    /* Améliore légèrement le rendu typographique moderne. */
+    text-rendering: optimizeLegibility;
+    /* Définit la couleur de texte par défaut. */
+    color: var(--color-text);
+    /* Définit la couleur d'arrière-plan globale. */
+    background: var(--color-bg);
+    /* Empêche les débordements horizontaux accidentels de la page. */
+    overflow-x: hidden;
+}
+
+/* Détermine le comportement commun des images. */
+img {
+    /* Évite que l'image crée un espace inline inattendu sous elle. */
+    display: block;
+    /* Rend l'image flexible à la largeur de son conteneur. */
+    max-width: 100%;
+}
+
+/* Rend les titres plus réguliers. */
+h1,
+h2,
+h3,
+p {
+    /* Supprime les marges natives pour reprendre totalement le contrôle du rythme vertical. */
+    margin: 0;
+}
+
+/* Fournit une largeur maximale centrée et un espacement latéral responsive. */
+.container {
+    /* Utilise toute la largeur disponible sans dépasser la largeur maximale. */
+    width: min(100% - (2 * var(--page-padding)), var(--container-max));
+    /* Centre horizontalement le conteneur. */
+    margin-inline: auto;
+}
+
+/* Ajoute une structure verticale respirante à chaque section. */
+.section {
+    /* Ajoute une marge verticale confortable autour des sections. */
+    padding-block: 3.5rem;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Organise le titre et l'introduction de chaque section. */
+.section-heading {
+    /* Ajoute un espace sous le bloc d'introduction. */
+    margin-bottom: 1.5rem;
+}
+
+/* Style le titre principal de section. */
+.section-heading h2 {
+    /* Définit une taille de titre responsive sans saut brutal entre les écrans. */
+    font-size: clamp(1.8rem, 6vw, 2.75rem);
+    /* Donne une épaisseur visuelle forte au titre. */
+    font-weight: 700;
+    /* Réduit la hauteur de ligne pour garder un titre compact. */
+    line-height: 1.1;
+}
+
+/* Style le texte descriptif des sections. */
+.section-heading p {
+    /* Ajoute une distance faible entre le titre et la description. */
+    margin-top: 0.65rem;
+    /* Rend le texte secondaire moins dominant. */
+    color: var(--color-muted);
+    /* Conserve une taille confortable sur mobile. */
+    font-size: 0.98rem;
+    /* Améliore la lisibilité du paragraphe. */
+    line-height: 1.55;
+}
+
+/* Style l'en-tête de démonstration. */
+.site-header {
+    /* Ajoute un espace vertical cohérent avec le reste de la page. */
+    padding-block: 2rem;
+    /* Ajoute une séparation discrète. */
+    border-bottom: 1px solid var(--color-border);
+    /* Utilise un fond clair. */
+    background: var(--color-surface);
+}
+
+/* Style le titre de démonstration. */
+.site-header h1 {
+    /* Utilise une taille responsive. */
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+    /* Réduit la hauteur de ligne du grand titre. */
+    line-height: 1.1;
+}
+
+/* Style la petite description de l'en-tête. */
+.site-header p {
+    /* Sépare la description du titre. */
+    margin-top: 0.5rem;
+    /* Atténue la couleur secondaire. */
+    color: var(--color-muted);
+}
+
+/* Crée le lien d'accès rapide au clavier. */
+.skip-link {
+    /* Place le lien hors écran tant qu'il n'est pas focalisé. */
+    position: fixed;
+    /* Centre visuellement le lien. */
+    top: 0.75rem;
+    left: 50%;
+    /* Déplace le lien pour qu'il soit centré. */
+    transform: translate(-50%, -200%);
+    /* Place le lien au-dessus de tout le contenu. */
+    z-index: 1000;
+    /* Ajoute un fond contrasté. */
+    background: var(--color-text);
+    /* Ajoute un texte clair. */
+    color: #ffffff;
+    /* Ajoute un espacement confortable pour le clavier et le tactile. */
+    padding: 0.75rem 1rem;
+    /* Arrondit le lien. */
+    border-radius: 999px;
+    /* Anime son apparition. */
+    transition: transform var(--motion-fast) var(--ease-standard);
+}
+
+/* Rend le lien visible lorsqu'il reçoit le focus clavier. */
+.skip-link:focus-visible {
+    /* Ramène le lien dans la fenêtre. */
+    transform: translate(-50%, 0);
+}
+
+/* Configure le conteneur visuel des listes défilantes. */
+.slider-wrapper,
+.carousel-wrapper {
+    /* Permet de positionner les dégradés et les indicateurs par rapport à la zone de défilement. */
+    position: relative;
+}
+
+/* Prépare les bords visuels du slider Prestations. */
+.slider-wrapper::before,
+.slider-wrapper::after {
+    /* Crée deux pseudo-éléments purement décoratifs. */
+    content: "";
+    /* Positionne les dégradés sur toute la hauteur de la zone. */
+    position: absolute;
+    inset-block: 0;
+    /* Rend les dégradés non interactifs. */
+    pointer-events: none;
+    /* Place les dégradés au-dessus des cartes mais sous les éventuels contrôles. */
+    z-index: 2;
+    /* Supprime les dégradés par défaut jusqu'à ce que le JS détecte un débordement. */
+    opacity: 0;
+    /* Anime l'apparition et la disparition des bords. */
+    transition: opacity var(--motion-fast) ease;
+}
+
+/* Définit le dégradé indiquant qu'il existe du contenu précédent à gauche. */
+.slider-wrapper::before {
+    /* Colle le dégradé au bord gauche de l'écran. */
+    inset-inline-start: 0;
+    /* Donne une largeur suffisamment visible tout en restant légère. */
+    width: 3rem;
+    /* Fond progressif du blanc opaque vers la transparence. */
+    background: linear-gradient(90deg, var(--color-bg), rgb(248 247 244 / 0));
+}
+
+/* Définit le dégradé indiquant qu'il existe du contenu suivant à droite. */
+.slider-wrapper::after {
+    /* Colle le dégradé au bord droit de l'écran. */
+    inset-inline-end: 0;
+    /* Donne une largeur similaire au dégradé gauche. */
+    width: 3rem;
+    /* Fond progressif transparent vers la couleur de la section. */
+    background: linear-gradient(270deg, var(--color-bg), rgb(248 247 244 / 0));
+}
+
+/* Affiche le dégradé gauche uniquement après le premier déplacement horizontal. */
+.slider-wrapper.is-scrollable.has-prev::before {
+    /* Rend visible l'indicateur du bord précédent. */
+    opacity: 1;
+}
+
+/* Affiche le dégradé droit lorsqu'il reste du contenu à découvrir. */
+.slider-wrapper.is-scrollable.has-next::after {
+    /* Rend visible l'indicateur du bord suivant. */
+    opacity: 1;
+}
+
+/* Définit la zone de défilement commune. */
+.scroll-container {
+    /* Active le défilement horizontal tactile. */
+    overflow-x: auto;
+    /* Empêche le navigateur de déplacer tout le document lors d'un geste horizontal prolongé. */
+    overscroll-behavior-x: contain;
+    /* Autorise les mouvements tactiles verticaux normaux lorsque la surface est manipulée. */
+    touch-action: pan-x pan-y;
+    /* Active le défilement fluide sur les actions programmatiques. */
+    scroll-behavior: smooth;
+    /* Rend les positions de snap plus prévisibles. */
+    scroll-padding-inline: var(--page-padding);
+    /* Masque la barre de défilement native tout en conservant le défilement. */
+    scrollbar-width: none;
+    /* Réserve un comportement stable pour le snap. */
+    scroll-snap-type: x mandatory;
+}
+
+/* Masque la barre de défilement sur Chromium, Safari et les navigateurs WebKit. */
+.scroll-container::-webkit-scrollbar {
+    /* Supprime visuellement la barre sans désactiver le défilement. */
+    display: none;
+}
+
+/* Définit la liste horizontale sur mobile et tablette. */
+.cards {
+    /* Retire le style natif de liste. */
+    list-style: none;
+    /* Supprime le padding natif des listes. */
+    padding: 0;
+    /* Supprime la marge native des listes. */
+    margin: 0;
+    /* Organise les cartes horizontalement avant le breakpoint desktop. */
+    display: flex;
+    /* Autorise le conteneur de cartes à dépasser la largeur du viewport. */
+    width: max-content;
+    /* Garantit qu'une seule carte ne pousse pas l'ensemble hors de l'écran par erreur. */
+    min-width: 100%;
+    /* Espace horizontal configurable entre les cartes. */
+    gap: var(--card-gap);
+    /* Ajoute un retrait symétrique pour centrer les cartes lorsque le contenu ne déborde pas. */
+    padding-inline: var(--page-padding);
+    /* Centre automatiquement les cartes lorsqu'il n'est pas nécessaire de défiler. */
+    justify-content: center;
+}
+
+/* Aligne les cartes au début dès que le JS détecte un contenu horizontalement débordant. */
+.is-scrollable > .scroll-container > .cards {
+    /* Évite un centrage incohérent lorsqu'une partie des cartes est hors écran. */
+    justify-content: flex-start;
+}
+
+/* Définit la largeur des cartes de prestations sur petits écrans. */
+.prestations {
+    /* Affiche environ une carte complète et un aperçu de la suivante sur mobile par défaut. */
+    --cards-visible-mobile: 1.15;
+    /* Affiche environ deux cartes et un aperçu de la suivante sur tablette par défaut. */
+    --cards-visible-tablet: 2.15;
+    /* Affiche quatre cartes par ligne sur desktop par défaut. */
+    --cards-per-row-desktop: 4;
+    /* Donne un ratio vidéo stable à la zone média. */
+    --media-ratio: 16 / 10;
+}
+
+/* Définit la largeur des cartes e-shop sur petits écrans. */
+.shop {
+    /* Affiche environ une carte complète et un aperçu de la suivante sur mobile par défaut. */
+    --cards-visible-mobile: 1.15;
+    /* Affiche environ deux cartes et un aperçu de la suivante sur tablette par défaut. */
+    --cards-visible-tablet: 2.15;
+    /* Affiche quatre produits par ligne sur desktop par défaut. */
+    --cards-per-row-desktop: 4;
+    /* Donne un ratio stable à la zone image produit. */
+    --media-ratio: 16 / 10;
+}
+
+/* Fixe la largeur calculée de chaque carte en fonction du nombre visible sur mobile. */
+.prestations .card,
+.shop .card {
+    /* Empêche une carte de se rétrécir à cause du flex container. */
+    flex: 0 0 calc((100vw - (2 * var(--page-padding)) - ((var(--cards-visible-mobile) - 1) * var(--card-gap))) / var(--cards-visible-mobile));
+    /* Empêche les cartes de dépasser la largeur du viewport dans les cas extrêmes. */
+    max-width: calc(100vw - (2 * var(--page-padding)));
+    /* Active le positionnement par points d'ancrage lors du scroll. */
+    scroll-snap-align: start;
+    /* Évite qu'une carte reste partiellement bloquée entre deux positions de snap. */
+    scroll-snap-stop: always;
+}
+
+/* Style visuel commun aux cartes. */
+.card {
+    /* Permet au contenu interne d'être positionné proprement. */
+    display: flex;
+    /* Organise l'image et le texte verticalement. */
+    flex-direction: column;
+    /* Cache les éventuels dépassements visuels de l'image dans ses coins arrondis. */
+    overflow: hidden;
+    /* Ajoute le fond de surface de la carte. */
+    background: var(--color-surface);
+    /* Arrondit la carte. */
+    border-radius: var(--radius-lg);
+    /* Ajoute une séparation très légère autour de la carte. */
+    border: 1px solid var(--color-border);
+    /* Ajoute une ombre douce pour détacher la carte du fond. */
+    box-shadow: var(--shadow-card);
+}
+
+/* Définit la zone média de chaque carte. */
+.card__media {
+    /* Maintient un ratio constant indépendamment de la largeur du viewport. */
+    aspect-ratio: var(--media-ratio);
+    /* Cache la partie d'image qui dépasse après l'ajustement de l'objet. */
+    overflow: hidden;
+    /* Empêche le média de rétrécir de façon imprévisible dans les layouts flex. */
+    flex-shrink: 0;
+    /* Utilise un fond discret pendant le chargement de l'image. */
+    background: #ededed;
+}
+
+/* Rend les images de cartes flexibles et non déformées. */
+.card__media img {
+    /* Remplit la largeur disponible. */
+    width: 100%;
+    /* Remplit la hauteur définie par le ratio du conteneur. */
+    height: 100%;
+    /* Conserve les proportions de l'image tout en remplissant la zone. */
+    object-fit: cover;
+    /* Centre le cadrage lorsque l'image doit être recadrée. */
+    object-position: center;
+}
+
+/* Organise le contenu textuel interne des cartes. */
+.card__body {
+    /* Ajoute un espacement intérieur homogène. */
+    padding: 1rem;
+    /* Permet au contenu de s'étirer naturellement jusqu'en bas. */
+    flex: 1;
+}
+
+/* Style le titre des prestations et produits. */
+.card__body h3 {
+    /* Utilise une taille lisible sans devenir trop imposante. */
+    font-size: 1.1rem;
+    /* Rend le titre visuellement prioritaire. */
+    font-weight: 700;
+    /* Conserve une hauteur de ligne compacte. */
+    line-height: 1.25;
+}
+
+/* Style le texte descriptif des prestations. */
+.card__body p {
+    /* Ajoute un petit espace sous le titre. */
+    margin-top: 0.5rem;
+    /* Atténue la couleur du texte secondaire. */
+    color: var(--color-muted);
+    /* Optimise la lisibilité des paragraphes. */
+    line-height: 1.55;
+}
+
+/* Met les prix e-shop en évidence. */
+.product-price {
+    /* Augmente légèrement le contraste du prix par rapport à un texte secondaire. */
+    color: var(--color-text) !important;
+    /* Rend le prix plus visible. */
+    font-weight: 700;
+}
+
+/* Prépare la navigation des points sous le carousel. */
+.dots-indicators {
+    /* Centre horizontalement les boutons de navigation. */
+    display: flex;
+    /* Autorise un grand nombre de points sans casser la mise en page. */
+    flex-wrap: wrap;
+    /* Centre les points. */
+    justify-content: center;
+    /* Espace régulièrement les points non actifs. */
+    gap: 0.45rem;
+    /* Ajoute de l'air entre les cartes et les points. */
+    margin-top: 1rem;
+}
+
+/* Style chaque bouton de navigation. */
+.dots-indicators button {
+    /* Neutralise le style natif du bouton. */
+    appearance: none;
+    /* Supprime la bordure native. */
+    border: 0;
+    /* Supprime le remplissage natif. */
+    padding: 0;
+    /* Donne une largeur compacte aux points inactifs. */
+    width: 0.55rem;
+    /* Donne une hauteur compacte aux points inactifs. */
+    height: 0.55rem;
+    /* Utilise un bouton arrondi pour ressembler à un point. */
+    border-radius: 999px;
+    /* Utilise l'accent visuel de la page. */
+    background: var(--color-accent);
+    /* Rend les points inactifs plus discrets. */
+    opacity: 0.25;
+    /* Affiche le pointeur de clic. */
+    cursor: pointer;
+    /* Anime la largeur et l'opacité lorsqu'un point devient actif. */
+    transition: width 300ms var(--ease-standard), opacity 300ms ease, transform 300ms var(--ease-standard);
+}
+
+/* Transforme le point actif en petite barre horizontale. */
+.dots-indicators button.is-active {
+    /* Étire le bouton pour matérialiser la position active. */
+    width: var(--dot-active-width);
+    /* Restaure une visibilité forte pour la position courante. */
+    opacity: 1;
+}
+
+/* Agrandit très légèrement les points lors du focus clavier. */
+.dots-indicators button:focus-visible {
+    /* Ajoute un contour de focus accessible. */
+    outline: 2px solid currentColor;
+    /* Éloigne visuellement le contour du bouton. */
+    outline-offset: 4px;
+}
+
+/* Fournit une classe utilitaire pour le contenu réservé aux technologies d'assistance. */
+.sr-only {
+    /* Positionne l'élément hors du flux visuel. */
+    position: absolute;
+    /* Réduit son empreinte visuelle tout en le maintenant dans le DOM. */
+    width: 1px;
+    height: 1px;
+    /* Évite les débordements visibles. */
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    /* Coupe toute apparence de bordure. */
+    clip: rect(0, 0, 0, 0);
+    /* Empêche le navigateur de considérer l'élément comme un bloc visible. */
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Adapte les espacements et la largeur des cartes aux écrans de type tablette. */
+@media (min-width: 768px) {
+    /* Augmente les gouttières horizontales à partir de la tablette. */
+    :root {
+        /* Offre davantage d'air autour du contenu. */
+        --page-padding: 1.5rem;
+        /* Augmente légèrement l'écart entre les cartes. */
+        --card-gap: 1.25rem;
+    }
+
+    /* Utilise la configuration tablette pour le nombre de cartes visibles. */
+    .prestations .card,
+    .shop .card {
+        /* Calcule automatiquement la largeur d'une carte à partir du nombre visible. */
+        flex-basis: calc((100vw - (2 * var(--page-padding)) - ((var(--cards-visible-tablet) - 1) * var(--card-gap))) / var(--cards-visible-tablet));
+    }
+
+    /* Élargit les dégradés pour qu'ils soient lisibles sur une tablette. */
+    .slider-wrapper::before,
+    .slider-wrapper::after {
+        /* Augmente la largeur du fondu latéral. */
+        width: 4rem;
+    }
+}
+
+/* Transforme les deux listes en grille sur desktop à partir de 1080px. */
+@media (min-width: 1080px) {
+    /* Évite que la grille soit comprimée par des gouttières inutiles. */
+    :root {
+        /* Augmente le retrait latéral maximum sur les grands écrans. */
+        --page-padding: 2rem;
+        /* Passe l'espacement entre cartes à une valeur plus aérienne. */
+        --card-gap: 1.5rem;
+    }
+
+    /* Supprime le comportement de slider et affiche les cartes en grille. */
+    .scroll-container {
+        /* Laisse la grille dépasser verticalement sans scroll horizontal. */
+        overflow: visible;
+        /* Désactive le snap devenu inutile sur desktop. */
+        scroll-snap-type: none;
+        /* Désactive l'espacement de scroll spécifique au slider. */
+        scroll-padding-inline: 0;
+    }
+
+    /* Transforme la liste en grille configurable et centrée. */
+    .cards {
+        /* Utilise Flexbox pour obtenir une grille responsive tout en centrant automatiquement la dernière ligne. */
+        display: flex;
+        /* Autorise le retour automatique à la ligne lorsque la rangée est pleine. */
+        flex-wrap: wrap;
+        /* Centre chaque rangée, y compris une dernière rangée incomplète. */
+        justify-content: center;
+        /* Supprime les paddings horizontaux du mode carousel. */
+        padding-inline: 0;
+        /* Permet à la grille visuelle de prendre toute la largeur disponible. */
+        width: 100%;
+        /* Supprime le besoin de minimum horizontal propre au slider. */
+        min-width: 0;
+    }
+
+    /* Configure une largeur de carte calculée pour obtenir exactement le nombre de cartes demandé par rangée. */
+    .prestations .card,
+    .shop .card {
+        /* Retire les anciennes contraintes de largeur calculées pour le mode horizontal. */
+        flex-basis: calc((100% - ((var(--cards-per-row-desktop) - 1) * var(--card-gap))) / var(--cards-per-row-desktop));
+        /* Empêche une carte de dépasser la largeur qui lui est attribuée dans la rangée. */
+        max-width: calc((100% - ((var(--cards-per-row-desktop) - 1) * var(--card-gap))) / var(--cards-per-row-desktop));
+        /* Désactive le snap qui n'est plus utile en grille desktop. */
+        scroll-snap-align: none;
+    }
+
+    /* Masque toute intention d'indicateur de bord lorsque l'affichage est en grille. */
+    .slider-wrapper::before,
+    .slider-wrapper::after {
+        /* Garantit que les dégradés du slider n'apparaissent jamais sur desktop. */
+        display: none;
+    }
+
+    /* Masque les points du carousel lorsque l'affichage n'est plus défilant. */
+    .shop .dots-indicators {
+        /* Retire l'espace occupé sous la grille. */
+        display: none;
+    }
+}
+
+/* Renforce le focus visible directement sur les zones défilables. */
+.scroll-container:focus-visible {
+    /* Dessine un contour clair autour de la zone interactive. */
+    outline: 2px solid currentColor;
+    /* Éloigne légèrement le contour du contenu. */
+    outline-offset: 4px;
+}
+
+/* Respecte le réglage d'accessibilité qui réduit les animations du système. */
+@media (prefers-reduced-motion: reduce) {
+    /* Désactive le défilement animé lorsque l'utilisateur le demande. */
+    html {
+        /* Revient à un défilement instantané. */
+        scroll-behavior: auto;
+    }
+
+    /* Supprime les transitions non indispensables. */
+    .skip-link,
+    .slider-wrapper::before,
+    .slider-wrapper::after,
+    .dots-indicators button {
+        /* Couper les animations évite les mouvements superflus. */
+        transition: none;
+    }
+
+    /* Désactive le comportement de scroll fluide programmatique. */
+    .scroll-container {
+        /* Utilise le comportement natif instantané. */
+        scroll-behavior: auto;
+    }
+}

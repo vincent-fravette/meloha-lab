@@ -1,0 +1,13 @@
+<picture>
+    <!-- Pour les grands écrans (ordinateurs) : à partir de 1024px -->
+    <source media="(min-width: 1024px)" srcset="image-large.jpg, image-large-2x.jpg 2x">
+    
+    <!-- Pour les écrans moyens (tablettes) : de 768px à 1023px -->
+    <source media="(min-width: 768px)" srcset="image-medium.jpg, image-medium-2x.jpg 2x">
+    
+    <!-- Image par défaut (mobiles) : moins de 768px -->
+    <img src="image-small.jpg" alt="Description de l'image" loading="lazy">
+  </picture>
+  
+
+  Comment fonctionnent media et srcset ensemble ?L'attribut media décide quelle ligne charger : Le navigateur lit les lignes du haut vers le bas. Il s'arrête sur la première balise <source> dont la condition media est vraie par rapport à la taille actuelle de l'écran.Le paramètre srcset décide quelle densité choisir : Une fois la bonne source sélectionnée, le navigateur regarde les options de srcset. La notation 2x (ou 3x) permet de cibler les écrans Retina ou haute densité. Si l'utilisateur possède un écran classique, il télécharge image-medium.jpg. S'il a un écran haute densité, il télécharge automatiquement image-medium-2x.jpg pour un rendu plus net.La balise <img> est obligatoire : Elle sert de solution de secours (fallback) pour les anciens navigateurs et affiche l'image par défaut sur les smartphones de moins de 768 px.

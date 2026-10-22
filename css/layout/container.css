@@ -1,0 +1,23 @@
+.container {
+    width: 100%;
+    max-width: var(--max-width)!important;
+    /*padding-top: var(--base-unit);
+    padding-right: var(--base-unit);
+    padding-bottom: var(--base-unit);
+    padding-left: var(--base-unit);*/
+    padding: 32px var(--base-unit);
+    margin: 0 auto!important;
+}
+
+.container-full {
+    width: 100%;
+    /*padding-left: var(--base-unit);*/
+    /*padding-right: var(--base-unit);*/
+}
+
+@media screen and (min-width: 1440px) {
+    .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}

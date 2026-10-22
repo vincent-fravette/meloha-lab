@@ -1,0 +1,76 @@
+Bonjour, Je suis en train de coder un projet web, je veux une <section> hero responsive. Le hero comprend une image en arrière-plan; un overlay superposé, un bloc contenu (<h1>, <p>, bouton) et un bloc tagline (texte).
+
+Couleur : #613d0e
+Police titre : "Lora"
+Police texte : "Montserrat"
+
+Mobile (< 768 px) : overlay à 50%, contenu centré, tagline masqué.
+Tablette (768-1023 px) : overlay à 50%, contenu centré (<p> masqué), tagline masqué.
+Bureau (>= 1024 px) : overlay en dégradé vers la droite, contenu aligné et centré à gauche (<p> présent), tagline centré en bas de la section.
+
+La hauteur de la section ne doit pas être imposer, il doit s’adapter automatiquement au ratio de l’image sans déformation et la largeur toujours à 100%, sur tous les supports; l’arrière-plan intégré en HTML. je veux une animation d’apparition du <h1>, du <p> et du bouton; une animation de zoom pour l’arrière-plan. Le <h1> est en majuscule, le <h1> <span> en minuscule, en italique et avec la police texte.
+
+Je te fournis la structure HTML et les images.
+
+Utilise la méthode mobile first, commente le code, je veux un code complet prêt à être intégrer.
+
+Voici le code HTML :
+
+<main class="homepage">
+    <section class="hero">
+        <div class="container-full">
+            <picture class="hero-bg">
+                <source media="(min-width: 1024px)" srcset="/img/back.png" />
+                <source media="(min-width: 768px)" srcset="/img/back-tab.png" />
+                <img src="/img/back-mob.png" alt="Une personne se fait masser" loading="lazy" />
+            </picture>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1>Comprendre<br/>votre corps<br/><span>pour mieux en prendre soin</span></h1>
+                <p>Des protocoles manuels sur-mesure pour relancer, apaiser et rééquilibrer les systèmes du corps.</p>
+                <a class="btn outline shaded" href="booking.html">prendre rendez-vous</a>
+            </div>
+            <p class="tagline">comprendre<span>&xrarr;</span>accompagner<span>&xrarr;</span>transformer<span>&xrarr;</span>entretenir</p>
+        </div>
+    </section>
+</main>
+
+
+ENGLISH
+
+Hello, I am coding a web project and need a responsive hero `<section>`. The hero section includes a background image, an overlay, a content block (containing an `<h1>`, a `<p>`, and a button), and a tagline block (text).
+
+Color: #613d0e
+Heading font: "Lora"
+Body text font: "Montserrat"
+
+Mobile (< 768px): 50% overlay, centered content, hidden tagline.
+Tablet (768–1023px): 50% overlay, centered content, hidden tagline.
+Desktop (>= 1024px): Gradient overlay fading to the right, content left-aligned and vertically centered, tagline centered at the bottom of the section.
+
+The section height should not be fixed; it must automatically adapt to the image aspect ratio without distortion, and the width must always be 100% across all devices. The background image should be embedded via HTML. I want a fade-in animation for the `<h1>`, `<p>`, and button, and a zoom animation for the background image. The `<h1>` text should be uppercase, while the `<h1> <span>` text should be lowercase, italicized, and use the body text font.
+
+I will provide the HTML structure and the images.
+
+Please use a mobile-first approach and comment the code; I want a complete, ready-to-integrate solution.
+
+Here is the HTML code:
+
+<main class="homepage">
+    <section class="hero">
+        <div class="container-full">
+            <picture class="hero-bg">
+                <source media="(min-width: 1024px)" srcset="/img/back.png" />
+                <source media="(min-width: 768px)" srcset="/img/back-tab.png" />
+                <img src="/img/back-mob.png" alt="Une personne se fait masser" loading="lazy" />
+            </picture>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1>Comprendre<br/>votre corps<br/><span>pour mieux en prendre soin</span></h1>
+                <p>Des protocoles manuels sur-mesure pour relancer, apaiser et rééquilibrer les systèmes du corps.</p>
+                <a class="btn outline shaded" href="booking.html">prendre rendez-vous</a>
+            </div>
+            <p class="tagline">comprendre<span>&xrarr;</span>accompagner<span>&xrarr;</span>transformer<span>&xrarr;</span>entretenir</p>
+        </div>
+    </section>
+</main>

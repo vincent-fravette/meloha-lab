@@ -1,0 +1,21 @@
+svg {
+    height: 100%!important;
+    white-space: pre;
+}
+/* ICONS */
+svg.icon {}
+
+svg.icon path {
+    fill: var(--primary);
+    stroke: var(--primary);
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* LOGOS */
+svg.logo {}
+
+svg.logo path {
+    fill: var(--primary);
+}

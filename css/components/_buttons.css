@@ -1,0 +1,45 @@
+/* 1. Base commune à tous les boutons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.25;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    /* Standard moderne 2026 */
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* 2. Déclinaison : Petit (Small) */
+.btn-sm {
+    min-height: 32px;
+    min-width: 32px;
+    padding: 6px 12px;
+    font-size: 0.875rem;
+    /* ~14px */
+}
+
+/* 3. Déclinaison : Moyen (Medium / Défaut) */
+.btn-md {
+    min-height: 44px;
+    /* Seuil minimal d'accessibilité tactile */
+    min-width: 44px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    /* ~16px */
+}
+
+/* 4. Déclinaison : Grand (Large) */
+.btn-lg {
+    min-height: 56px;
+    min-width: 56px;
+    padding: 14px 28px;
+    font-size: 1.125rem;
+    /* ~18px */
+}
+
+Règle d'or de l'accessibilité
+Pour les boutons Petit (SM) à hauteur de 32px, veillez à conserver une zone tactile invisible (margin ou padding externe de conteneur) d'au moins 44px ou 48px autour du bouton pour que l'utilisateur puisse cliquer dessus facilement sur mobile sans toucher l'élément d'à côté.

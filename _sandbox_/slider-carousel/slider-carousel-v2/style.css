@@ -1,0 +1,575 @@
+/* ============================== */
+/* 01. VARIABLES ET RESET         */
+/* ============================== */
+
+/* Centralise les valeurs générales afin de pouvoir adapter facilement le composant au design final. */
+:root {
+    /* Définit une police système de secours si Google Sans n'est pas disponible. */
+    --font-sans: "Google Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    /* Définit la largeur maximale commune aux sections. */
+    --container-max: 1200px;
+    /* Définit l'espacement horizontal minimal du contenu sur petits écrans. */
+    --page-padding: 1rem;
+    /* Définit l'espacement entre les cartes. */
+    --gap: 1rem;
+    /* Définit l'espace vertical entre les cartes en mode grille. */
+    --row-gap: 1.5rem;
+    /* Définit l'arrondi commun des cartes. */
+    --card-radius: 1rem;
+    /* Définit l'arrière-plan général. */
+    --page-bg: #f7f7f7;
+    /* Définit la couleur principale du texte. */
+    --text: #1c1c1c;
+    /* Définit la couleur de second niveau du texte. */
+    --muted: #6f6f6f;
+    /* Définit la couleur de fond des cartes. */
+    --card-bg: #ffffff;
+    /* Définit la couleur des bordures discrètes. */
+    --border: #e7e7e7;
+    /* Définit l'amplitude de zoom du carte centrée. */
+    --active-scale: 1.035;
+    /* Définit la durée standard de l'animation du zoom. */
+    --transition-fast: 220ms ease;
+    /* Définit la largeur maximale de chaque carte en grille afin d'éviter des cartes trop larges. */
+    --card-max-width: 320px;
+}
+
+/* Utilise le modèle de boîte border-box partout pour rendre les calculs de dimensions prévisibles. */
+*,
+*::before,
+*::after {
+    /* Inclut les bordures et les paddings dans les dimensions déclarées. */
+    box-sizing: border-box;
+}
+
+/* Supprime les marges par défaut qui perturbent la mise en page du composant. */
+html,
+body {
+    /* Évite les débordements horizontaux accidentels au niveau du document. */
+    overflow-x: clip;
+}
+
+/* Définit les styles de base de la page de démonstration. */
+body {
+    /* Supprime la marge automatique du navigateur. */
+    margin: 0;
+    /* Applique la police commune. */
+    font-family: var(--font-sans);
+    /* Définit la couleur de texte principale. */
+    color: var(--text);
+    /* Définit le fond de la page. */
+    background: var(--page-bg);
+    /* Active un rendu de texte confortable. */
+    text-rendering: optimizeLegibility;
+}
+
+/* Supprime les marges par défaut des titres utilisés dans la démonstration. */
+h1,
+h2,
+h3,
+p {
+    /* Permet au composant de contrôler précisément les espacements. */
+    margin: 0;
+}
+
+/* ============================== */
+/* 02. STRUCTURE GLOBALE           */
+/* ============================== */
+
+/* Style l'en-tête uniquement pour la démonstration ; il peut être retiré dans ton projet. */
+.site-header {
+    /* Ajoute un espacement confortable autour du titre de démonstration. */
+    padding: 2rem var(--page-padding);
+    /* Centre le texte de l'en-tête. */
+    text-align: center;
+}
+
+/* Dimensionne le titre de démonstration. */
+.site-header h1 {
+    /* Rend la taille fluide entre mobile et desktop. */
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    /* Renforce le poids visuel du titre. */
+    font-weight: 700;
+}
+
+/* Ajoute de l'espace vertical entre les différentes sections de la page. */
+main {
+    /* Crée une séparation claire entre Prestations et E-shop. */
+    display: grid;
+    /* Utilise l'espace vertical entre les sections. */
+    gap: 4rem;
+    /* Ajoute un peu d'espace en bas de la page. */
+    padding-block: 1rem 4rem;
+}
+
+/* Structure la largeur interne commune aux deux sections. */
+.section-inner {
+    /* Évite qu'une section ne devienne trop large sur grand écran. */
+    width: min(100% - (2 * var(--page-padding)), var(--container-max));
+    /* Centre horizontalement le bloc. */
+    margin-inline: auto;
+}
+
+/* Style le titre de chaque section. */
+.section-inner > h2 {
+    /* Ajoute un espace sous le titre avant le composant. */
+    margin-block-end: 1.25rem;
+    /* Rend la taille du titre responsive. */
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    /* Renforce légèrement la hiérarchie visuelle. */
+    line-height: 1.15;
+}
+
+/* ============================== */
+/* 03. COMPOSANT DE SCROLL         */
+/* ============================== */
+
+/* Définit la géométrie propre à la section Prestations. */
+.prestations {
+    /* Affiche une carte entière sur mobile par défaut. */
+    --cards-mobile: 1;
+    /* Affiche deux cartes entières sur tablette. */
+    --cards-tablet: 2;
+    /* Affiche quatre colonnes en desktop. */
+    --columns-desktop: 4;
+}
+
+/* Définit la géométrie propre à la section E-shop. */
+.shop {
+    /* Affiche une carte entière et un petit aperçu de la suivante sur mobile. */
+    --cards-mobile: 1.08;
+    /* Affiche deux cartes sur tablette. */
+    --cards-tablet: 2;
+    /* Affiche quatre colonnes en desktop. */
+    --columns-desktop: 4;
+}
+
+/* Crée la zone positionnée qui porte les fondus gauche et droit. */
+.slider-wrapper,
+.carousel-wrapper {
+    /* Donne un contexte de positionnement aux indicateurs. */
+    position: relative;
+    /* Empêche les éléments de décoration de provoquer un scroll horizontal de la page. */
+    isolation: isolate;
+}
+
+/* Calcule la largeur d'une carte mobile à partir du nombre de cartes souhaité dans le viewport. */
+.js-scroll-container {
+    /* Utilise une variable mobile comme valeur active par défaut. */
+    --visible-cards: var(--cards-mobile);
+    /* Calcule automatiquement la largeur d'une carte en tenant compte de l'espace entre les cartes. */
+    --card-width: calc((100% - (var(--gap) * (var(--visible-cards) - 1))) / var(--visible-cards));
+    /* Organise les cartes sur un axe horizontal sous le breakpoint desktop. */
+    display: flex;
+    /* Ajoute l'écart uniforme entre les cartes. */
+    gap: var(--gap);
+    /* Autorise le défilement horizontal sur mobile et tablette. */
+    overflow-x: auto;
+    /* Évite le scroll vertical accidentel lorsque l'utilisateur glisse horizontalement. */
+    overscroll-behavior-x: contain;
+    /* Rend le centrage après le scroll stable et natif. */
+    scroll-snap-type: x mandatory;
+    /* Réserve un comportement tactile fluide sur les navigateurs compatibles. */
+    -webkit-overflow-scrolling: touch;
+    /* Masque la barre de défilement sur Firefox sans désactiver le scroll. */
+    scrollbar-width: none;
+    /* Conserve une zone verticale suffisante pour l'effet de zoom. */
+    padding-block: 0.35rem 0.75rem;
+}
+
+/* Masque la scrollbar horizontale sur Chrome, Safari et autres navigateurs WebKit. */
+.js-scroll-container::-webkit-scrollbar {
+    /* Supprime visuellement la barre tout en conservant la zone scrollable. */
+    display: none;
+}
+
+/* Ajoute un espace virtuel avant la première carte pour que celle-ci puisse être parfaitement centrée. */
+.js-scroll-container::before {
+    /* Rend le pseudo-élément présent dans le flux flex. */
+    content: "";
+    /* Calcule l'espace vide correspondant à la moitié de l'espace restant autour d'une carte. */
+    flex: 0 0 max(0px, calc((100% - var(--card-width)) / 2));
+    /* Annule le gap automatique entre le spacer et la première vraie carte. */
+    margin-inline-end: calc(-1 * var(--gap));
+}
+
+/* Ajoute le même espace virtuel après la dernière carte pour permettre son centrage exact. */
+.js-scroll-container::after {
+    /* Rend le pseudo-élément présent dans le flux flex. */
+    content: "";
+    /* Reproduit exactement le spacer de début afin d'équilibrer le composant. */
+    flex: 0 0 max(0px, calc((100% - var(--card-width)) / 2));
+    /* Annule le gap automatique entre la dernière carte et le spacer final. */
+    margin-inline-start: calc(-1 * var(--gap));
+}
+
+/* Dimensionne chaque carte en mode horizontal selon la valeur de configuration du breakpoint. */
+.js-scroll-container > .card {
+    /* Empêche la carte de rétrécir et lui applique la largeur calculée. */
+    flex: 0 0 var(--card-width);
+    /* Force une largeur explicite pour garantir un calcul cohérent du centrage. */
+    width: var(--card-width);
+    /* Centre chaque carte par rapport à la zone de scroll. */
+    scroll-snap-align: center;
+    /* Laisse le navigateur conserver l'inertie du geste tactile sans forcer un arrêt sur chaque carte. */
+    scroll-snap-stop: normal;
+}
+
+/* Style visuel commun de toutes les cartes. */
+.card {
+    /* Anime uniquement l'état actif une fois le scroll stabilisé ; la géométrie du slider reste indépendante du zoom. */
+    transition: transform var(--transition-fast), opacity var(--transition-fast), box-shadow var(--transition-fast);
+    /* Arrondit les coins de façon cohérente avec l'ensemble du design. */
+    border-radius: var(--card-radius);
+    /* Ajoute une bordure légère pour mieux délimiter les cartes. */
+    border: 1px solid var(--border);
+    /* Utilise un fond blanc indépendant du fond de page. */
+    background: var(--card-bg);
+    /* Empêche le contenu de l'image de dépasser des angles arrondis. */
+    overflow: hidden;
+    /* Centre verticalement le contenu lorsque la hauteur diffère légèrement. */
+    display: flex;
+    /* Empile l'image et le contenu verticalement. */
+    flex-direction: column;
+    /* Réduit légèrement les cartes non centrales pour renforcer l'effet de focus. */
+    transform: scale(0.975);
+    /* Baisse très légèrement leur opacité pour donner une hiérarchie visuelle. */
+    opacity: 0.84;
+}
+
+/* Agrandit uniquement la carte considérée comme la plus proche du centre du viewport scrollable. */
+.card.is-active {
+    /* Applique le zoom configurable sur la carte centrée. */
+    transform: scale(var(--active-scale));
+    /* Remonte l'opacité de la carte focalisée. */
+    opacity: 1;
+    /* Place la carte active au-dessus de ses voisines lorsqu'elle est légèrement agrandie. */
+    z-index: 2;
+    /* Renforce subtilement la profondeur de la carte active. */
+    box-shadow: 0 1rem 2.25rem rgb(0 0 0 / 10%);
+}
+
+/* Définit le ratio de toutes les images afin de conserver leurs proportions dans un conteneur variable. */
+.card-media {
+    /* Supprime la marge native de figure. */
+    margin: 0;
+    /* Utilise un ratio 4:3 pour les prestations. */
+    aspect-ratio: 4 / 3;
+    /* Cache ce qui dépasse lorsque object-fit recadre l'image. */
+    overflow: hidden;
+    /* Garantit la prise en charge de toute la largeur de la carte. */
+    width: 100%;
+}
+
+/* Spécifie un ratio plus vertical pour les produits de l'e-shop. */
+.product-card .card-media {
+    /* Affiche des visuels produits plus hauts que les cartes de prestation. */
+    aspect-ratio: 3 / 4;
+}
+
+/* Adapte chaque image exactement à sa zone tout en conservant ses proportions. */
+.card-media img {
+    /* Prend toute la largeur disponible. */
+    display: block;
+    /* Évite la déformation horizontale. */
+    width: 100%;
+    /* Évite la déformation verticale et remplit la zone sans l'étirer. */
+    height: 100%;
+    /* Recadre proprement au lieu de déformer l'image. */
+    object-fit: cover;
+    /* Ajoute une transition légère pour le zoom interne au survol. */
+    transition: transform var(--transition-fast);
+}
+
+/* Ajoute un zoom discret à l'image lorsque l'utilisateur survole une carte. */
+.card:hover .card-media img {
+    /* Agrandit légèrement l'image sans modifier la taille globale de la carte. */
+    transform: scale(1.025);
+}
+
+/* Organise le contenu textuel de chaque carte. */
+.card-content {
+    /* Empêche le texte d'être collé aux bords de la carte. */
+    padding: 1rem;
+    /* Utilise la colonne flex pour occuper proprement la hauteur restante. */
+    display: flex;
+    /* Empile le titre et le descriptif. */
+    flex-direction: column;
+    /* Ajoute un espace vertical régulier entre les textes. */
+    gap: 0.5rem;
+    /* Permet au contenu de la carte de prendre la hauteur restante. */
+    flex: 1;
+}
+
+/* Style les titres internes des cartes de prestations et produits. */
+.card-content h3 {
+    /* Définit une taille lisible sur mobile. */
+    font-size: 1.1rem;
+    /* Renforce légèrement le poids du titre. */
+    font-weight: 700;
+    /* Améliore la hauteur de ligne. */
+    line-height: 1.25;
+}
+
+/* Style les descriptions et prix sans alourdir le composant. */
+.card-content p {
+    /* Utilise une taille de texte légèrement plus petite que le titre. */
+    font-size: 0.95rem;
+    /* Rend la description confortable à lire. */
+    line-height: 1.5;
+    /* Utilise une teinte plus douce pour la hiérarchie visuelle. */
+    color: var(--muted);
+}
+
+/* Renforce le prix du produit sans ajouter de script ou de dépendance. */
+.product-card .card-content p {
+    /* Donne au prix plus de présence visuelle. */
+    font-weight: 700;
+    /* Utilise la couleur principale du texte pour le prix. */
+    color: var(--text);
+}
+
+/* ============================== */
+/* 04. FONDUS DE DÉBORDEMENT       */
+/* ============================== */
+
+/* Positionne les deux zones de fondu au-dessus du scroll sans bloquer les interactions. */
+.slider-wrapper::before,
+.slider-wrapper::after,
+.carousel-wrapper::before,
+.carousel-wrapper::after {
+    /* Ne crée aucun contenu textuel. */
+    content: "";
+    /* Positionne le fondu sur les bords du composant. */
+    position: absolute;
+    /* Place le fondu du haut jusqu'au bas de la zone scrollable. */
+    inset-block: 0;
+    /* Désactive toute interception de clic ou de toucher. */
+    pointer-events: none;
+    /* Affiche le fondu au-dessus du contenu sans modifier le flux. */
+    z-index: 3;
+    /* Rend le changement d'état progressif. */
+    transition: opacity var(--transition-fast);
+    /* Ne l'affiche pas tant que le JavaScript n'a pas constaté un débordement utile. */
+    opacity: 0;
+}
+
+/* Crée le fondu gauche, utilisé seulement après le début d'un défilement. */
+.slider-wrapper::before,
+.carousel-wrapper::before {
+    /* Colle le fondu au bord gauche. */
+    inset-inline-start: 0;
+    /* Déploie la largeur du dégradé sur une petite partie du viewport. */
+    width: clamp(2rem, 7vw, 5rem);
+    /* Fond transparent allant vers une teinte de page. */
+    background: linear-gradient(to right, var(--page-bg), transparent);
+}
+
+/* Crée le fondu droit, utilisé lorsqu'il reste du contenu à découvrir. */
+.slider-wrapper::after,
+.carousel-wrapper::after {
+    /* Colle le fondu au bord droit. */
+    inset-inline-end: 0;
+    /* Conserve une largeur responsive. */
+    width: clamp(2rem, 7vw, 5rem);
+    /* Oriente le dégradé dans l'autre sens. */
+    background: linear-gradient(to left, var(--page-bg), transparent);
+}
+
+/* Active le fondu gauche seulement lorsque le composant peut revenir vers les cartes précédentes. */
+.js-carousel-component.prestations.has-prev .slider-wrapper::before {
+    /* Rend le fondu gauche visible après le déplacement. */
+    opacity: 1;
+}
+
+/* Active le fondu droit seulement lorsqu'il reste des cartes à parcourir. */
+.js-carousel-component.prestations.has-next .slider-wrapper::after {
+    /* Rend le fondu droit visible uniquement si un scroll supplémentaire est possible. */
+    opacity: 1;
+}
+
+/* ============================== */
+/* 05. POINTS DE NAVIGATION        */
+/* ============================== */
+
+/* Aligne les points du carrousel horizontalement sous la zone produit. */
+.dots-indicators {
+    /* Utilise flexbox pour gérer facilement un nombre variable de points. */
+    display: flex;
+    /* Centre les points sous le composant. */
+    justify-content: center;
+    /* Centre verticalement les éléments. */
+    align-items: center;
+    /* Ajoute un espacement stable entre les points. */
+    gap: 0.5rem;
+    /* Ajoute de l'espace entre les cartes et les indicateurs. */
+    margin-block-start: 1rem;
+    /* Empêche les points de devenir inutilement hauts. */
+    min-height: 1.5rem;
+}
+
+/* Style le bouton de navigation de base avant son activation. */
+.dot {
+    /* Supprime les styles de bouton natifs afin de contrôler entièrement le rendu. */
+    appearance: none;
+    /* Retire la bordure native du bouton. */
+    border: 0;
+    /* Affiche le point comme un petit bouton horizontal. */
+    width: 0.55rem;
+    /* Définit la hauteur minimale du point. */
+    height: 0.55rem;
+    /* Le rend parfaitement circulaire. */
+    border-radius: 999px;
+    /* Donne une teinte neutre aux points inactifs. */
+    background: currentColor;
+    /* Rend le bouton visuellement plus discret lorsqu'il n'est pas actif. */
+    opacity: 0.35;
+    /* Permet la transition vers l'état actif sans javascript d'animation. */
+    transition: width var(--transition-fast), opacity var(--transition-fast), transform var(--transition-fast);
+    /* Affiche un curseur de clic. */
+    cursor: pointer;
+    /* Supprime le padding natif des boutons. */
+    padding: 0;
+}
+
+/* Rend le bouton actif plus long afin de créer l'effet de petite barre étirée demandé. */
+.dot.is-active {
+    /* Étire la largeur du point actif. */
+    width: 1.75rem;
+    /* Rend l'indicateur nettement visible. */
+    opacity: 1;
+}
+
+/* Fournit un repère visible lorsque le bouton de navigation reçoit le focus clavier. */
+.dot:focus-visible,
+.js-scroll-container:focus-visible {
+    /* Entoure l'élément actif d'un contour accessible. */
+    outline: 2px solid currentColor;
+    /* Éloigne légèrement le contour du contenu. */
+    outline-offset: 4px;
+}
+
+/* ============================== */
+/* 06. TABLETTE                    */
+/* ============================== */
+
+/* Passe la largeur de carte à la configuration tablette entre 768px et 1023px. */
+@media (min-width: 768px) {
+    /* Remplace le nombre de cartes visibles mobile par la valeur tablette. */
+    .js-scroll-container {
+        /* Recalcule automatiquement la largeur de carte avec la configuration tablette. */
+        --visible-cards: var(--cards-tablet);
+        /* Recalcule la largeur exacte à partir du nombre de cartes et du gap. */
+        --card-width: calc((100% - (var(--gap) * (var(--visible-cards) - 1))) / var(--visible-cards));
+    }
+}
+
+/* ============================== */
+/* 07. DESKTOP GRILLE              */
+/* ============================== */
+
+/* Transforme le slider horizontal en véritable grille à partir de 1024px. */
+@media (min-width: 1024px) {
+    /* Donne plus d'espace latéral aux sections sur les écrans larges. */
+    :root {
+        /* Agrandit le padding horizontal maximal du contenu. */
+        --page-padding: 1.5rem;
+        /* Augmente légèrement l'espace entre les cartes desktop. */
+        --gap: 1.25rem;
+    }
+
+    /* Désactive le débordement horizontal et transforme les cartes en grille responsive. */
+    .js-scroll-container {
+        /* Remplace flex par grid pour permettre le retour automatique à la ligne. */
+        display: grid;
+        /* Utilise exactement le nombre de colonnes configuré pour la section. */
+        grid-template-columns: repeat(var(--columns-desktop), minmax(0, 1fr));
+        /* Ajoute l'espace horizontal et vertical entre les cartes. */
+        gap: var(--row-gap) var(--gap);
+        /* Supprime le scroll horizontal en mode desktop. */
+        overflow: visible;
+        /* Désactive le snap puisque la grille n'est plus défilable horizontalement. */
+        scroll-snap-type: none;
+        /* Annule les paddings spécifiques au mode slider. */
+        padding: 0;
+        /* Centre les cartes à l'intérieur des colonnes. */
+        justify-items: center;
+    }
+
+    /* Supprime les spacers créés uniquement pour le centrage du premier et du dernier item en mode slider. */
+    .js-scroll-container::before,
+    .js-scroll-container::after {
+        /* Retire les pseudo-éléments du flux desktop. */
+        display: none;
+    }
+
+    /* Donne à chaque carte une largeur maximale agréable visuellement sur grand écran. */
+    .js-scroll-container > .card {
+        /* Autorise le retour automatique à la ligne géré par CSS Grid. */
+        width: min(100%, var(--card-max-width));
+        /* Désactive la base flex de la version mobile/tablette. */
+        flex: none;
+        /* Retire l'obligation de centrage de scroll. */
+        scroll-snap-align: none;
+    }
+
+    /* Désactive le zoom automatique en grille afin d'éviter un changement de mise en page au simple rendu. */
+    .card,
+    .card.is-active {
+        /* Replace toutes les cartes à leur taille naturelle sur desktop. */
+        transform: none;
+        /* Conserve une opacité uniforme. */
+        opacity: 1;
+        /* Retire la profondeur spécifique au focus central. */
+        box-shadow: none;
+    }
+
+    /* Cache les indicateurs de débordement puisque toute la liste est visible dans la grille. */
+    .slider-wrapper::before,
+    .slider-wrapper::after,
+    .carousel-wrapper::before,
+    .carousel-wrapper::after {
+        /* Désactive les dégradés en mode grille. */
+        display: none;
+    }
+
+    /* Cache les points de navigation car la grille n'est pas paginée sur desktop. */
+    .dots-indicators {
+        /* Ne laisse pas de bloc vide sous la grille. */
+        display: none;
+    }
+}
+
+/* ============================== */
+/* 08. PETITES LARGEURS            */
+/* ============================== */
+
+/* Réduit le padding lorsque l'écran est très étroit pour préserver davantage d'espace utile aux cartes. */
+@media (max-width: 479px) {
+    /* Rapproche les bords du contenu sur les téléphones compacts. */
+    :root {
+        /* Diminue les marges horizontales pour conserver une carte suffisamment large. */
+        --page-padding: 0.75rem;
+        /* Réduit légèrement l'écart entre les cartes. */
+        --gap: 0.75rem;
+    }
+}
+
+/* ============================== */
+/* 09. ACCESSIBILITÉ / MOTION      */
+/* ============================== */
+
+/* Réduit les animations lorsque l'utilisateur a demandé moins de mouvement dans son système. */
+@media (prefers-reduced-motion: reduce) {
+    /* Désactive les transitions du composant pour éviter des mouvements non souhaités. */
+    .card,
+    .card-media img,
+    .dot,
+    .slider-wrapper::before,
+    .slider-wrapper::after,
+    .carousel-wrapper::before,
+    .carousel-wrapper::after {
+        /* Supprime les transitions tout en conservant les états fonctionnels. */
+        transition: none;
+    }
+}

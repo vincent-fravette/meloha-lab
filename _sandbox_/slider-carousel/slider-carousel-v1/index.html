@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Déclare l'encodage UTF-8 pour afficher correctement les caractères français. -->
+    <meta charset="UTF-8">
+    <!-- Adapte la largeur du site à celle de l'écran pour un comportement responsive. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Optimise la connexion vers Google Fonts utilisée uniquement comme exemple visuel. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Autorise également la connexion au domaine qui sert les fichiers de police. -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Charge la police Google Sans ; tu peux supprimer ces lignes si ton projet possède déjà sa police. -->
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
+    <!-- Charge uniquement la feuille de style native du composant. -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Définit le titre de la page affiché dans l'onglet du navigateur. -->
+    <title>Slider Prestations &amp; Carousel E-shop - v1</title>
+</head>
+<body>
+    <!-- Regroupe l'en-tête de démonstration ; il peut être remplacé par ton vrai header. -->
+    <header class="site-header">
+        <!-- Contient le titre principal de la page pour conserver une structure sémantique. -->
+        <h1>Prestations &amp; E-shop V1</h1>
+    </header>
+
+    <!-- Regroupe le contenu principal de la page d'accueil. -->
+    <main>
+        <!-- Section Prestations : le composant devient slider horizontal sous 1024px puis grille sur desktop. -->
+        <section class="content-section prestations js-carousel-component" aria-labelledby="prestations-title">
+            <!-- Centre la largeur maximale du contenu de la section. -->
+            <div class="section-inner">
+                <!-- Donne un titre accessible au composant Prestations. -->
+                <h2 id="prestations-title">Prestations</h2>
+
+                <!-- Crée la zone de visualisation et porte les indicateurs de débordement. -->
+                <div class="slider-wrapper">
+                    <!-- Rend le composant identifiable par le JavaScript sans dépendance à une bibliothèque. -->
+                    <div class="scroll-container js-scroll-container" tabindex="0" aria-label="Liste des prestations">
+                        <!-- Chaque article représente une carte indépendante pouvant être centrée par le scroll. -->
+                        <article class="card">
+                            <!-- Maintient un ratio constant afin que l'image reste proportionnelle quelle que soit sa largeur. -->
+                            <figure class="card-media">
+                                <!-- Image de démonstration ; remplace l'URL par un fichier WebP/AVIF local en production. -->
+                                <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Soin et massage relaxant" width="900" height="675" fetchpriority="high">
+                            </figure>
+                            <!-- Contient le texte de la prestation sans dépendre de JavaScript. -->
+                            <div class="card-content">
+                                <!-- Identifie le titre de la prestation. -->
+                                <h3>Massage relaxant</h3>
+                                <!-- Présente une courte description pouvant être remplacée par le contenu final. -->
+                                <p>Un moment de détente pensé pour relâcher les tensions et favoriser la relaxation.</p>
+                            </div>
+                        </article>
+
+                        <!-- Deuxième carte de prestation ; le même composant gère automatiquement son centrage. -->
+                        <article class="card">
+                            <!-- Conserve le même ratio d'image pour garantir une hauteur régulière entre les cartes. -->
+                            <figure class="card-media">
+                                <!-- Image de démonstration avec chargement différé pour limiter le coût réseau initial. -->
+                                <img src="https://images.unsplash.com/photo-1552693673-1bf958298935?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Soin esthétique du visage" width="900" height="675" loading="lazy" decoding="async">
+                            </figure>
+                            <!-- Regroupe le contenu éditorial de la carte. -->
+                            <div class="card-content">
+                                <!-- Affiche le nom de la prestation. -->
+                                <h3>Soin du visage</h3>
+                                <!-- Explique brièvement la prestation présentée. -->
+                                <p>Un soin personnalisé pour nettoyer, hydrater et raviver l'éclat naturel de la peau.</p>
+                            </div>
+                        </article>
+
+                        <!-- Troisième carte de prestation. -->
+                        <article class="card">
+                            <!-- Réserve une zone image stable et responsive. -->
+                            <figure class="card-media">
+                                <!-- Image de démonstration adaptée automatiquement au conteneur. -->
+                                <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Ambiance de spa et bien-être" width="900" height="675" loading="lazy" decoding="async">
+                            </figure>
+                            <!-- Regroupe le contenu textuel. -->
+                            <div class="card-content">
+                                <!-- Affiche le titre de la prestation. -->
+                                <h3>Rituel bien-être</h3>
+                                <!-- Fournit le descriptif visible sous l'image. -->
+                                <p>Une expérience complète associant gestes enveloppants, confort et ambiance apaisante.</p>
+                            </div>
+                        </article>
+
+                        <!-- Quatrième carte de prestation. -->
+                        <article class="card">
+                            <!-- Utilise le même ratio d'image que les autres cartes pour une grille homogène. -->
+                            <figure class="card-media">
+                                <!-- Image de démonstration. -->
+                                <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Soins de beauté et accessoires" width="900" height="675" loading="lazy" decoding="async">
+                            </figure>
+                            <!-- Contient le contenu textuel de la prestation. -->
+                            <div class="card-content">
+                                <!-- Affiche le titre de la carte. -->
+                                <h3>Beauté des mains</h3>
+                                <!-- Décrit simplement le service proposé. -->
+                                <p>Une mise en beauté soignée pour des mains élégantes et une finition nette.</p>
+                            </div>
+                        </article>
+
+                        <!-- Cinquième carte de prestation. -->
+                        <article class="card">
+                            <!-- Réserve une zone image à ratio fixe. -->
+                            <figure class="card-media">
+                                <!-- Image de démonstration supplémentaire pour tester le débordement et le défilement. -->
+                                <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Ambiance de détente et massage" width="900" height="675" loading="lazy" decoding="async">
+                            </figure>
+                            <!-- Contient le texte de la dernière carte. -->
+                            <div class="card-content">
+                                <!-- Affiche le nom de la prestation. -->
+                                <h3>Massage ciblé</h3>
+                                <!-- Explique l'objectif de la prestation. -->
+                                <p>Des manœuvres ciblées pour apporter une sensation de légèreté et de récupération.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section e-shop : même base technique mais avec points de navigation en mode slider. -->
+        <section class="content-section shop js-carousel-component" aria-labelledby="shop-title">
+            <!-- Centre et contraint la largeur de la boutique. -->
+            <div class="section-inner">
+                <!-- Donne un titre accessible à la zone e-shop. -->
+                <h2 id="shop-title">E-shop</h2>
+
+                <!-- Contient le track et les points de navigation générés uniquement pour le e-shop. -->
+                <div class="carousel-wrapper">
+                    <!-- Le conteneur devient horizontal sous 1024px et grille au-dessus de 1024px. -->
+                    <div class="scroll-container js-scroll-container" tabindex="0" aria-label="Liste des produits">
+                        <!-- Première carte produit. -->
+                        <article class="card product-card">
+                            <!-- Conserve des proportions identiques pour les visuels produits. -->
+                            <figure class="card-media">
+                                <!-- Image de démonstration produit ; remplace-la par une image locale optimisée en production. -->
+                                <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Tenue de mode présentée sur mannequin" width="900" height="1200" fetchpriority="high">
+                            </figure>
+                            <!-- Contient les informations visibles du produit. -->
+                            <div class="card-content">
+                                <!-- Affiche le nom du produit. -->
+                                <h3>Ensemble signature</h3>
+                                <!-- Affiche le prix avec un format simple et lisible. -->
+                                <p>89,00&nbsp;€</p>
+                            </div>
+                        </article>
+
+                        <!-- Deuxième carte produit. -->
+                        <article class="card product-card">
+                            <!-- Zone image responsive avec ratio stable. -->
+                            <figure class="card-media">
+                                <!-- Image de démonstration. -->
+                                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Baskets de mode blanches" width="900" height="1200" loading="lazy" decoding="async">
+                            </figure>
+                            <!-- Contenu commercial du produit. -->
+                            <div class="card-content">
+                                <!-- Affiche le nom du produit. -->
+                                <h3>Baskets minimalistes</h3>
+                                <!-- Affiche le tarif. -->
+                                <p>119,00&nbsp;€</p>
+                            </div>
+                        </article>
+
+                        <!-- Troisième carte produit. -->
+                        <article class="card product-card">
+                            <!-- Zone image de dimensions fluides. -->
+                            <figure class="card-media">
+                                <!-- Image de démonstration. -->
+                                <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Sac à main noir élégant" width="900" height="1200" loading="lazy" decoding="async">
+                            </figure>
+                            <!-- Texte produit. -->
+                            <div class="card-content">
+                                <!-- Nom commercial du produit. -->
+                                <h3>Sac essentiel</h3>
+                                <!-- Prix du produit. -->
+                                <p>79,00&nbsp;€</p>
+                            </div>
+                        </article>
+
+                        <!-- Quatrième carte produit. -->
+                        <article class="card product-card">
+                            <!-- Zone visuelle stable et proportionnelle. -->
+                            <figure class="card-media">
+                                <!-- Image de démonstration. -->
+                                <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Vêtement de mode suspendu" width="900" height="1200" loading="lazy" decoding="async">
+                            </figure>
+                            <!-- Informations du produit. -->
+                            <div class="card-content">
+                                <!-- Nom du produit. -->
+                                <h3>Pièce intemporelle</h3>
+                                <!-- Prix du produit. -->
+                                <p>69,00&nbsp;€</p>
+                            </div>
+                        </article>
+
+                        <!-- Cinquième carte produit. -->
+                        <article class="card product-card">
+                            <!-- Zone image responsive. -->
+                            <figure class="card-media">
+                                <!-- Image de démonstration supplémentaire pour tester la navigation. -->
+                                <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Sélection de vêtements de mode" width="900" height="1200" loading="lazy" decoding="async">
+                            </figure>
+                            <!-- Informations finales du produit. -->
+                            <div class="card-content">
+                                <!-- Titre du produit. -->
+                                <h3>Collection essentielle</h3>
+                                <!-- Prix du produit. -->
+                                <p>99,00&nbsp;€</p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Les boutons sont créés automatiquement par JavaScript à partir des cartes existantes. -->
+                    <nav class="dots-indicators" aria-label="Navigation des produits"></nav>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Prévoit une zone de pied de page sans imposer de structure au projet final. -->
+    <footer class="site-footer"></footer>
+
+    <!-- Charge le JavaScript natif une fois le HTML déjà interprété par le navigateur. -->
+    <script src="script.js" defer></script>
+</body>
+</html>

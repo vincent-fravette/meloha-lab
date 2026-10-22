@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Hero Overlay v4</title>
+</head>
+<body>
+    <main class="homepage">
+        <section class="hero">
+            <div class="container-full">
+    
+                <!-- Image responsive :
+                     mobile  : back-mob.png
+                     tablette: back-tab.png
+                     desktop : back.png
+                -->
+                <picture class="hero-bg">
+                    <source
+                        media="(min-width: 1024px)"
+                        srcset="../../img/back.png"
+                    />
+    
+                    <source
+                        media="(min-width: 768px)"
+                        srcset="../../img/back-tab.png"
+                    />
+    
+                    <img
+                        src="../../img/back-mob.png"
+                        alt="Une personne se fait masser"
+                        width="575"
+                        height="467"
+                        loading="eager"
+                        fetchpriority="high"
+                    />
+                </picture>
+    
+                <!-- Overlay -->
+                <div class="hero-overlay" aria-hidden="true"></div>
+    
+                <!-- Contenu principal -->
+                <div class="hero-content">
+                    <h1>
+                        Comprendre<br>
+                        votre corps<br>
+                        <span>pour mieux en prendre soin</span>
+                    </h1>
+    
+                    <p>
+                        Des protocoles manuels sur-mesure pour relancer,
+                        apaiser et rééquilibrer les systèmes du corps.
+                    </p>
+    
+                    <a class="btn outline shaded" href="booking.html">
+                        prendre rendez-vous
+                    </a>
+                </div>
+    
+                <!-- Tagline uniquement visible sur desktop -->
+                <p class="tagline">
+                    comprendre
+                    <span>&xrarr;</span>
+                    accompagner
+                    <span>&xrarr;</span>
+                    transformer
+                    <span>&xrarr;</span>
+                    entretenir
+                </p>
+    
+            </div>
+        </section>
+    </main>
+</body>
+</html>

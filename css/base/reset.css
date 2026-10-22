@@ -1,0 +1,143 @@
+::selection {
+    background-color: var(--main-color-light);
+    color: var(--bg-color);
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all var(--transition-type) var(--transition-duration);
+    appearance: none;
+}
+
+/* Supprimer les marges par défaut (sauf dans la boîte de dialogue de centrage) */
+:not(dialog) {
+    margin: 0;
+}
+
+/* Activer les interpolations de taille fluides pour les animations */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth; /* Bonus : Défilement fluide */
+    }
+}
+
+/* Empêcher l'augmentation de la taille des polices sur mobile */
+html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+    scroll-behavior: smooth; /* Bonus: Smooth scrolling - Bonus : Défilement fluide */
+}
+
+/* On définit une hauteur minimale à 100% pour body et html pour bien gérer les hauteurs de page */
+html,
+body {
+    height: 100vh;
+    min-height: 100svh; /* Small viewport height for full coverage - Hauteur réduite du hublot pour une couverture complète */
+    width: 100vw;
+    line-height: var(--ratio-line-height);
+    /*font-optical-sizing: auto;*/
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* On enlève les styles de listes par défaut */
+ul[role="list"],
+li,
+ol[role="list"] {
+    list-style: none;
+    padding-inline-start: 0; /* Propriété logique pour RTL */
+}
+
+/* On enlève les styles des liens bleus soulignés */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Liens : Ignorer l’encre sur les soulignements */
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+    color: currentColor;
+  }
+
+/* On uniformise les boutons */
+button {
+    border: none;
+    background: none;
+    font: inherit;
+    cursor: pointer;
+}
+
+/* On s’assure que les éléments multimédias ne dépassent pas leur conteneur, soit réactifs et au niveau bloc */
+img, picture, video, canvas, svg {
+    max-width: 100%;
+    display: block;
+    height: auto;
+    /*object-fit: cover;*/ /* L'image s'adapte sans se déformer */
+}
+
+/* On remet les balises HTML à un comportement simple et prévisible */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+
+/* Interlignes plus courts pour les titres et les formulaires */
+h1, h2, h3, h4, h5, h6,
+button, input, label, select, textarea {
+  line-height: 1.1;
+}
+
+/* Habillage de texte équilibré */
+h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+}
+
+p {
+    text-wrap: pretty;
+}
+
+/* On évite que les éléments comme les formulaires ou les inputs soient trop différents d’un navigateur à l’autre */
+input,
+textarea,
+select,
+button {
+    font: inherit;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+/* Assurez-vous que les zones de texte ont une hauteur utilisable. */
+textarea:not([rows]) {
+    min-height: 10em;
+}
+
+/* Éléments ancrés : marge de défilement supplémentaire */
+:target {
+    scroll-margin-block: 5ex;
+}
+
+/* Isolation pour la racine (par exemple, applications React/Vue) */
+#root, #__next {
+    isolation: isolate;
+}
+
+/* Retour à la ligne automatique pour les mots longs */
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}

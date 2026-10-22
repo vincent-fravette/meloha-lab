@@ -1,0 +1,421 @@
+/* ==========================================================================
+   1. HERO
+   ========================================================================== */
+
+.homepage section.hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.homepage section.hero div.container-full {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.homepage section.hero picture.hero-bg {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
+
+.homepage section.hero picture.hero-bg img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: none;
+    transform: scale(1);
+    animation: zoomOut 10s ease-out forwards;
+}
+
+.homepage section.hero div.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: rgba(97, 61, 14, 0.7);
+    pointer-events: none;
+}
+
+.homepage section.hero div.hero-container {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+    /*flex-direction: column;*/
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    /*padding: 2rem 1.5rem;*/
+    text-align: center;
+    color: var(--bg-color);
+}
+
+.homepage section.hero div.hero-container div.hero-content {}
+
+.homepage section.hero div.hero-container h1 {
+    /*font-size: clamp(2rem, 7vw, 3.5rem);*/
+    font-size: clamp(2.25rem, 7vw, 3rem);
+    font-weight: 500;
+    /*line-height: 1.08;*/
+    line-height: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 0.01rem;
+    opacity: 0;
+    transform: translateY(28px);
+    animation: heroFadeIn 900ms cubic-bezier(0.22, 1, 0.36, 1) 250ms forwards;
+}
+
+.homepage section.hero div.hero-container h1 span {
+    font-family: var(--typography-main);
+    font-size: 1.125rem;
+    /*font-size: clamp(2.25rem, 7vw, 3rem);*/
+    font-style: italic;
+    font-weight: 400;
+    /*line-height: 1.2;*/
+    text-transform: lowercase;
+    letter-spacing: 0.01rem;
+}
+
+.homepage section.hero div.hero-container p {
+    display: none;
+}
+
+.homepage section.hero div.container-full p.tagline {
+    display: none;
+}
+
+@keyframes heroFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes zoomOut {
+    from { transform: scale(1.08);}
+    to { transform: scale(1);}
+}
+
+@keyframes taglineFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 15px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+@media screen and (min-width: 360px) {
+    .homepage .hero div.hero-container div h1 {
+        /*font-size: 30px;*/
+    }
+
+    .homepage section.hero div.hero-container h1 span {
+        font-size: 1.375rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .homepage .hero {
+        /*height: 410px;*/
+        /*background-image: url('/img/back-tab.png');*/
+    }
+
+    .homepage .hero h1 {
+        margin-bottom: 32px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .homepage .hero {
+        /*height: 546px;*/
+        /*background-image: url('/img/back.png');*/
+    }
+
+    .homepage .hero .container-full {
+        padding: 0;
+        justify-content: flex-start;
+    }
+
+    .homepage .hero .container-full p {
+        display: block;
+    }
+
+    .homepage section.hero div.hero-overlay {
+        background: linear-gradient(to right, rgba(97, 61, 14, 1) 0%, rgba(97, 61, 14, 0.5) 40%, rgba(97, 61, 14, 0) 100%);
+    }
+
+    .homepage section.hero div.hero-container {
+        width: 50%;
+        text-align: left;
+    }
+
+    .homepage section.hero div.hero-container div.hero-content {
+        width: 80%;
+    }
+
+    .homepage section.hero div.hero-container p {
+        display: block;
+    }
+}
+
+@media screen and  (min-width: 1200px) {
+    .homepage .hero {
+        /*height: 640px;*//
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .homepage .hero {
+        /*height: 768px;*/
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .homepage .hero {
+        /*height: 1024px;*/
+    }
+}
+
+@media screen and (min-width: 2560px) {
+    .homepage .hero {
+        /*height: 1366px;*/
+    }
+}
+
+/* ==========================================================================
+   2. APPROACH
+   ========================================================================== */
+
+.homepage section.approach {}
+
+.homepage section.approach div.wrapper-text {
+    margin-bottom: 16px;
+}
+
+.homepage section.approach div.wrapper-content div.approach-card {
+    margin-bottom: 16px;
+}
+
+.homepage section.approach div.wrapper-content div.approach-card:last-child {
+    margin-bottom: 0;
+}
+
+.homepage section.approach div.wrapper-content div.approach-card div.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(231, 216, 203, 0.3);
+    padding: 8px 8px 8px 0;
+}
+
+.homepage section.approach div.wrapper-content div.approach-card div.heading a {
+    width: 100%;
+}
+
+.homepage section.approach div.wrapper-content div.approach-card div.heading div.wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.homepage section.approach div.wrapper-content div.approach-card div.heading div.wrapper img.icon {
+    width: 60px;
+    height: 40px;
+}
+
+.homepage section.approach div.wrapper-content div.approach-card div.heading div.wrapper h3 {
+    text-transform: uppercase;
+    font-size: 12px
+}
+/*
+.homepage section.approach div.wrapper-content div.approach-card div.heading div.wrapper h3 a:before {
+    content: '\e316';
+    font-size: 24px;
+    position: absolute;
+    font-family: 'Material Icons';
+    right: 5px;
+    top: 10px;
+    transform: rotate(180deg);
+    transition: all 0.5s;
+}
+
+.homepage section.approach div.wrapper-content div.approach-card div.heading.active div.wrapper h3 a:before {
+    transform: rotate(0deg);
+    transition: all 0.5s;
+}
+*/
+.homepage section.approach div.wrapper-content div.approach-card div.heading img.chevron-right.icon {
+    height: 16px;
+    transform: rotate(90deg);
+    transition: all 0.5s;
+}
+
+.homepage section.approach div.wrapper-content div.approach-card div.heading.active img.chevron-right.icon {
+    transform: rotate(-90deg);
+    transition: all 0.5s;
+}
+
+.homepage section.approach div.wrapper-content div.approach-card div.collapse {
+    /*display: none;*/
+    padding: 0px 8px 8px 8px;
+}
+/*
+.homepage section.approach.active div.wrapper-content div.approach-card div.collapse {
+    display: block;
+}
+*/
+.homepage section.approach div.wrapper-content div.approach-card div.collapse p {
+    font-size: 14px;
+    padding: 8px 0 8px 8px;
+    border-left: 1px solid rgba(97, 61, 14, 0.1);
+}
+
+
+/* ==========================================================================
+   3. SUPPORT
+   ========================================================================== */
+
+.homepage section.support div.container {
+    padding-top: 0;
+}
+
+.homepage section.support h2 {
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 1.6rem;
+}
+
+.homepage section.support div.slider-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.homepage section.support div.slider-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 4rem; /* Epaisseur du dégradé */
+    background: linear-gradient(90deg, rgba(244,246,249,0) 0%, rgba(244,246,249,1) 100%);
+    pointer-events: none; /* Permet de cliquer à travers */
+    z-index: 2;
+    transition: opacity 0.3s ease;
+}
+
+.homepage section.support div.slider-wrapper div.grid-container {
+    max-width: 120rem;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    overflow-x: auto;
+    gap: 2rem;
+    /*scrollbar-width: none;*/
+    /*-ms-overflow-style: none;*/
+    scroll-snap-type: mandatory;
+    scroll-behavior: smooth;
+    padding-right: 4rem;
+}
+
+.homepage section.support div.slider-wrapper div.support-card {
+    background-color: #FFF;
+    border: 1px solid var(--bg-color-2);
+    overflow: hidden;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 28rem;
+    scroll-snap-align: start;
+    transition: transform 0.2s ease, box-shadow 0.2 ease;
+    /*width: 32rem; */
+    /*padding: clamp(1.2rem, 2vw, 2.4rem); */
+    /*width: 100%; */
+    /*max-width: 38rem;*/
+}
+
+.homepage section.support div.slider-wrapper div.support-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 1.5rem 3rem var(--shadow);
+}
+
+.homepage section.support div.slider-wrapper div.support-card div.card-img-placeholder {
+    /*height: 14.1875rem;*/
+    background-color: var(--bg-color-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+}
+
+.homepage section.support div.slider-wrapper div.support-card div.card-img-placeholder img {
+    width: 100%;
+}
+
+.homepage section.support div.slider-wrapper div.support-card div.content {
+    padding: 2.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+}
+
+.homepage section.support div.slider-wrapper div.support-card div.content h3 {
+    font-size: clamp(2rem, 2.5vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.homepage section.support div.slider-wrapper div.support-card div.content p {
+    font-size: 1.4rem;
+    color: #5A626A;
+    margin-bottom: auto;
+}
+
+.homepage section.support div.slider-wrapper div.support-card div.content a {
+    width: 100%;
+    text-align: end;
+}
+
+.homepage section.support div.slider-wrapper div.support-card div.content a span.arrow {
+    display: inline-block;
+    transition: transform 0.2 ease;
+    height: 16px;
+}
+
+.homepage section.support div.slider-wrapper div.support-card div.content a span.arrow:hover {
+    transform: translateX(4px);
+}
+
+.homepage section.support div.slider-wrapper div.support-card div.content a span.arrow img {
+    height: 100%;
+}
+
+
+/* ==========================================================================
+   4. THE PLACE
+   ========================================================================== */
+
+
+/* ==========================================================================
+   5. FACIALIST
+   ========================================================================== */
+
+
+/* ==========================================================================
+   6. E-SHOP
+   ========================================================================== */
+
+
+/* ==========================================================================
+   7. REVIEWS
+   ========================================================================== */

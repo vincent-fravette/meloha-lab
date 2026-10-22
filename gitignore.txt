@@ -1,0 +1,120 @@
+Pour créer un fichier .gitignore qui ignore des dossiers, des fichiers spécifiques et les fichiers système cachés de macOS (comme .DS_Store), placez un fichier nommé .gitignore à la racine de votre projet.
+
+Exemple de contenu pour .gitignore
+
+text
+# --- Fichiers système macOS ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# --- Dossiers à ignorer (exemple) ---
+node_modules/
+dist/
+build/
+venv/
+.idea/
+.vscode/
+
+# --- Fichiers à ignorer (exemple) ---
+*.log
+*.tmp
+.env
+secret.json
+Utilisez le code avec précaution.
+
+Comment le créer rapidement en ligne de commande (Terminal Mac)
+
+1. Ouvrez votre terminal à la racine de votre projet :bash
+cd /chemin/vers/mon-projet
+Utilisez le code avec précaution.
+2. Créez le fichier .gitignore :bash
+touch .gitignore
+Utilisez le code avec précaution.
+3. Ouvrez-le et collez vos règles (avec nano, code ., etc.), puis enregistrez.
+
+Astuces utiles
+
+• Si un fichier a déjà été suivi par Git avant d'être ajouté au .gitignore, il ne sera pas ignoré automatiquement. Vous devez le retirer de l'index de Git avec la commande :bash
+git rm --cached nom_du_fichier_ou_dossier
+Utilisez le code avec précaution.
+• Pour ignorer des fichiers globalement sur tout votre Mac (pour tous vos projets Git), vous pouvez configurer un fichier global via GitHub Documentation :bash
+git config --global core.excludesfile ~/.gitignore_global
+Utilisez le code avec précaution.
+Si vous avez besoin d'un modèle adapté à un langage ou un framework particulier (comme Node.js, Python, PHP, React), indiquez-le-moi pour que je vous génère la liste exacte.
+Les réponses de l'IA peuvent contenir des erreurs. En savoir plus
+• 
+GitHub Docs
+Ignorer des fichiers - Documentation GitHub
+Ouvrez TerminalTerminalGit Bash. · Accédez à l'emplacement de votre dépôt Git. · Créez un fichier .gitignore pour votre référentie...
+• 
+YouTube·Ilaria Digital School (by Ilaria Academy)
+Créer un fichier .gitignore : pourquoi et comment
+Créer un fichier .gitignore : pourquoi et comment | Full Stack Web Developer windows peut créer des fichiers Toms Points DB ces fi...
+55s
+• 
+lfgitignore.com
+gitignore pour macOS — 44 règles prêtes à l'emploi
+Créez un fichier nommé .gitignore à la racine de votre dépôt Git et collez-y les règles. Si certains de ces fichiers sont déjà sui...
+
+framework php perso
+
+Voici une configuration optimale pour votre fichier .gitignore adapté à un framework PHP personnalisé (sur mesure).
+
+Fichier .gitignore recommandé
+
+text
+# --- Fichiers système macOS ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# --- Dépendances PHP (Composer) ---
+/vendor/
+composer.phar
+
+# --- Fichiers d'environnement & Secrets ---
+.env
+.env.local
+.env.*.local
+config/secrets/
+
+# --- Logs, Caches et Fichiers Temporaires ---
+*.log
+/logs/
+/cache/
+/tmp/
+/storage/framework/cache/
+/storage/framework/sessions/
+/storage/framework/views/
+
+# --- Uploads d'utilisateurs (Médias de test) ---
+/public/uploads/
+/storage/uploads/
+
+# --- Éditeurs de code & IDE ---
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+Utilisez le code avec précaution.
+
+Bonnes pratiques pour un framework PHP personnalisé
+
+
+Élément	Règle recommandée	Pourquoi ?
+Le fichier .env	À ne jamais versionner	Contient vos mots de passe de base de données et clés API privées.
+Le fichier .env.example	À toujours versionner	Sert de modèle vierge pour les autres développeurs de l'équipe.
+Le dossier /vendor/	À ne pas versionner	Git deviendrait trop lourd. Utilisez composer.json et composer.lock pour réinstaller les dépendances avec composer install.
+Dossiers /cache/ ou /logs/	Ignorer le contenu, garder le dossier	Créez un fichier .gitkeep vide à l'intérieur du dossier pour que Git suive la structure du répertoire sans suivre les fichiers temporaires.
+
+Souhaitez-vous de l'aide pour créer automatiquement les fichiers .gitkeep dans vos dossiers de cache, ou voulez-vous ajouter des outils spécifiques comme Node.js/NPM (pour le CSS/JS) à ce projet ?

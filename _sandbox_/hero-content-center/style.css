@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+body {
+    padding: 0;
+    margin: 0;
+    letter-spacing: 1px;
+    font-family: sans-serif;
+}
+
+/* --- Structure de la section Hero --- */
+.hero {
+    position: relative;
+    /*min-height: 100vh;*/
+    width: 100%;
+    /*display: flex;*/
+    box-sizing: border-box;
+    /*padding: 20px;*/
+    overflow: hidden;
+    /* Centrage par défaut (Mobile et Tablette) */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #FFF;
+}
+
+/* --- LE VOILE SOMBRE (OVERLAY) --- */
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 0.5 = 50% d'opacité. Ajustez selon vos besoins */
+    z-index: 2;
+    /* Se place au-dessus de l'image (z-index: 1) */
+}
+
+/* --- Gestion de l'image de fond arrière-plan --- */
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* L'image s'adapte sans se déformer */
+    z-index: 1;
+    /* Reste derrière le contenu */
+}
+
+/* --- Gestion du contenu --- */
+.hero-content {
+    position: relative;
+    z-index: 3;
+    /* Passe devant l'image */
+    max-width: 600px;
+    /* Aligne une largeur max propre */
+}
+
+/* --- Version Desktop (Écrans de plus de 1024px) --- */
+@media (min-width: 1024px) {
+    .hero {
+        /* Aligne le contenu à gauche et centré verticalement */
+        justify-content: flex-start;
+        text-align: left;
+        padding-left: 10%;
+        /* Recule le contenu du bord gauche de l'écran */
+    }
+}

@@ -1,0 +1,498 @@
+@charset "UTF-8";
+
+/* =========================================================
+   VARIABLES
+   ========================================================= */
+
+   :root {
+    --hero-color: #613d0e;
+    --hero-text: #ffffff;
+
+    --font-title: "Lora", Georgia, serif;
+    --font-text: "Montserrat", Arial, sans-serif;
+
+    --transition-hero: 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+}
+
+.homepage {
+    width: 100%;
+}
+
+.hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.hero .container-full {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   IMAGE
+   ---------------------------------------------------------
+   L'image reste dans le flux afin que la hauteur du hero
+   soit automatiquement calculée selon son ratio naturel.
+   ========================================================= */
+
+.hero-bg {
+    position: relative;
+    z-index: 1;
+
+    display: block;
+    width: 100%;
+
+    overflow: hidden;
+}
+
+.hero-bg img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    /*
+     * Pas de height imposée :
+     * l'image conserve donc son ratio naturel.
+     */
+    max-width: none;
+
+    /*
+     * Animation de zoom de fond.
+     */
+    transform: scale(1);
+    transform-origin: center center;
+
+    animation: heroZoom 10s ease-out forwards;
+}
+
+
+/* =========================================================
+   OVERLAY
+   ---------------------------------------------------------
+   Mobile / tablette :
+   overlay uniforme à 50 %.
+   ========================================================= */
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    background: rgba(97, 61, 14, 0.50);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   CONTENU
+   ---------------------------------------------------------
+   Mobile first :
+   contenu centré horizontalement et verticalement.
+   ========================================================= */
+
+.hero-content {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    padding: 2rem 1.5rem;
+
+    text-align: center;
+    color: var(--hero-text);
+}
+
+
+/* =========================================================
+   TITRE
+   ========================================================= */
+
+.hero-content h1 {
+    margin: 0;
+
+    font-family: var(--font-title);
+    font-size: clamp(2rem, 7vw, 3.5rem);
+    font-weight: 500;
+    line-height: 1.08;
+
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+
+    opacity: 0;
+    transform: translateY(28px);
+
+    animation:
+        heroContentIn 900ms cubic-bezier(0.22, 1, 0.36, 1) 250ms forwards;
+}
+
+/*
+ * Le span possède volontairement une autre typographie :
+ * - texte en minuscule
+ * - italique
+ * - Montserrat
+ */
+.hero-content h1 span {
+    font-family: var(--font-text);
+    font-size: 0.42em;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.2;
+
+    text-transform: lowercase;
+    letter-spacing: 0.01em;
+}
+
+
+/* =========================================================
+   PARAGRAPHE
+   ========================================================= */
+
+.hero-content p {
+    max-width: 620px;
+    margin: 1.25rem 0 0;
+
+    font-family: var(--font-text);
+    font-size: clamp(0.85rem, 2.7vw, 1.05rem);
+    font-weight: 400;
+    line-height: 1.65;
+
+    color: var(--hero-text);
+
+    opacity: 0;
+    transform: translateY(28px);
+
+    animation: heroContentIn 900ms cubic-bezier(0.22, 1, 0.36, 1) 450ms forwards;
+    
+    display: none;
+}
+
+
+/* =========================================================
+   BOUTON
+   ========================================================= */
+
+.hero-content .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 48px;
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.4rem;
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+
+    color: #fff;
+    background: transparent;
+
+    font-family: var(--font-text);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.08em;
+
+    text-decoration: none;
+    text-transform: uppercase;
+
+    transition:
+        background-color 250ms ease,
+        color 250ms ease,
+        border-color 250ms ease,
+        transform 250ms ease;
+
+    opacity: 0;
+    transform: translateY(28px);
+
+    animation:
+        heroContentIn 900ms cubic-bezier(0.22, 1, 0.36, 1) 650ms forwards;
+}
+
+.hero-content .btn:hover {
+    color: var(--hero-color);
+    background-color: #fff;
+    border-color: #fff;
+
+    transform: translateY(-2px);
+}
+
+.hero-content .btn:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 4px;
+}
+
+
+/* =========================================================
+   TAGLINE
+   ---------------------------------------------------------
+   Masquée sur mobile et tablette.
+   ========================================================= */
+
+.tagline {
+    display: none;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+/*
+ * Apparition verticale du contenu.
+ */
+@keyframes heroContentIn {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/*
+ * Zoom lent de l'image de fond.
+ */
+@keyframes heroZoom {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.08);
+    }
+}
+
+
+/* =========================================================
+   TABLETTE
+   768px → 1023px
+   ========================================================= */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+    .hero-content {
+        padding: 3rem 4rem;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(2.8rem, 5vw, 4rem);
+    }
+
+    .hero-content p {
+        max-width: 680px;
+    }
+
+    .hero-content .btn {
+        margin-top: 1.75rem;
+    }
+
+    /*
+     * Le tagline reste masqué sur tablette.
+     */
+    .tagline {
+        display: none;
+    }
+}
+
+
+/* =========================================================
+   DESKTOP
+   >= 1024px
+   ========================================================= */
+
+@media (min-width: 1024px) {
+
+    /*
+     * Sur desktop, l'overlay devient un dégradé :
+     * forte présence à gauche, puis transparence vers la droite.
+     */
+    .hero-overlay {
+        background:
+            linear-gradient(
+                to right,
+                rgba(97, 61, 14, 0.82) 0%,
+                rgba(97, 61, 14, 0.68) 28%,
+                rgba(97, 61, 14, 0.35) 52%,
+                rgba(97, 61, 14, 0.08) 76%,
+                rgba(97, 61, 14, 0) 100%
+            );
+    }
+
+
+    /*
+     * Contenu aligné à gauche et centré verticalement.
+     */
+    .hero-content {
+        inset: 0 auto 0 0;
+
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+
+        width: min(55%, 760px);
+        padding:
+            clamp(3rem, 7vw, 7rem)
+            clamp(2rem, 7vw, 8rem);
+
+        text-align: left;
+    }
+
+
+    /* -----------------------------------------------------
+       TITRE DESKTOP
+       ----------------------------------------------------- */
+
+    .hero-content h1 {
+        font-size: clamp(3.5rem, 5vw, 6rem);
+        line-height: 1.02;
+        letter-spacing: 0;
+    }
+
+    .hero-content h1 span {
+        font-size: 0.34em;
+    }
+
+
+    /* -----------------------------------------------------
+       TEXTE DESKTOP
+       ----------------------------------------------------- */
+
+    .hero-content p {
+        max-width: 600px;
+        margin-top: 1.5rem;
+
+        font-size: clamp(0.9rem, 1.15vw, 1.1rem);
+        line-height: 1.7;
+        display: block;
+    }
+
+
+    /* -----------------------------------------------------
+       BOUTON DESKTOP
+       ----------------------------------------------------- */
+
+    .hero-content .btn {
+        margin-top: 2rem;
+    }
+
+
+    /* -----------------------------------------------------
+       TAGLINE DESKTOP
+       ----------------------------------------------------- */
+
+    .tagline {
+        position: absolute;
+        z-index: 4;
+
+        left: 50%;
+        bottom: clamp(1.5rem, 3vw, 3rem);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(0.7rem, 1.5vw, 1.5rem);
+
+        width: max-content;
+        max-width: calc(100% - 2rem);
+
+        margin: 0;
+        padding: 0;
+
+        transform: translateX(-50%);
+
+        color: #fff;
+
+        font-family: var(--font-text);
+        font-size: clamp(0.65rem, 0.8vw, 0.9rem);
+        font-weight: 500;
+        letter-spacing: 0.16em;
+
+        text-transform: lowercase;
+
+        white-space: nowrap;
+
+        opacity: 0;
+
+        animation:
+            taglineIn 1000ms cubic-bezier(0.22, 1, 0.36, 1) 900ms forwards;
+    }
+
+    .tagline span {
+        font-size: 1.2em;
+        line-height: 1;
+    }
+}
+
+
+/* =========================================================
+   ANIMATION TAGLINE
+   ========================================================= */
+
+@keyframes taglineIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+
+/* =========================================================
+   ACCESSIBILITÉ
+   ---------------------------------------------------------
+   Désactive les animations si l'utilisateur demande
+   la réduction des mouvements dans son système.
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .hero-bg img,
+    .hero-content h1,
+    .hero-content p,
+    .hero-content .btn,
+    .tagline {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .hero-bg img {
+        transform: none;
+    }
+}

@@ -1,0 +1,163 @@
+@charset "UTF-8";
+
+/* --- 1. CONFIGURATION MOBILE --- */
+:root {
+    --items-per-screen: 1; /* Nombre de cartes visibles */
+    --peek-amount: 40px; /* Taille de la carte suivante qui dépasse */
+    --gap: 16px; /* Espace entre les cartes */
+    --bg-color: #ffffff;
+}
+
+/* --- 2. CONFIGURATION TABLETTE --- */
+@media (min-width: 640px) and (max-width: 1023px) {
+    :root {
+        --items-per-screen: 2; /* 2 cartes visibles sur tablette */
+        --peek-amount: 60px; /* Ce qui dépasse de la 3ème carte */
+    }
+}
+
+/* --- 3. CONFIGURATION DESKTOP --- */
+@media (min-width: 1024px) {
+    :root {
+        --desktop-columns: 4; /* Nombre de cartes par ligne (Passage à la ligne automatique) */
+    }
+}
+
+/* --- STRUCTURE ET SLIDER (MOBILE & TABLETTE) --- */
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 0;
+    overflow: hidden;
+    max-width: 1200px;
+}
+
+.scroll-container {
+    display: flex;
+    gap: var(--gap);
+    overflow-x: auto;
+    /*padding: 30px 20px;*/ /* Augmenté légèrement pour laisser de la place à l'effet de zoom */
+    padding: 30px 0; /* Pas de padding latéral ici, géré par les pseudo-éléments */
+
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+
+    /* Dégradés dynamiques bilatéraux */
+    background:
+        linear-gradient(to right, var(--bg-color) 30%, rgba(255, 255, 255, 0)),
+        linear-gradient(to left, var(--bg-color) 30%, rgba(255, 255, 255, 0)) 100% 0,
+        linear-gradient(to right, var(--bg-color), rgba(255, 255, 255, 0)),
+        linear-gradient(to left, var(--bg-color), rgba(255, 255, 255, 0)) 100% 0;
+    background-repeat: no-repeat;
+    background-color: var(--bg-color);
+    background-size: 80px 100%, 80px 100%, 40px 100%, 40px 100%;
+    background-attachment: local, local, scroll, scroll;
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* 
+  CORRECTION MAJEURE : Les zones tampons invisibles
+  Elles permettent à la 1ère et dernière carte de se centrer parfaitement.
+*/
+.scroll-container::before,
+.scroll-container::after {
+    content: '';
+    display: block;
+    flex: 0 0 calc(50% - (100% - var(--peek-amount) - (var(--gap) * var(--items-per-screen))) / var(--items-per-screen) / 2);
+}
+
+/* EFFET SUR LES CARTES (MOBILE / TABLETTE) */
+.card {
+    /* Formule dynamique prenant en compte le nombre d'éléments demandés et l'espace restant */
+    /*flex: 0 0 calc((100% - var(--peek-amount) - (var(--gap) * var(--items-per-screen))) / var(--items-per-screen));*/
+    /* Formule simplifiée et ultra-précise pour la largeur */
+    flex: 0 0 calc((100% - var(--peek-amount) - (var(--gap) * (var(--items-per-screen) + 1))) / var(--items-per-screen));
+    scroll-snap-align: center;
+
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    box-sizing: border-box;
+
+    /* Transition pour un effet de focus fluide */
+    opacity: 0.65;
+    transform: scale(0.95);
+    will-change: transform, opacity;
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* La carte active/centrée passe au premier plan */
+.card.focused {
+    opacity: 1;
+    transform: scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e1;
+}
+
+/* LES POINTS DE NAVIGATION */
+.dots-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 16px;
+    height: 8px;
+}
+
+.dot {
+    width: 8px;
+    height: 6px;
+    background-color: #cbd5e1;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease;
+}
+
+/* Transformation du point en barre étirée */
+.dot.active {
+    background-color: #007aff;
+    /*transform: scale(1.2);*/
+    width: 24px;
+}
+
+/* --- RETOUR À LA NORMALE SUR AFFICHAGE GRILLE (DESKTOP) --- */
+@media (min-width: 1024px) {
+    .scroll-container {
+        display: grid;
+        grid-template-columns: repeat(var(--desktop-columns), 1fr);
+        overflow-x: visible;
+        scroll-snap-type: none;
+        padding: 15px 0;
+        background: none;
+    }
+
+    /* Supprime l'effet des tampons sur Desktop */
+    .scroll-container::before,
+    .scroll-container::after {
+        display: none;
+    }
+
+    /* Désactivation des effets de zoom/focus inutiles sur grand écran */
+    .card {
+        flex: none;
+        scroll-snap-align: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .card.focused {
+        transform: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        border-color: #e2e8f0;
+    }
+
+    .dots-indicators {
+        display: none; /* Disparaît complètement sur desktop */
+    }
+}

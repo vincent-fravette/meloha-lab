@@ -1,0 +1,326 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   1. VARIABLES & CONFIGURATION RACINE
+   ========================================================================== */
+html {
+    /* Base de 10px pour simplifier les calculs (62.5% de 16px) */
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+/* Thème Clair par défaut */
+:root {
+    /* On définit la base du navigateur (souvent 16px) */
+    /*--px-base: 16;*/
+
+    /* 1. Couleurs par défaut (Thème Clair) */
+    --bg-site: #f4f6f9;
+    --bg-card: #ffffff;
+    --bg-badge: #007bff;
+    --bg-badge-hot: #dc3545;
+    --btn-bg: #1a1d20;
+    --btn-text: #ffffff;
+    --text-main: #1a1d20;
+    --text-muted: #5a626a;
+    --shadow: rgba(0, 0, 0, 0.06);
+    --border-color: #e9ecef;
+
+    /* Dégradé transparent vers la couleur de fond du site */
+    --fade-gradient: linear-gradient(90deg, rgba(244,246,249,0) 0%, rgba(244,246,249,1) 100%);
+}
+
+/* 2. Couleurs pour le Thème Sombre */
+/* Thème Sombre automatique (basé sur le système de l'utilisateur) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-site: #121212;
+        --bg-card: #1e1e1e;
+        --bg-badge: #0b66c2;
+        --bg-badge-hot: #bb2d3b;
+        --btn-bg: #f8f9fa;
+        --btn-text: #121212;
+        --text-main: #f8f9fa;
+        --text-muted: #a0aec0;
+        --shadow: rgba(0, 0, 0, 0.4);
+        --border-color: #2d2d2d;
+        --fade-gradient: linear-gradient(90deg, rgba(18,18,18,0) 0%, rgba(18,18,18,1) 100%);
+    }
+}
+
+/* Si vous préférez l'activer via une classe JavaScript :
+.dark-mode {
+  --bg-site: #121212;
+  ...
+} */
+
+/* ==========================================================================
+   2. STYLES GÉNÉRAUX
+   ========================================================================== */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-site);
+    color: var(--text-main);
+    font-size: 1.6rem; /* 1.6rem = 16px */
+    line-height: 1.6;
+    padding: 4rem 0rem; /* On retire le padding horizontal du body pour coller aux bords sur mobile */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transition fluide lors du changement */
+}
+
+h2 {
+    text-align: center;
+}
+
+img {
+    width: 100%;
+    display: block;
+    height: auto;
+    /*object-fit: cover;*/ /* L'image s'adapte sans se déformer */
+}
+
+.header {
+    text-align: center;
+    margin-bottom: clamp(3rem, 5vw, 6rem);
+    padding: 0 2rem;
+}
+
+.header h1 {
+    /* Taille fluide : min 2.8rem (28px), max 4rem (40px) */
+    font-size: clamp(2.8rem, 4vw, 4rem);
+    margin-bottom: 1rem;
+}
+
+.header p {
+    font-size: 1.6rem;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   3. MISE EN PAGE GLOBAL (SLIDER SUR MOBILE, GRID SUR PC)
+   ========================================================================== */
+.slider-wrapper {
+    position: relative;
+    width: 100%;
+}
+/* L'indicateur visuel (un dégradé flouté sur le bord droit de l'écran sur mobile) */
+.slider-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 4rem; /* Epaisseur du dégradé */
+    background: var(--fade-gradient);
+    pointer-events: none; /* Permet de cliquer à travers */
+    z-index: 2;
+    transition: opacity 0.3s ease;
+}
+
+.grid-container {
+    max-width: 120rem; /* 1200px max pour éviter que le site soit trop large */
+    margin: 0 auto; /* Centre la grille sur les grands écrans */
+    padding: 2rem;
+
+    /* --- COMPORTEMENT MOBILE PAR DÉFAUT (SLIDER) --- */
+    display: flex;
+    overflow-x: auto; /* Active le défilement horizontal */
+    gap: 2rem; /* Espace constant entre les cartes sur mobile */
+    /* Masque la barre de défilement par défaut pour un look plus propre */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    /* Propriétés de scroll Snap pour aligner les cartes proprement au doigt */
+    scroll-snap-type: mandatory;
+    scroll-behavior: smooth;
+    /* Ajoute un espace fantôme à droite pour que la dernière carte ne colle pas au bord */
+    padding-right: 4rem;
+}
+/* Masque la barre de défilement pour Chrome, Safari et Opera */
+.grid-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* ==========================================================================
+   4. COMPOSANT COMPLET (CARD & BUTTONS)
+   ========================================================================== */
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 1.2rem; /* 12px */
+    overflow: hidden;
+    box-shadow: 0 1rem 2rem var(--shadow);
+    display: flex;
+    flex-direction: column;
+
+    /*--- Propriétés pour le mode slider mobile ---*/
+
+    /* Empêche les cartes de rétrécir et leur donne une largeur fixe sur mobile */
+    flex: 0 0 28rem; /* 280px */
+    /* Aligne chaque carte sur le début de l'écran lors du défilement */
+    scroll-snap-align: start;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    /*width: 32rem;*/ /* 32 x 8px = 256px */
+    /*padding: clamp(1.2rem, 2vw, 2.4rem);*/ /* Le padding s'adapte de manière fluide selon l'espace disponible */
+    /*width: 100%;*/
+    /*max-width: 38rem;*/
+}
+
+/* Effet d'animation simple au survol */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 1.5rem 3rem var(--shadow);
+}
+
+.card-image-placeholder {
+    height: 18rem; /* 180px */
+    background-color: var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+}
+
+/* Flexbox à l'intérieur de la carte pour aligner le contenu verticalement */
+.card-content {
+    padding: 2.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligne le badge et le texte à gauche */
+    gap: 1.2rem; /* Espace fixe de 12px entre les lignes */
+}
+
+/* Exemple d'utilisation idéale du EM pour le badge autonome */
+.card-badge {
+    align-self: flex-start; /* Évite que le badge prenne toute la largeur */
+    font-size: 1.1rem; /* 11px */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    /* Le padding en EM permet au badge de garder de bonnes proportions même si vous modifiez la taille de sa police (font-size) plus tard - Le padding s'adapte par rapport à la police du badge (1.1rem) */
+    padding: 0.4em 0.9em;
+    background-color: var(--bg-badge);
+    color: #FFF;
+    border-radius: 0.4rem;
+}
+
+.card-badge.badge-hot {
+    background-color: var(--bg-badge-hot);
+}
+
+.card-title {
+    /* Le titre fera au minimum 2rem, idéalement 2.5vw, et au maximum 2.4rem */
+    font-size: clamp(2rem, 2.5vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.card-text {
+    font-size: 1.4rem; /* 14px */
+    color: var(--text-muted);
+    /* Pousse le bouton au bas de la carte même si le texte est court */
+    margin-bottom: auto;
+    /*font-weight: 700;*/
+    /*line-height: 1.2;*/
+}
+
+/* --- LE BOUTON INTERACTIF ANIMÉ --- */
+.card-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-decoration: none;
+
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    padding: 1.2rem 2rem;
+    border-radius: 0.8rem;
+
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.card-btn .arrow {
+    display: inline-block;
+    /* Utilisation du EM pour que la flèche suive proportionnellement la taille du texte */
+    transition: transform 0.2s ease;
+}
+/* Animations au survol du bouton */
+.card-btn:hover {
+    filter: brightness(2.2); /* Éclaircit légèrement le bouton */
+}
+/* La flèche se décale vers la droite au survol */
+.card-btn:hover .arrow {
+    transform: translateX(4px);
+}
+
+/* Effet d'enfoncement au clic (Active state) */
+.card-btn:active {
+    transform: scale(0.98);
+}
+
+/* --- PASSAGE EN MODE GRILLE SUR ÉCRANS LARGES (TABLETTES & PC) --- */
+
+/* Sur les écrans plus larges (tablettes et PC), on augmente la base racine */
+@media screen and (min-width: 768px) {
+    html {
+        font-size: 75%;
+        /* 1rem = 12px (la base standard confortable) */
+    }
+    /* Désactivation du dégradé et bascule en Grille sur PC */
+    .slider-wrapper::after {
+        display: none; /* Plus besoin du dégradé visuel si tout est affiché */
+    }
+
+    .grid-container {
+        display: grid; /* On réactive la grille automatique */
+        /* Des colonnes automatiques de minimum 28rem (336px) qui s'adaptent toutes seules à l'espace */
+        grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+        /* Un espacement fluide entre les cartes grâce à clamp() */
+        gap: clamp(2rem, 3vw, 4rem);
+        /* On remet le padding standard */
+        /*padding: 2rem;*/
+        overflow-x: visible;
+        scroll-snap-type: none;
+    }
+
+    .card {
+        /*width: 35rem;*/ /* 35 x 12px = 420px */
+        /* On réinitialise la flexibilité pour que Grid reprenne le contrôle */
+        flex: initial;
+        scroll-snap-align: none;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    html {
+        font-size: 82.5%;
+        /* 1rem = 14px pour les grands moniteurs */
+    }
+}
+
+/* ==========================================================================
+   COMMENT CELA FONCTIONNE ?
+   ========================================================================== */
+/*
+1. overflow-x: auto + display: flex : Sur mobile, les cartes s'alignent sur une seule ligne horizontale et dépassent de l'écran en créant une zone de défilement.
+2. flex: 0 0 28rem : Indispensable sur mobile pour forcer chaque carte à garder sa largeur de 280px sans s'écraser pour tenter de rentrer dans l'écran.
+3. scroll-snap-type: x mandatory & scroll-snap-align: start : Lorsque l'utilisateur fait glisser son doigt et relâche, la carte la plus proche vient s'aimanter automatiquement au bord gauche de l'écran. Cela évite que le défilement s'arrête "entre deux cartes".
+4. @media (min-width: 768px) : Dès que l'écran est assez grand (tablette ou ordinateur), le comportement de slider est désactivé au profit de la grille CSS classique que nous avions créée.
+
+5. L'effet d'ombre indicatrice (.slider-wrapper::after) : Un pseudo-élément crée un voile fondu sur le côté droit de l'écran. Il indique de manière intuitive qu'il y a du contenu caché à découvrir en glissant le doigt. Sur PC, cette propriété disparaît automatiquement.
+6. margin-bottom: auto sur .card-text : C'est une astuce Flexbox très puissante. Elle force le bouton à s'aligner parfaitement tout en bas de la boîte de contenu, de sorte que tous les boutons soient alignés horizontalement, quelle que soit la longueur du paragraphe du dessus.
+7. L'animation de la flèche (.card-btn:hover .arrow) : Lors du survol du bouton, la flèche glisse de quelques pixels vers la droite grâce à translateX, offrant un feedback utilisateur très élégant.
+Vous avez désormais toutes les clés en main pour créer des architectures CSS fluides, élégantes, responsives et entièrement accessibles.
+*/

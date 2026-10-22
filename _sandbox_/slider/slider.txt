@@ -1,0 +1,13 @@
+Bonjour, je suis sur un projet web en ce moment; je suis sur la partie front-end pour l'instant, j'intègre les maquettes en HTML, CSS et JS.
+
+Sur la page d'accueil, je souhaiterai intégrer un slider pour une section Prestations et un carousel pour une section e-shop.
+
+Pour les deux sections, ce sera une liste de carte responsive avec image et texte. Vu que le site est responsive, on basculera sur un affichage grille pour la version desktop. Je veux la possibilité de configurer le nombre de carte visible à l'écran pour les versions mobile et tablette, le nombre de carte par ligne avec retour automatique à la ligne s'il y en a trop pour la version desktop. Je veux un alignement des cartes optimisées, qui s'adaptent aux écrans mobiles et qui soient centrées; je veux des images responsive qui s'adaptent à la largeur de l'écran et restent proportionnelles.
+
+Pour la section Prestations, je veux un indicateur visuel du genre; dégradé transparent qui s'affiche dynamiquement uniquement s'il y a du contenu à faire défiler, dégradé dynamique à gauche lorsque l'utilisateur commence à faire défiler vers la gauche.
+
+Pour la section e-shop, je veux des points de navigation avec un défilement animé et fluide lors du clic sur un point et qui se transforme en petite barre animée et étirée pour le point actif.
+
+Je t'ai mis la partie HTML en pièce jointe, je te laisse le choix des images, tu peux rajouter 'class' et 'id' si nécessaire; je veux du clean code, des bonnes pratiques, des commentaires à chaque ligne qui m'explique comment ça fonctionne et le résultat que j'aurai; je veux que tu abordes ça en mobile-first, CSS moderne et avec le moins de JavaScript possible.
+
+Fournis-moi une architecture complète, les codes et scripts complets et sécurisés avec un bonne lisibilité du code.

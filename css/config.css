@@ -1,0 +1,90 @@
+/*
+--body-color: rgba(238, 209, 172, 0.3);
+--bg-color-1: #f9f1e6;
+--primary: #613d0e;
+--secondary: #eed1ac;
+--tertiary: #e5be8a;
+--facebook-color: #1877f2;
+--instagram-color: #e1306c;
+--whatsapp-color: #25d366;
+--success-color: #8aaa79;
+--success-color-light: #b9d7a1;
+--danger-color: #e63a2e;
+___PALETTE___
+--sombre: #1D160C;
+--foncé: #573C19;
+--accent: #E5BE8A;
+--clair: #F7ECDE;
+--blanc: #FFFFFF;
+--80: #EACBA1;
+--60: #EFD8B9;
+--40: #F5E5D0;
+--20: #FAF2E8;
+*/
+:root {
+    /** BASE **/
+    --base-unit: 16px;
+    --max-width: 1200px;
+    --ratio-line-height: 1.3;
+    --ratio-letter-spacing: 1px;
+    
+    /** COLORS **/
+        /* BACKGROUNDS COLORS */
+    --bg-color: #F8F5F1;
+    --bg-color-2: #E7D8CB;
+    --bg-color-3: #FCFAF7;
+    --main-color: #613D0E;
+    --main-color-light: #cba67d;
+    --alt-color: ;
+
+    
+
+    --approche: #F8F5F1;
+    --place: #E7D8CB;
+    --rituel: #FCFAF7;
+    --shop: #FFFFFF;
+    --avis: #F8F5F1;
+    --footer: #E7D8CB;
+
+        /* TYPOGRAPHY */
+    --text-1: #181614;
+    /*--text-2: #5A4334;*/
+    --primary: #613d0e;
+
+        /* ICONS */
+    --icon: #4A3326;
+
+        /* LOGO */
+    --logo-dark: #613D0E;
+    --logo-light: #E5BE8A;
+
+    /** TYPOGRAPHY **/
+        /* FONTS */
+    --typography-main: "Montserrat", sans-serif;
+    --typography-headlines: "Lora", sans-serif;
+    --typography-taglines: "Plus Jakarta Sans", sans-serif;
+
+        /* SIZE */
+    --p-size: var(--base-unit);
+    --h1-size: ;
+    --h2-size: ;
+    --h3-size: calc(var(--base-unit) / 1.1429);
+    --h4-size: ;
+    --h5-size: ;
+    --h6-size: ;
+    
+        /* WEIGHT */
+    --fw-thin: 100;
+    --fw-regular: 400;
+    --fw-bold: 700;
+    --h1-weight: ;
+    --h2-weight: ;
+    --h3-weight: ;
+    --h4-weight: ;
+    --h5-weight: ;
+    --h6-weight: ;
+
+    /** ANIMATIONS **/
+    --transition-duration: 300ms;
+    --transition-type: ease;
+}

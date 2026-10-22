@@ -1,0 +1,259 @@
+<!doctype html>
+<!-- Déclare un document HTML5 moderne et standard. -->
+<html lang="fr">
+<!-- Indique au navigateur et aux technologies d'assistance que le contenu est en français. -->
+<head>
+    <!-- Utilise l'encodage UTF-8 pour afficher correctement les accents et caractères spéciaux. -->
+    <meta charset="UTF-8">
+    <!-- Rend la mise en page responsive en utilisant la largeur réelle de l'écran. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Ajoute une politique de sécurité de contenu de base pour limiter les sources autorisées. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://images.unsplash.com; style-src 'self'; script-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <!-- Limite les informations de provenance transmises lors des requêtes externes. -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <!-- Charge la feuille de styles locale sans dépendance externe. -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Définit le titre de l'onglet du navigateur. -->
+    <title>Prestations &amp; E-shop - v3</title>
+</head>
+<!-- Commence le contenu visible de la page. -->
+<body>
+    <!-- Permet aux utilisateurs de clavier d'aller directement au contenu principal. -->
+    <a class="skip-link" href="#main-content">Aller au contenu</a>
+
+    <!-- Regroupe l'en-tête principal de démonstration. -->
+    <header class="site-header">
+        <!-- Centre le contenu de l'en-tête dans la largeur maximale définie en CSS. -->
+        <div class="container">
+            <!-- Présente le titre principal de la page. -->
+            <h1>Prestations &amp; E-shop V3</h1>
+            <!-- Explique rapidement le comportement responsive de la démonstration. -->
+            <p>Slider mobile/tablette, puis grille desktop.</p>
+        </div>
+    </header>
+
+    <!-- Regroupe le contenu principal de la page. -->
+    <main id="main-content">
+        <!-- Section consacrée aux prestations. -->
+        <section class="section prestations" aria-labelledby="prestations-title">
+            <!-- Centre le titre et le sous-titre dans la largeur maximale. -->
+            <div class="container section-heading">
+                <!-- Identifie le titre de la section pour les technologies d'assistance. -->
+                <h2 id="prestations-title">Prestations</h2>
+                <!-- Décrit le geste de navigation sur les petits écrans. -->
+                <p>Faites glisser les cartes horizontalement sur mobile et tablette.</p>
+            </div>
+
+            <!-- Conteneur visuel qui reçoit automatiquement les dégradés latéraux. -->
+            <div class="slider-wrapper" data-scroll-component="prestations">
+                <!-- Zone réellement défilable horizontalement sur mobile et tablette. -->
+                <div class="scroll-container" data-scroll-viewport tabindex="0" role="region" aria-label="Liste des prestations" aria-describedby="prestations-help">
+                    <!-- Liste sémantique des cartes, utilisée en flex sur petits écrans puis en grid sur desktop. -->
+                    <ul class="cards" id="prestations-track" data-scroll-track>
+                        <!-- Carte de prestation numéro 1. -->
+                        <li class="card">
+                            <!-- Zone média qui garde une proportion visuelle constante sur tous les écrans. -->
+                            <div class="card__media">
+                                <!-- Charge une image optimisée côté navigateur sans déformer son contenu. -->
+                                <img src="https://images.unsplash.com/photo-1556760544-74068565f05c?auto=format&amp;fit=crop&amp;w=1200&amp;q=82" alt="Séance de massage bien-être" width="1200" height="750" loading="eager" fetchpriority="high" decoding="async">
+                            </div>
+                            <!-- Regroupe le contenu textuel de la carte. -->
+                            <div class="card__body">
+                                <!-- Titre de la prestation. -->
+                                <h3>Soin bien-être</h3>
+                                <!-- Description courte de la prestation. -->
+                                <p>Un moment de détente pensé pour relâcher les tensions et favoriser la récupération.</p>
+                            </div>
+                        </li>
+
+                        <!-- Carte de prestation numéro 2. -->
+                        <li class="card">
+                            <!-- Conserve le ratio visuel de l'image. -->
+                            <div class="card__media">
+                                <!-- Image distante chargée paresseusement après le contenu prioritaire. -->
+                                <img src="https://images.unsplash.com/photo-1591343395082-e120087004b4?auto=format&amp;fit=crop&amp;w=1200&amp;q=82" alt="Soin facial et rituel beauté" width="1200" height="750" loading="lazy" decoding="async">
+                            </div>
+                            <!-- Contenu textuel de la carte. -->
+                            <div class="card__body">
+                                <!-- Titre de la prestation. -->
+                                <h3>Rituel visage</h3>
+                                <!-- Description courte de la prestation. -->
+                                <p>Un protocole ciblé pour nettoyer, hydrater et redonner de l'éclat à la peau.</p>
+                            </div>
+                        </li>
+
+                        <!-- Carte de prestation numéro 3. -->
+                        <li class="card">
+                            <!-- Zone d'image responsive. -->
+                            <div class="card__media">
+                                <!-- Image adaptée au format de la carte. -->
+                                <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&amp;fit=crop&amp;w=1200&amp;q=82" alt="Pratique douce de yoga et relaxation" width="1200" height="750" loading="lazy" decoding="async">
+                            </div>
+                            <!-- Texte de la prestation. -->
+                            <div class="card__body">
+                                <!-- Titre de la prestation. -->
+                                <h3>Relaxation</h3>
+                                <!-- Description courte de la prestation. -->
+                                <p>Une approche douce associant respiration, mobilité et relaxation pour se recentrer.</p>
+                            </div>
+                        </li>
+
+                        <!-- Carte de prestation numéro 4. -->
+                        <li class="card">
+                            <!-- Zone média responsive. -->
+                            <div class="card__media">
+                                <!-- Image chargée à la demande pour améliorer le chargement initial. -->
+                                <img src="https://images.unsplash.com/photo-1552693673-1bf958298935?auto=format&amp;fit=crop&amp;w=1200&amp;q=82" alt="Produits et accessoires de soin disposés sur une table" width="1200" height="750" loading="lazy" decoding="async">
+                            </div>
+                            <!-- Texte de la prestation. -->
+                            <div class="card__body">
+                                <!-- Titre de la prestation. -->
+                                <h3>Conseil personnalisé</h3>
+                                <!-- Description courte de la prestation. -->
+                                <p>Des recommandations adaptées à vos besoins et à votre routine quotidienne.</p>
+                            </div>
+                        </li>
+
+                        <!-- Carte de prestation numéro 5. -->
+                        <li class="card">
+                            <!-- Zone média responsive. -->
+                            <div class="card__media">
+                                <!-- Dernière image de la liste des prestations. -->
+                                <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&amp;fit=crop&amp;w=1200&amp;q=82" alt="Ambiance spa propice à la détente" width="1200" height="750" loading="lazy" decoding="async">
+                            </div>
+                            <!-- Texte de la prestation. -->
+                            <div class="card__body">
+                                <!-- Titre de la prestation. -->
+                                <h3>Escapade détente</h3>
+                                <!-- Description courte de la prestation. -->
+                                <p>Une expérience complète pour créer une véritable parenthèse de calme et de confort.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Texte visuellement discret qui reste disponible aux technologies d'assistance. -->
+                <p class="sr-only" id="prestations-help">Sur mobile et tablette, utilisez un balayage horizontal ou les flèches gauche et droite du clavier.</p>
+            </div>
+        </section>
+
+        <!-- Section consacrée à la boutique en ligne. -->
+        <section class="section shop" aria-labelledby="shop-title">
+            <!-- Centre les informations d'introduction de la boutique. -->
+            <div class="container section-heading">
+                <!-- Titre de la boutique. -->
+                <h2 id="shop-title">E-shop</h2>
+                <!-- Explique la présence des points de navigation. -->
+                <p>Consultez les produits et utilisez les points pour accéder rapidement à une carte.</p>
+            </div>
+
+            <!-- Conteneur principal du carousel e-shop. -->
+            <div class="carousel-wrapper" data-scroll-component="shop">
+                <!-- Zone qui défile horizontalement sous les breakpoints mobiles et tablette. -->
+                <div class="scroll-container" id="shop-viewport" data-scroll-viewport tabindex="0" role="region" aria-label="Liste des produits" aria-describedby="shop-help">
+                    <!-- Liste sémantique des produits. -->
+                    <ul class="cards" id="shop-track" data-scroll-track>
+                        <!-- Produit numéro 1. -->
+                        <li class="card">
+                            <!-- Zone image responsive. -->
+                            <div class="card__media">
+                                <!-- Première image e-shop. -->
+                                <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&amp;fit=crop&amp;w=1200&amp;q=82" alt="Sérum cosmétique dans son flacon" width="1200" height="750" loading="eager" decoding="async">
+                            </div>
+                            <!-- Contenu produit. -->
+                            <div class="card__body">
+                                <!-- Nom du produit. -->
+                                <h3>Sérum éclat</h3>
+                                <!-- Prix du produit. -->
+                                <p class="product-price">29,00 €</p>
+                            </div>
+                        </li>
+
+                        <!-- Produit numéro 2. -->
+                        <li class="card">
+                            <!-- Zone image responsive. -->
+                            <div class="card__media">
+                                <!-- Deuxième image e-shop. -->
+                                <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&amp;fit=crop&amp;w=1200&amp;q=82" alt="Flacons de soin et accessoires beauté" width="1200" height="750" loading="lazy" decoding="async">
+                            </div>
+                            <!-- Contenu produit. -->
+                            <div class="card__body">
+                                <!-- Nom du produit. -->
+                                <h3>Huile nourrissante</h3>
+                                <!-- Prix du produit. -->
+                                <p class="product-price">24,00 €</p>
+                            </div>
+                        </li>
+
+                        <!-- Produit numéro 3. -->
+                        <li class="card">
+                            <!-- Zone image responsive. -->
+                            <div class="card__media">
+                                <!-- Troisième image e-shop. -->
+                                <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&amp;fit=crop&amp;w=1200&amp;q=82" alt="Crème de soin pour le visage" width="1200" height="750" loading="lazy" decoding="async">
+                            </div>
+                            <!-- Contenu produit. -->
+                            <div class="card__body">
+                                <!-- Nom du produit. -->
+                                <h3>Crème hydratante</h3>
+                                <!-- Prix du produit. -->
+                                <p class="product-price">26,00 €</p>
+                            </div>
+                        </li>
+
+                        <!-- Produit numéro 4. -->
+                        <li class="card">
+                            <!-- Zone image responsive. -->
+                            <div class="card__media">
+                                <!-- Quatrième image e-shop. -->
+                                <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&amp;fit=crop&amp;w=1200&amp;q=82" alt="Produit de soin présenté sur un support en pierre" width="1200" height="750" loading="lazy" decoding="async">
+                            </div>
+                            <!-- Contenu produit. -->
+                            <div class="card__body">
+                                <!-- Nom du produit. -->
+                                <h3>Masque douceur</h3>
+                                <!-- Prix du produit. -->
+                                <p class="product-price">22,00 €</p>
+                            </div>
+                        </li>
+
+                        <!-- Produit numéro 5. -->
+                        <li class="card">
+                            <!-- Zone image responsive. -->
+                            <div class="card__media">
+                                <!-- Cinquième image e-shop. -->
+                                <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&amp;fit=crop&amp;w=1200&amp;q=82" alt="Gamme de produits cosmétiques alignés" width="1200" height="750" loading="lazy" decoding="async">
+                            </div>
+                            <!-- Contenu produit. -->
+                            <div class="card__body">
+                                <!-- Nom du produit. -->
+                                <h3>Routine complète</h3>
+                                <!-- Prix du produit. -->
+                                <p class="product-price">49,00 €</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Texte masqué visuellement mais disponible aux technologies d'assistance. -->
+                <p class="sr-only" id="shop-help">Utilisez les points ci-dessous pour faire défiler les produits un par un sur mobile et tablette.</p>
+
+                <!-- Navigation générée en JavaScript uniquement lorsque le contenu peut réellement défiler. -->
+                <nav class="dots-indicators" aria-label="Navigation des produits" hidden></nav>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pied de page minimal de la démonstration. -->
+    <footer class="site-footer">
+        <!-- Centre le contenu du pied de page. -->
+        <div class="container">
+            <!-- Indique que le pied de page est un simple emplacement à remplacer dans le projet final. -->
+            <p>FOOTER</p>
+        </div>
+    </footer>
+
+    <!-- Charge le JavaScript natif après le HTML sans bloquer le rendu initial. -->
+    <script src="script.js" defer></script>
+</body>
+<!-- Ferme le document HTML. -->
+</html>

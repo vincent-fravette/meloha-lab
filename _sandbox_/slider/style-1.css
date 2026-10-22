@@ -1,0 +1,155 @@
+@charset "UTF-8";
+
+:root {
+    /* CONFIGURATION DU NOMBRE DE CARTES VISIBLES PAR DÉFAUT (MOBILE) */
+    --items-per-screen: 1; /* Nombre de cartes pleines visibles */
+    --peek-amount: 40px; /* Taille du morceau de la carte suivante qui dépasse */
+    --gap: 16px; /* Espace entre les cartes */
+
+    /* Couleurs des dégradés (à adapter selon le fond de votre site) */
+    --bg-color: #ffffff;
+
+    /* CONFIGURATION DESKTOP : Ajustez ce nombre pour changer les cartes par ligne */
+    --desktop-columns: 4;
+}
+
+/* 1. Le conteneur parent (gère la structure globale) */
+
+/* --- STRUCTURE GLOBALE --- */
+.carousel-wrapper {
+    width: 100%;
+    /*max-width: 800px;*/ /* À ajuster selon votre design */
+    margin: 0 auto;
+    padding: 20px 0;
+
+    position: relative;
+}
+
+/* 2. Le conteneur défilable */
+
+/* 
+  DÉGRADÉ DYNAMIQUE (Technique CSS Pure des Scroll Shadows)
+  Le premier dégradé se déplace avec le contenu (et se cache sous le bord), 
+  le second reste fixe pour créer l'effet d'ombre/fondu.
+*/
+/* --- STYLE SUR MOBILE (CAROUSEL) --- */
+.scroll-container {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding: 15px 20px; /* Padding latéral pour ne pas coller au bord au départ */
+
+    /* Amélioration du défilement mobile - Comportement de défilement fluide et aimanté */
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Cache la barre de défilement par défaut */
+
+    /* Combinaison de dégradés locaux (qui défilent) et fixes */
+    /* Dégradés dynamiques gauche/droite (Scroll Shadows) */
+    background: 
+        /* Ombres linéaires blanches pour masquer les dégradés aux extrémités */
+        linear-gradient(to right, var(--bg-color) 30%, rgba(255,255,255,0)), 
+        linear-gradient(to left, var(--bg-color) 30%, rgba(255,255,255,0)) 100% 0,
+        /* Les véritables dégradés de fondu (visibles uniquement lors du scroll) */
+        linear-gradient(to right, var(--bg-color), rgba(255,255,255,0)), 
+        linear-gradient(to left, var(--bg-color), rgba(255,255,255,0)) 100% 0;
+    background-repeat: no-repeat;
+    background-color: var(--bg-color);
+    background-size: 80px 100%, 80px 100%, 40px 100%, 40px 100%;
+    background-attachment: local, local, scroll, scroll;
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* 3. La technique de la carte coupée (Affordance visuelle) */
+
+/* TAILLE ET ALIGNEMENT DES CARTES PRÉCISE */
+.card {
+    /* 75% permet de voir la carte actuelle et de laisser dépasser la suivante */
+    /*flex: 0 0 75%;*/
+    scroll-snap-align: center; /* Aimante la carte au centre lors du défilement */
+
+    /* Style cosmétique des cartes */
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+
+    /* Formule mathématique pour afficher exactement X éléments + un morceau du suivant */
+    /*flex: 0 0 calc((100% - (var(--gap) * (var(--items-per-screen) - 1)) - var(--peek-amount)) / var(--items-per-screen));*/
+
+    /* Calcul précis : prend l'écran moins l'espace qui dépasse */
+    flex: 0 0 calc((100% - var(--peek-amount)) - var(--gap));
+
+    box-sizing: border-box;
+}
+
+/* 4. Le dégradé transparent moderne (Effet de fondu) */
+.has-fade {
+    /* Crée un fondu transparent uniquement sur les 80 derniers pixels à droite */
+    /*mask-image: linear-gradient(to right, black calc(100% - 80px), transparent 100%);*/
+    /*-webkit-mask-image: linear-gradient(to right, black calc(100% - 80px), transparent 100%);*/
+}
+
+/* 5. Les points de navigation */
+
+.dots-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: #cbd5e1;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background-color: #007aff; /* Couleur du point actif */
+    transform: scale(1.2);
+}
+
+/* Optionnel : Ajustement pour les écrans plus grands (tablettes/ordinateurs) */
+@media (min-width: 600px) {
+    :root {
+        --items-per-screen: 1; /* 1 seule carte entière sur mobile + le morceau de la 2e */
+        --peek-amount: 48px;
+    }
+
+    .card {
+        /*flex: 0 0 45%;*/ /* Affiche environ deux cartes et demie sur grand écran */
+    }
+}
+
+/* --- VERSION DESKTOP (ÉCRANS REPRENANT LA GRILLE) --- */
+@media (min-width: 1024px) {
+    .scroll-container {
+        display: grid;
+        /* Affiche toutes les cartes sur une ligne (ou passez à 2, 3 selon vos besoins) */
+        /*grid-template-columns: repeat(4, 1fr);*/
+        /* Utilise la variable pour définir le nombre exact de colonnes */
+        grid-template-columns: repeat(var(--desktop-columns), 1fr);
+        overflow-x: visible;
+        scroll-snap-type: none;
+        padding: 15px 0;
+        background: none; /* Supprime les dégradés inutiles sur desktop */
+    }
+
+    .card {
+        flex: none; /* Désactive le comportement flex du mobile */
+        scroll-snap-align: none;
+    }
+
+    /* Cache complètement les points de navigation car il n'y a plus de slider */
+    .dots-indicators {
+        display: none;
+    }
+}
