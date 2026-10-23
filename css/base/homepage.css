@@ -55,7 +55,7 @@
 }
 
 .homepage section.hero div.hero-container div.hero-content {
-    width: 40%;
+    width: 100%;
 }
 
 .homepage section.hero div.hero-container h1 {
@@ -135,6 +135,10 @@
 
     .homepage .hero h1 {
         margin-bottom: 32px;
+    }
+
+    .homepage section.hero div.hero-container div.hero-content {
+        width: 40%;
     }
 
     .homepage section.hero div.hero-container div.hero-content p {
