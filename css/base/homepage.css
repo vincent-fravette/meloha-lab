@@ -146,6 +146,10 @@
         font-weight: 400;
         font-size: clamp(0.625rem, 1.5vw, 1.125rem);
     }
+
+    .homepage section.hero div.hero-container div.hero-content a.btn {
+        margin-top: 1rem!important;
+    }
 }
 
 @media screen and (min-width: 1024px) {
