@@ -2,6 +2,20 @@
    1. HERO
    ========================================================================== */
 
+.homepage h2 {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.homepage h3 {
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+}
+
 .homepage section.hero {
     position: relative;
     width: 100%;
@@ -455,54 +469,55 @@
 }
 
 .homepage section.support h2 {
-    text-transform: uppercase;
-    font-size: 1.4rem;
     text-align: center;
     margin-bottom: 1.6rem;
 }
 
 .homepage section.support div.slider-wrapper {
-    position: relative;
-    width: 100%;
+    /*position: relative;*/
+    /*width: 100%;*/
 }
 
 .homepage section.support div.slider-wrapper::after {
     content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 4rem; /* Epaisseur du dégradé */
-    background: linear-gradient(90deg, rgba(244,246,249,0) 0%, rgba(244,246,249,1) 100%);
-    pointer-events: none; /* Permet de cliquer à travers */
-    z-index: 2;
-    transition: opacity 0.3s ease;
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*right: 0;*/
+    /*bottom: 0;*/
+    /*width: 4rem;*/ /* Epaisseur du dégradé */
+    /*background: linear-gradient(90deg, rgba(244,246,249,0) 0%, rgba(244,246,249,1) 100%);*/
+    /*pointer-events: none;*/ /* Permet de cliquer à travers */
+    /*z-index: 2;*/
+    /*transition: opacity 0.3s ease;*/
 }
 
 .homepage section.support div.slider-wrapper div.grid-container {
-    max-width: 120rem;
-    margin: 0 auto;
-    padding: 2rem;
-    display: flex;
-    overflow-x: auto;
-    gap: 2rem;
+    /*max-width: 120rem;*/
+    /*margin: 0 auto;*/
+    /*padding: 2rem;*/
+    /*display: flex;*/
+    /*overflow-x: auto;*/
+    /*gap: 2rem;*/
+
     /*scrollbar-width: none;*/
     /*-ms-overflow-style: none;*/
-    scroll-snap-type: mandatory;
-    scroll-behavior: smooth;
-    padding-right: 4rem;
+
+    /*scroll-snap-type: mandatory;*/
+    /*scroll-behavior: smooth;*/
+    /*padding-right: 4rem;*/
 }
 
 .homepage section.support div.slider-wrapper div.support-card {
-    background-color: #FFF;
-    border: 1px solid var(--bg-color-2);
-    overflow: hidden;
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.06);
-    display: flex;
-    flex-direction: column;
-    flex: 0 0 28rem;
-    scroll-snap-align: start;
-    transition: transform 0.2s ease, box-shadow 0.2 ease;
+    /*background-color: #FFF;*/
+    /*border: 1px solid var(--bg-color-2);*/
+    /*overflow: hidden;*/
+    box-shadow: 0 0 1rem 4px rgba(0, 0, 0, 0.06);
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*flex: 0 0 28rem;*/
+    /*scroll-snap-align: start;*/
+    /*transition: transform 0.2s ease, box-shadow 0.2 ease;*/
+
     /*width: 32rem; */
     /*padding: clamp(1.2rem, 2vw, 2.4rem); */
     /*width: 100%; */
@@ -510,17 +525,19 @@
 }
 
 .homepage section.support div.slider-wrapper div.support-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 1.5rem 3rem var(--shadow);
+    /*transform: translateY(-5px);*/
+    /*box-shadow: 0 1.5rem 3rem var(--shadow);*/
 }
 
 .homepage section.support div.slider-wrapper div.support-card div.card-img-placeholder {
+    width: 100%;
     /*height: 14.1875rem;*/
-    background-color: var(--bg-color-2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 5rem;
+
+    /*background-color: var(--bg-color-2);*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    /*font-size: 5rem;*/
 }
 
 .homepage section.support div.slider-wrapper div.support-card div.card-img-placeholder img {
@@ -528,42 +545,46 @@
 }
 
 .homepage section.support div.slider-wrapper div.support-card div.content {
-    padding: 2.4rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.2rem;
+    padding: 32px;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*align-items: flex-start;*/
+    /*gap: 1.2rem;*/
 }
 
 .homepage section.support div.slider-wrapper div.support-card div.content h3 {
-    font-size: clamp(2rem, 2.5vw, 2.4rem);
-    font-weight: 700;
-    line-height: 1.2;
+    margin-bottom: 16px;
+    /*font-size: clamp(2rem, 2.5vw, 2.4rem);*/
+    /*font-weight: 700;*/
+    /*line-height: 1.2;*/
 }
 
 .homepage section.support div.slider-wrapper div.support-card div.content p {
-    font-size: 1.4rem;
-    color: #5A626A;
-    margin-bottom: auto;
+    margin-bottom: 24px;
+    /*font-size: 1.4rem;*/
+    /*color: #5A626A;*/
+    /*margin-bottom: auto;*/
 }
 
 .homepage section.support div.slider-wrapper div.support-card div.content a {
-    width: 100%;
-    text-align: end;
+    display: flex;
+    justify-content: end;
+    /*width: 100%;*/
+    /*text-align: end;*/
 }
 
 .homepage section.support div.slider-wrapper div.support-card div.content a span.arrow {
-    display: inline-block;
-    transition: transform 0.2 ease;
-    height: 16px;
+    /*display: inline-block;*/
+    /*transition: transform 0.2 ease;*/
+    /*height: 16px;*/
 }
 
-.homepage section.support div.slider-wrapper div.support-card div.content a span.arrow:hover {
+.homepage section.support div.slider-wrapper div.support-card div.content a:hover /*span.arrow:hover*/ {
     transform: translateX(4px);
 }
 
-.homepage section.support div.slider-wrapper div.support-card div.content a span.arrow img {
-    height: 100%;
+.homepage section.support div.slider-wrapper div.support-card div.content a /*span.arrow */img {
+    width: 36px;
 }
 
 
