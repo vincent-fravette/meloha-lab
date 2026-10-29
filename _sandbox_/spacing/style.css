@@ -1,0 +1,217 @@
+/* ==========================================================================
+   1. VARIABLES & SYSTÈME D'ÉCHELLE (Dédié Site Vitrine)
+   ========================================================================== */
+:root {
+    /* Échelle de base fluide (S'adapte automatiquement à l'écran) */
+    --space-3xs: 0.25rem; /* 4px */
+    --space-2xs: 0.5rem; /* 8px */
+    --space-xs: 0.75rem; /* 12px */
+    --space-sm: 1rem; /* 16px */
+    --space-md: 1.5rem; /* 24px */
+    --space-lg: 2rem; /* 32px */
+    --space-xl: 3rem; /* 48px */
+
+    /* Marges géantes pour séparer les sections du site vitrine */
+    --space-section: clamp(4rem, 8vw, 8rem); /* Fluide de 64px à 128px */
+
+    /* Largeur max du contenu de la vitrine */
+    --max-width: 1200px;
+}
+
+/* ==========================================================================
+     2. MISE EN PAGE DES SECTIONS
+     ========================================================================== */
+section {
+    /* Le padding-block crée l'espace interne (haut/bas) de la section */
+    padding-block: var(--space-section);
+    /* Sécurité sur les côtés pour le mobile */
+    padding-inline: var(--space-md);
+}
+
+/* Conteneur pour centrer le contenu sans toucher aux paddings de la section */
+.container {
+    max-width: var(--max-width);
+    margin-inline: auto;
+}
+
+/* ==========================================================================
+     3. TYPOGRAPHIE & RYTHME VERTICAL (The "Flow" Pattern)
+     ========================================================================== */
+
+/* Gestion globale : on supprime les marges par défaut pour tout contrôler */
+:where(h1, h2, h3, h4, p, ul, ol) {
+    margin-block: 0;
+}
+
+/* 
+     Le sélecteur "Hibou" (+ + +) applique un espacement uniquement EN AMONT 
+     d'un élément s'il suit un autre élément. Fini les marges qui dépassent !
+  */
+.stack > * + * {
+    margin-block-start: var(
+        --space-md
+    ); /* Espacement par défaut entre deux blocs (24px) */
+}
+
+/* Ajustements fins selon la nature des éléments textuels */
+h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+    font-weight: 800;
+    /* Un h1 a besoin de respirer avec le texte qui le suit */
+    margin-block-end: var(--space-md);
+}
+
+h2 {
+    font-size: clamp(1.8rem, 4vw, 2.75rem);
+    line-height: 1.2;
+    /* Un sous-titre doit être plus proche de son paragraphe que du bloc précédent */
+    margin-block-start: var(--space-xl) !important;
+    margin-block-end: var(--space-sm);
+}
+
+h3 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+    margin-block-start: var(--space-lg) !important;
+    margin-block-end: var(--space-xs);
+}
+
+p {
+    font-size: 1.125rem; /* 18px pour une lecture ultra-confortable sur site vitrine */
+    line-height: 1.7;
+    color: #374151; /* Code couleur doux pour les yeux */
+}
+
+/* Espacement spécifique entre deux paragraphes consécutifs */
+p + p {
+    margin-block-start: var(--space-sm);
+}
+
+/* ==========================================================================
+   4. BARRE DE NAVIGATION (HEADER)
+   ========================================================================== */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #e5e7eb;
+
+    /* Espacement interne vertical serré pour ne pas étouffer l'écran */
+    padding-block: var(--space-sm);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: var(--space-md);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /* Espacement moderne entre les liens via gap (évite les marges à gérer) */
+    gap: var(--space-lg);
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #1f2937;
+    font-weight: 500;
+    /* Règle d'or ergonomique : padding interne pour agrandir la zone cliquable */
+    padding-block: var(--space-2xs);
+    padding-inline: var(--space-xs);
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: #2563eb;
+}
+
+/* ==========================================================================
+     5. GRILLE DE SERVICES (GRID LAYOUT)
+     ========================================================================== */
+.services-grid {
+    display: grid;
+    /* Grille 100% responsive sans aucune Media Query */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    /* Espacement standard de 32px entre les cartes */
+    gap: var(--space-lg);
+    margin-block-start: var(--space-xl);
+}
+
+.service-card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    /* Espacement interne généreux pour un aspect premium / vitrine */
+    padding: var(--space-lg);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+
+    /* Force la carte à gérer son propre texte en colonne serrée */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.service-card h3 {
+    /* Annule la grosse marge du layout global pour rester proche de son icône/contenu */
+    margin-block-start: 0 !important;
+    font-size: 1.25rem;
+}
+
+/* ==========================================================================
+     6. BOUTONS & CALL TO ACTION (CTA)
+     ========================================================================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+
+    /* Espacement standard 2026 pour un bouton respirant et tactile (ratio ~1:2) */
+    padding-block: 0.75rem; /* 12px */
+    padding-inline: 1.75rem; /* 28px */
+}
+
+.btn-primary {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border-color: #e5e7eb;
+    color: #1f2937;
+}
+
+.btn-secondary:hover {
+    background-color: #f9fafb;
+    border-color: #d1d5db;
+}
+
+/* Groupe de boutons côte à côte (ex: Hero section) */
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    /* Espacement au-dessus du groupe de boutons */
+    margin-block-start: var(--space-lg) !important;
+}

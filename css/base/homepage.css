@@ -556,10 +556,46 @@
     transform: translateX(4px);
 }
 
+@media screen and (min-width: 1260px) {
+    .homepage section.support div.slider-wrapper div.grid-container {
+        padding-inline: 0;
+    }
+}
+
 /* ==========================================================================
    4. THE PLACE
    ========================================================================== */
 
+.homepage section.the-place {
+    background-color: var(--bg-color-2);
+}
+
+.homepage section.the-place h2 {
+    margin-block-end: 24px;
+}
+
+.homepage section.the-place p.first {
+    font-size: 18px;
+    font-weight: 500;
+    margin-block-end: 16px;
+}
+
+.homepage section.the-place p.second {
+    width: 70%;
+    font-size: 14px;
+    font-weight: 300;
+    margin-block-end: 28px;
+}
+
+.homepage section.the-place a.btn {
+    border: 1px solid var(--main-color);
+}
+
+.homepage section.the-place a.btn:hover {
+    color: var(--bg-color);
+    background-color: var(--main-color);
+    border-color: var(--bg-color);
+}
 
 /* ==========================================================================
    5. FACIALIST
