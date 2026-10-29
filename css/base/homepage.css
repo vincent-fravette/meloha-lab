@@ -471,7 +471,7 @@
    ========================================================================== */
 
 .homepage section.support div.container {
-    padding: 0px;
+    padding-block-start: 0px;
 }
 
 .homepage section.support h2 {
@@ -494,6 +494,7 @@
     scroll-snap-type: x mandatory;
     overflow-x: auto;
     gap: 16px;
+    /*scroll-behavior: smooth;*/
     scrollbar-width: none;
     -ms-overflow-style: none;
     padding: 0px 16px 32px 16px;
@@ -763,6 +764,75 @@
    6. E-SHOP
    ========================================================================== */
 
+.homepage section.shop {}
+
+.homepage section.shop div.container {
+    background-color: #FFF;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding-inline: 0;
+}
+
+.homepage section.shop h2 {
+    margin-block-end: 16px;
+}
+
+.homepage section.shop p.tagline {
+    margin-block-end: 32px;
+}
+
+.homepage section.shop div.shop-cards {
+    width: 100vw;
+    display: flex;
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    gap: 16px;
+    padding: 0px 16px 32px 16px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.homepage section.shop div.shop-cards::-webkit-scrollbar {
+    display: none;
+}
+
+.homepage section.shop div.shop-cards div.product-card {
+    width: 270px;
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+}
+
+.homepage section.shop div.shop-cards div.product-card picture {
+    width: 100%;
+    margin-block-end: 8px;
+}
+
+.homepage section.shop div.shop-cards div.product-card div.card-content {
+    /*margin-block-end: 32px;*/
+}
+
+.homepage section.shop div.shop-cards div.product-card div.card-content p.product-name {
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.homepage section.shop div.shop-cards div.product-card div.card-content p.product-brand {
+    font-size: 14px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.homepage section.shop div.shop-cards div.product-card div.card-content p.product-price {
+    font-weight: 600;
+}
+
+.homepage section.shop a.btn {
+    border: 1px solid var(--main-color);
+}
+
+.homepage section.shop a.btn:hover {}
 
 /* ==========================================================================
    7. REVIEWS
