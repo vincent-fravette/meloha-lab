@@ -459,6 +459,12 @@
     }
 }
 
+@media screen and (min-width: 1260px) {
+    .homepage section.approach div.wrapper-text {
+        padding-inline: 0;
+    }
+}
+
 
 /* ==========================================================================
    3. SUPPORT
@@ -560,6 +566,10 @@
     .homepage section.support div.slider-wrapper div.grid-container {
         padding-inline: 0;
     }
+
+    .homepage section.support h2 {
+        text-align: start;
+    }
 }
 
 /* ==========================================================================
@@ -593,11 +603,7 @@
     font-size: 28px;
     font-weight: 500;
     margin-block-end: 4px;
-    line-height: 0.8;
-}
-
-.homepage section.the-place p.first.stylize {
-    /*display: none;*/
+    line-height: 0.9;
 }
 
 .homepage section.the-place p.second {
@@ -625,7 +631,7 @@
 
 @media screen and (min-width: 768px) {
     .homepage section.the-place div.container {
-        background: linear-gradient(90deg, rgba(231, 216, 203, 1) 0%, rgba(231, 216, 203, 0.9) 50%, rgba(0, 0, 0, 0) 100%), url("../../img/the-place-M.jpg");
+        background: linear-gradient(90deg, rgba(231, 216, 203, 1) 0%, rgba(231, 216, 203, 0.8) 50%, rgba(0, 0, 0, 0) 100%), url("../../img/the-place-M.jpg");
         background-repeat: no-repeat;
         background-position: right;
         background-size: cover;
@@ -634,7 +640,7 @@
 
 @media screen and (min-width: 1024px) {
     .homepage section.the-place div.container {
-        background: linear-gradient(90deg, rgba(231, 216, 203, 1) 0%, rgba(231, 216, 203, 0.9) 50%, rgba(0, 0, 0, 0) 100%), url("../../img/the-place-L.jpg");
+        background: linear-gradient(90deg, rgba(231, 216, 203, 1) 0%, rgba(231, 216, 203, 0.8) 50%, rgba(0, 0, 0, 0) 100%), url("../../img/the-place-L.jpg");
         background-repeat: no-repeat;
         background-position: right;
         background-size: cover;
@@ -657,6 +663,101 @@
    5. FACIALIST
    ========================================================================== */
 
+.homepage section.facialist {}
+
+.homepage section.facialist div.container {
+    padding-inline: 0;
+}
+
+.homepage section.facialist picture img {
+    width: 100%;
+}
+
+.homepage section.facialist div.facialist-img {
+    /*width: 100%;*/
+    /*background-color: var(--main-color);*/
+    /*background: url("../../img/facialist-S.jpg");*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center;*/
+    /*background-size: cover;*/
+}
+
+.homepage section.facialist div.facialist-content {
+    background-color: var(--bg-color-3);
+    padding-block: clamp(48px, 5vw, 96px);
+    padding-inline: var(--base-unit);
+}
+
+.homepage section.facialist div.facialist-content h2 {
+    margin-block-end: 24px;
+}
+
+.homepage section.facialist div.facialist-content p.first {
+    font-size: 28px;
+    font-weight: 500;
+    margin-block-end: 4px;
+    line-height: 0.9;
+}
+
+.homepage section.facialist div.facialist-content p.second {
+    font-size: 14px;
+    font-weight: 300;
+    /*margin-block-end: 8px;*/
+    margin-block-end: 28px;
+}
+
+.homepage section.facialist div.facialist-content p.third {
+    font-size: 14px;
+    font-weight: 300;
+    margin-block-end: 28px;
+    display: none;
+}
+
+.homepage section.facialist div.facialist-content a.btn {
+    border: 1px solid var(--main-color);
+}
+
+.homepage section.facialist div.facialist-content a.btn:hover {
+    color: var(--bg-color-2);
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+}
+/* Syntaxe moderne */
+/**@media (576px <= width <= 767px) {}**/
+/* Syntaxe classique (recommandé pour une compatibilité maximale) */
+/**@media (min-width: 576px) and (max-width: 767px) {}**/
+
+@media screen and (min-width: 640px) {
+    .homepage section.facialist div.facialist-content {
+        padding-inline: 64px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .homepage section.facialist div.container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .homepage section.facialist div.facialist-content p.first {
+        font-size: 48px;
+        margin-block-end: 16px;
+    }
+
+    .homepage section.facialist div.facialist-content p.second {
+        font-size: 18px;
+        margin-block-end: 48px;
+    }
+    
+    .homepage section.facialist div.facialist-content p.third {
+        font-size: 18px;
+        margin-block-end: 48px;
+    }
+}
+
+@media screen and (min-width: 1200px) {}
 
 /* ==========================================================================
    6. E-SHOP
