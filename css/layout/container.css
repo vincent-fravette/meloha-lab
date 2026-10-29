@@ -5,7 +5,8 @@
     padding-right: var(--base-unit);
     padding-bottom: var(--base-unit);
     padding-left: var(--base-unit);*/
-    padding: 32px var(--base-unit);
+    /*padding: 32px var(--base-unit);*/
+    padding-inline: var(--base-unit);
     margin: 0 auto!important;
 }
 
@@ -13,6 +14,10 @@
     width: 100%;
     /*padding-left: var(--base-unit);*/
     /*padding-right: var(--base-unit);*/
+}
+
+.container.spacing {
+    padding-block: clamp(48px, 5vw, 96px);
 }
 
 @media screen and (min-width: 1260px) {

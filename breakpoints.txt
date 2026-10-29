@@ -1,0 +1,30 @@
+******************************************
+* Plages de breakpoint courant (CSS/Web) *
+******************************************
+
+• xs - Petit Mobile
+    -> 320px - 479px (anciens téléphones ou formats compacts)
+
+• s - Mobile Standard
+    -> 480px - 639px (smartphones modernes en portrait)
+
+• sm - Petite tablette
+    -> 640px - 767px (ou --breakpoint-sm à 640px comme dans les frameworks modernes)
+
+• m - Tablette
+    -> 768px - 1023px (iPad en portrait, tablettes moyennes)
+
+• l - Laptop / Ordinateur Portable
+    -> 1024px - 1279px (iPad en paysage, petits laptops)
+
+• xl - Desktop / Grand Ecran
+    -> 1280px - 1535px (et au-delà de 1200px / 1536px pour les écrans larges)
+
+• xxl - Ecran Large
+    -> 1536px et plus
+
+
+Le plus grand breakpoint généralement utilisé pour la catégorie « mobile » (avant de basculer vers la tablette) se situe autour de 480 px à 576 px.
+• 480 px à 600 px : Correspond à la fin des grands smartphones ou au mode paysage/smartphones très larges (grand mobile).
+• 576 px : Valeur classique souvent utilisée (par exemple chez Eficiens ou Bootstrap) pour marquer la limite haute du mobile avant la tablette (fixée généralement à partir de 768 px).
+• 768 px : Marque le seuil officiel de la tablette portrait dans la majorité des frameworks.

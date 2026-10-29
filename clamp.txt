@@ -1,0 +1,14 @@
+<section> padding-block clamp(32px, 2vw, 64px) (48px, 0, 96px)
+<h1> font-size clamp()
+<h2> font-size clamp()
+<h3> font-size clamp()
+<h4> font-size clamp()
+<h5> font-size clamp()
+<h6> font-size clamp()
+
+screen - 320px -> 1920px - 1120px
+
+bandeau section
+    -> mobile : 320x346
+    -> tablet : 768x291
+    -> desktop : 1200x369

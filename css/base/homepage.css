@@ -567,7 +567,22 @@
    ========================================================================== */
 
 .homepage section.the-place {
+    /*background-color: var(--bg-color-2);*/
+}
+
+.homepage section.the-place div.container {
+    background: linear-gradient(rgba(231, 216, 203, 0.8) 0%, rgba(231, 216, 203, 0.8) 100%), url("../../img/the-place-S.jpg");
     background-color: var(--bg-color-2);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: cover;
+    color: var(--main-color);
+    padding-inline: 16px;
+}
+
+.homepage section.the-place picture.the-place-bg {
+    position: relative;
+    z-index: 1;
 }
 
 .homepage section.the-place h2 {
@@ -575,13 +590,18 @@
 }
 
 .homepage section.the-place p.first {
-    font-size: 18px;
+    font-size: 28px;
     font-weight: 500;
-    margin-block-end: 16px;
+    margin-block-end: 4px;
+    line-height: 0.8;
+}
+
+.homepage section.the-place p.first.stylize {
+    /*display: none;*/
 }
 
 .homepage section.the-place p.second {
-    width: 70%;
+    width: 100%;
     font-size: 14px;
     font-weight: 300;
     margin-block-end: 28px;
@@ -592,9 +612,45 @@
 }
 
 .homepage section.the-place a.btn:hover {
-    color: var(--bg-color);
+    color: var(--bg-color-2);
     background-color: var(--main-color);
-    border-color: var(--bg-color);
+    border-color: var(--main-color);
+}
+
+@media screen and (min-width: 640px) {
+    .homepage section.the-place div.container {
+        padding-inline: 64px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .homepage section.the-place div.container {
+        background: linear-gradient(90deg, rgba(231, 216, 203, 1) 0%, rgba(231, 216, 203, 0.9) 50%, rgba(0, 0, 0, 0) 100%), url("../../img/the-place-M.jpg");
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: cover;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .homepage section.the-place div.container {
+        background: linear-gradient(90deg, rgba(231, 216, 203, 1) 0%, rgba(231, 216, 203, 0.9) 50%, rgba(0, 0, 0, 0) 100%), url("../../img/the-place-L.jpg");
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: cover;
+    }
+
+    .homepage section.the-place p.first {
+        width: 50%;
+        font-size: 48px;
+        margin-block-end: 16px;
+    }
+
+    .homepage section.the-place p.second {
+        width: 50%;
+        font-size: 18px;
+        margin-block-end: 48px;
+    }
 }
 
 /* ==========================================================================
