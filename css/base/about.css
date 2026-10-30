@@ -1,0 +1,29 @@
+.about section.hero {
+    text-align: center;
+    border-bottom: 1px solid rgba(97, 61, 14, 0.1);
+    background-color: var(--main-color);
+    color: var(--bg-color);
+}
+
+.about section.hero div.container {}
+
+.about section.hero h1 {
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-block-end: 32px;
+    font-size: clamp(2.25rem, 5vw, 4rem);
+}
+
+.about section.hero div.hero-unit-first {
+    margin-block-end: 48px;
+}
+
+.about section.hero div.hero-unit-second {
+    width: 100%;
+    font-family: var(--typography-taglines);
+    text-transform: uppercase;
+}
+
+.about section.hero div.hero-unit-second p {
+    font-weight: 300;
+}
