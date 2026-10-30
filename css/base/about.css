@@ -1,3 +1,25 @@
+.about h2 {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-block-end: 24px;
+}
+
+.about p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-block-end: 16px;
+}
+
+.about p:last-child {
+    margin-block-end: 0;
+}
+
+/* ==========================================================================
+   1. HERO
+   ========================================================================== */
+
 .about section.hero {
     text-align: center;
     border-bottom: 1px solid rgba(97, 61, 14, 0.1);
@@ -5,7 +27,11 @@
     color: var(--bg-color);
 }
 
-.about section.hero div.container {}
+.about section.hero div.container {
+    padding-block: clamp(92px, 10vw, 192px);
+    max-width: 805px!important;
+    margin: auto!important;
+}
 
 .about section.hero h1 {
     text-transform: uppercase;
@@ -18,12 +44,227 @@
     margin-block-end: 48px;
 }
 
+.about section.hero div.hero-unit-first p.first {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 0.9;
+    margin-block-end: 16px;
+    text-transform: lowercase;
+}
+
 .about section.hero div.hero-unit-second {
-    width: 100%;
+    width: 288px;
     font-family: var(--typography-taglines);
     text-transform: uppercase;
+    position: relative;
+    margin: auto;
 }
 
 .about section.hero div.hero-unit-second p {
+    font-size: 12px;
+    font-style: italic;
     font-weight: 300;
+    letter-spacing: 1.8px;
 }
+
+.about section.hero div.hero-unit-second p::before {
+    content: "“";
+    font-size: 4rem;
+    color: var(--bg-color);
+    position: absolute;
+    left: -4px;
+    top: -13px;
+    line-height: 1;
+}
+.about section.hero div.hero-unit-second p::after {
+    content: "”";
+    font-size: 4rem;
+    color: var(--bg-color);
+    line-height: 1;
+    position: absolute;
+    right: -26px;
+    top: 32px;
+}
+
+/* ==========================================================================
+   2. STORY
+   ========================================================================== */
+
+.about section.story {}
+
+.about section.story div.story-content div.wrapper {
+    margin-block-end: 16px;
+}
+
+.about section.story div.story-content div.wrapper div.story-img {
+    width: 100%;
+    height: 160px;
+    background-color: var(--main-color);
+    margin-block-end: 16px;
+}
+
+.about section.story div.story-content div.wrapper div.story-text-first {
+    margin-block-end: 16px;
+}
+
+.about section.story div.story-content div.wrapper div.story-text-second {
+    margin-block-end: 32px;
+}
+
+.about section.story div.story-content div.story-quote {
+    padding-inline: 16px;
+    text-align: center;
+    position: relative;
+    width: 288px;
+    margin: auto;
+}
+
+.about section.story div.story-content div.story-quote p {
+    font-family: var(--typography-taglines);
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1.3;
+    letter-spacing: 1.5px;
+}
+
+.about section.story div.story-content div.story-quote p::before {
+    content: "“";
+    font-size: 4rem;
+    color: var(--main-color);
+    position: absolute;
+    left: -4px;
+    top: -14px;
+    line-height: 1;
+}
+
+.about section.story div.story-content div.story-quote p::after {
+    content: "”";
+    font-size: 4rem;
+    color: var(--main-color);
+    line-height: 1;
+    position: absolute;
+    right: -6px;
+    top: 81px;
+}
+
+@media screen and (min-width: 768px) {
+    .about section.story div.story-content div.wrapper {
+        /*display: grid;*/
+        /*grid-template-columns: 1fr 2fr;*/
+        /*gap: 16px;*/
+    }
+
+    .about section.story div.story-content div.wrapper div.story-img {
+        width: 320px;
+        height: 456px;
+        margin-block-end: clamp(16px, 2vw, 32px);
+        margin-inline-end: clamp(16px, 2vw, 32px);
+        float: left;
+    }
+
+    .about section.story div.story-content div.story-quote {
+        padding-inline: 99px;
+        width: 736px;
+    }
+
+    .about section.story div.story-content div.story-quote p::before {
+        left: 72px;
+        top: -14px;
+    }
+
+    .about section.story div.story-content div.story-quote p::after {
+        right: 72px;
+        top: 17px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .about section.story div.story-content div.wrapper div.story-img {
+        height: 490px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .about section.story div.story-content div.wrapper div.story-img {
+        width: 350px;
+    }
+}
+
+@media screen and (min-width: 1260px) {
+    .about section.story div.story-content div.wrapper div.story-img {
+        height: 514px;
+        margin-block-end: clamp(16px, 2vw, 29px);
+    }
+}
+
+/* ==========================================================================
+   3. VISION
+   ========================================================================== */
+
+.about section.vision {}
+
+.about section.vision div.container {}
+
+.about section.vision div.container h2 {
+    margin-block-end: 4px;
+}
+
+.about section.vision div.vision-content h3 {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 0.9;
+    margin-block-end: 16px;
+    text-transform: lowercase;
+}
+
+/* ==========================================================================
+   4. APPROACH
+   ========================================================================== */
+
+.about section.approach {}
+
+.about section.approach div.container {}
+
+.about section.approach div.container h2 {
+    margin-block-end: 4px;
+}
+
+.about section.approach div.approach-content h3 {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 0.9;
+    margin-block-end: 16px;
+    text-transform: lowercase;
+}
+
+.about section.approach div.approach-content div.approach-unit-second {
+    display: none;
+}
+
+@media screen and (min-width: 1200px) {
+    .about section.approach div.approach-content div.approach-unit-second {
+        display: inline-flex;
+    }
+}
+
+/* ==========================================================================
+   5. KNOWLEDGE
+   ========================================================================== */
+
+.about section.knowledge {}
+
+.about section.knowledge div.container {}
+
+.about section.knowledge h3 {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 0.9;
+    margin-block-end: 16px;
+    text-transform: lowercase;
+}
+
+/* ==========================================================================
+   6. COMMITMENT
+   ========================================================================== */
