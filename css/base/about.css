@@ -219,6 +219,34 @@
     text-transform: lowercase;
 }
 
+@media screen and (min-width: 768px) {
+    .about section.vision div.vision-content {
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+        gap: 16px;
+        /*align-items: center;*/
+    }
+
+    .about section.vision div.vision-content h3 {
+        font-size: 48px;
+        /*line-height: initial;*/
+        margin-block-end: 0;
+        margin-block-start: 5px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .about section.vision div.vision-content h3 {
+        font-size: 32px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .about section.vision div.vision-content h3 {
+        font-size: 48px;
+    }
+}
+
 /* ==========================================================================
    4. APPROACH
    ========================================================================== */
@@ -231,7 +259,7 @@
     margin-block-end: 4px;
 }
 
-.about section.approach div.approach-content h3 {
+.about section.approach div.approach-content div.wrapper h3 {
     font-size: 20px;
     font-weight: 500;
     line-height: 0.9;
@@ -242,8 +270,33 @@
 .about section.approach div.approach-content div.approach-unit-second {
     display: none;
 }
+@media screen and (min-width: 768px) {
+    .about section.approach div.approach-content div.wrapper {
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+        gap: 16px;
+        /* align-items: center;*/
+    }
+
+    .about section.approach div.approach-content div.wrapper h3 {
+        font-size: 48px;
+        /* line-height: initial; */
+        margin-block-end: 0;
+        margin-block-start: 5px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .about section.approach div.approach-content div.wrapper h3 {
+        font-size: 32px;
+    }
+}
 
 @media screen and (min-width: 1200px) {
+    .about section.approach div.approach-content div.wrapper h3 {
+        font-size: 48px;
+    }
+
     .about section.approach div.approach-content div.approach-unit-second {
         display: inline-flex;
     }
